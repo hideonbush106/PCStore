@@ -29,9 +29,9 @@
                 <a href="<c:url value="/account/logout.do" />">Logout</a>
             </c:if>
         </header>
-        <main><jsp:include page="/WEB-INF/views/${controller}/${action}.jsp" /></main>
+        <main><hr><jsp:include page="/WEB-INF/views/${controller}/${action}.jsp" /><hr></main>
         <footer>
-
+            Copyright &copy; by FPT students
         </footer>
     </body>
 </html>

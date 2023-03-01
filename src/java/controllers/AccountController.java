@@ -41,7 +41,7 @@ public class AccountController extends HttpServlet {
         switch (action) {
             case "login":
                 //Hien login form                
-                request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+                request.getRequestDispatcher(Config.LOGIN).forward(request, response);
                 break;
             case "login_handler":
                 //Xu ly login form
