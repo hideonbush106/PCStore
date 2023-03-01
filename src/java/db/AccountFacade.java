@@ -34,7 +34,7 @@ public class AccountFacade {
             account.setId(rs.getInt("id"));
             account.setEmail(rs.getString("email"));
             account.setPassword(rs.getString("password"));
-            account.setFullName(rs.getString("fullName"));
+            account.setUsername(rs.getString("username"));
             account.setRole(rs.getString("role"));
         }
         con.close();

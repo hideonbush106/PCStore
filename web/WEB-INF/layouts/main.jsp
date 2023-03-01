@@ -25,7 +25,7 @@
             </c:if>
             <c:if test="${sessionScope.account!=null}">
                 <!--Neu da login-->
-                Welcome ${sessionScope.account.fullName} | 
+                Welcome ${sessionScope.account.username} | 
                 <a href="<c:url value="/account/logout.do" />">Logout</a>
             </c:if>
         </header>

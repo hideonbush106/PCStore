@@ -9,17 +9,17 @@ public class Account {
     private int id;
     private String email;
     private String password;
-    private String fullName;
+    private String username;
     private String role;
 
     public Account() {
     }
 
-    public Account(int id, String email, String password, String fullName, String role) {
+    public Account(int id, String email, String password, String username, String role) {
         this.id = id;
         this.email = email;
         this.password = password;
-        this.fullName = fullName;
+        this.username = username;
         this.role = role;
     }
 
@@ -47,12 +47,12 @@ public class Account {
         this.password = password;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getRole() {
@@ -62,6 +62,8 @@ public class Account {
     public void setRole(String role) {
         this.role = role;
     }
+
+    
     
 }
 
