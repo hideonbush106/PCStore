@@ -40,7 +40,6 @@ public class ProductController extends HttpServlet {
             out.println("<title>Servlet ProductController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ProductController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
