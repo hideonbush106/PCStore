@@ -1,6 +1,6 @@
 # PCStore
 
-This is our project for "Wep application development with Java" (Code subject: PRJ301)
+This is our project for "Wep application development with Java" (Subject code: PRJ301)
 
 
 ## Authors
@@ -9,7 +9,7 @@ This is our project for "Wep application development with Java" (Code subject: P
 - [Nguyen Hoai Phong](https://www.github.com/hideonbush106)
 - [Nguyen Minh Khang](https://www.github.com/ngynmikan)
 - [Bui Hoang Hai](https://www.github.com/walle2405)
-- [Nguyen Trung Tin](https://www.github.com/)
+- [Nguyen Trung Tin](https://www.github.com/tinnguyentrung962k)
 
 ## Run Locally
 
