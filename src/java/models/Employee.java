@@ -20,6 +20,10 @@ public class Employee {
     public Employee() {
     }
 
+    public Employee(int employeeId) {
+        this.employeeId = employeeId;
+    }
+
     public Employee(int employeeId, String empName, double salary, String address, String phoneNo) {
         this.employeeId = employeeId;
         this.empName = empName;

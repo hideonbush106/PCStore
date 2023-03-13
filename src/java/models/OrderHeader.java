@@ -22,6 +22,10 @@ public class OrderHeader {
     public OrderHeader() {
     }
 
+    public OrderHeader(boolean status) {
+        this.status = status;
+    }
+
     public OrderHeader(int orderHeaderId, Date date, boolean status, int customerId, int employeeId) {
         this.orderHeaderId = orderHeaderId;
         this.date = date;
@@ -69,6 +73,5 @@ public class OrderHeader {
     public void setEmployeeId(int employeeId) {
         this.employeeId = employeeId;
     }
-    
-   
+
 }
