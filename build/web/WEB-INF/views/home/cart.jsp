@@ -16,18 +16,21 @@
         <c:if test="${sessionScope.cart != null}">
             <c:if test="${!sessionScope.cart.map.isEmpty()}">
                 <table border="1px" cellspacing="0" cellpadding="4">
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Category</th>
-                        <th>Brand</th>
-                        <th>Unit price</th>
-                        <th>Quantity</th>
-                        <th>Cost</th>
-                        <th>Operations</th>
-                    </tr>
-                    <c:forEach var="item" items="${sessionScope.cart.item}" varStatus="loop">
+                    <thead>
                         <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Brand</th>
+                            <th>Unit price</th>
+                            <th>Quantity</th>
+                            <th>Cost</th>
+                            <th>Operations</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="item" items="${sessionScope.cart.item}" varStatus="loop">
+                            <tr>
                         <form action="<c:url value="/cart"/>">
                             <td>${item.product.productId}</td>
                             <td>${item.product.productName}</td>
@@ -43,18 +46,20 @@
                             </td>
                         </form>
                     </tr>
-
                 </c:forEach>
+            </tbody>
+            <tfoot>
                 <tr>
                     <th colspan="6">Total</th>
                     <th>${sessionScope.cart.total}</th>
                     <th></th>
                 </tr>
-            </table>
-            <a href="<c:url value="/cart?op=empty"/>">Empty</a>
-            <a href="<c:url value="/cart?op=checkout"/>">Checkout</a>
-        </c:if>
+            </tfoot>
+        </table>
+        <a href="<c:url value="/cart?op=empty"/>">Empty</a>
+        <a href="<c:url value="/cart?op=checkout"/>">Checkout</a>
     </c:if>
+</c:if>
 </c:if>
 <c:if test="${sessionScope.account.role == 'ROLE_ADMIN'}">
     <jsp:forward page="admin/index.do"/>

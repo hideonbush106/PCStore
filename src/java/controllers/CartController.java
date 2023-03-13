@@ -139,6 +139,11 @@ public class CartController extends HttpServlet {
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("account");
         Cart cart = (Cart) session.getAttribute("cart");
+        if (account == null) {
+            request.setAttribute("action", "login");
+            request.getRequestDispatcher(Config.LOGIN).forward(request, response);
+        }
+        //Transaction
         //empty item trong cart
         cart.empty();
         //quay ve cart.update(id,quantity);trang chu

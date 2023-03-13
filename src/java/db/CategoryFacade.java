@@ -23,16 +23,11 @@ public class CategoryFacade {
 
     public List<Category> select() throws SQLException {
         List<Category> list = null;
-        //Tạo connection để kết nối vào DBMS
         Connection con = DBContext.getConnection();
-
-        //Tạo đối tượng statement
         Statement stm = con.createStatement();
-        //Thực thi lệnh SELECT
         ResultSet rs = stm.executeQuery("select * from category");
         list = new ArrayList<>();
         while (rs.next()) {
-            //doc mau tin hien hanh de vao doi tuong toy
             Category category = new Category();
             category.setCategoryId(rs.getInt("categoryId"));
             category.setName(rs.getString("name"));
