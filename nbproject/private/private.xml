@@ -4,9 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/E:/PCStore/web/index.jsp</file>
+            <file>file:/E:/PCStore/src/java/controllers/AdminController.java</file>
             <file>file:/E:/PCStore/src/java/db/BrandFacade.java</file>
             <file>file:/E:/PCStore/src/java/models/Item.java</file>
-            <file>file:/E:/PCStore/src/java/db/CartFacade.java</file>
+            <file>file:/E:/PCStore/src/java/db/OrderFacade.java</file>
+            <file>file:/E:/PCStore/src/java/controllers/AccountController.java</file>
             <file>file:/E:/PCStore/src/java/models/Cart.java</file>
             <file>file:/E:/PCStore/src/java/models/Product.java</file>
             <file>file:/E:/PCStore/src/java/models/OrderHeader.java</file>

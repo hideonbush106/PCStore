@@ -15,14 +15,14 @@ public class OrderHeader {
 
     private int orderHeaderId;
     private Date date;
-    private String status;
+    private boolean status;
     private int customerId;
     private int employeeId;
 
     public OrderHeader() {
     }
 
-    public OrderHeader(int orderHeaderId, Date date, String status, int customerId, int employeeId) {
+    public OrderHeader(int orderHeaderId, Date date, boolean status, int customerId, int employeeId) {
         this.orderHeaderId = orderHeaderId;
         this.date = date;
         this.status = status;
@@ -46,11 +46,11 @@ public class OrderHeader {
         this.date = date;
     }
 
-    public String getStatus() {
+    public boolean isStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 
@@ -69,5 +69,6 @@ public class OrderHeader {
     public void setEmployeeId(int employeeId) {
         this.employeeId = employeeId;
     }
-
+    
+   
 }

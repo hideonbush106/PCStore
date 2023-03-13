@@ -33,7 +33,7 @@ public class OrderFacade {
         try {
             PreparedStatement stm = con.prepareStatement("insert into OrderHeader values(?,?,?,?)");
             stm.setString(1, date);
-            stm.setString(2, orderHeader.getStatus());
+            stm.setBoolean(2, orderHeader.isStatus());
             stm.setInt(3, customer.getCustomerId());
             stm.setInt(4, employee.getEmployeeId());
             stm.executeUpdate();
