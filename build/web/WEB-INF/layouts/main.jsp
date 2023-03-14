@@ -37,6 +37,7 @@
                 <c:if test="${sessionScope.account.role == 'ROLE_EMPLOYEE'}">
                     <%--login as employee --%>
                     <a href="<c:url value="/employees/index.do" />">Home</a> |
+                    <a href="<c:url value="/employees/orderList.do" />">Order List</a>
                 </c:if>
                 <c:if test="${sessionScope.account.role == 'ROLE_CUSTOMER'}">
                     <%--login as customer--%>

@@ -5,13 +5,21 @@
  */
 package controllers;
 
+import db.OrderFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import models.Account;
+import models.OrderHeader;
 import utils.Config;
 
 /**
@@ -31,12 +39,22 @@ public class EmployeeController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         String action = (String) request.getAttribute("action");
         switch (action) {
             case "index":
                 //Processing code here
+                //Forward request & response to the main layout
+                request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+                break;
+            case "orderList":
+                //Processing code here
+                HttpSession session = request.getSession();
+                Account account = (Account) session.getAttribute("account");
+                OrderFacade of = new OrderFacade();
+                List<OrderHeader> orderList = of.readOrderHeader(account.getAccountId());
+                request.setAttribute("list", orderList);
                 //Forward request & response to the main layout
                 request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
                 break;
@@ -55,7 +73,11 @@ public class EmployeeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -69,7 +91,11 @@ public class EmployeeController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

@@ -17,7 +17,9 @@ public class OrderHeader {
     private Date date;
     private boolean status;
     private int customerId;
+    private String customerName;
     private int employeeId;
+    private String employeeName;
 
     public OrderHeader() {
     }
@@ -26,12 +28,21 @@ public class OrderHeader {
         this.status = status;
     }
 
-    public OrderHeader(int orderHeaderId, Date date, boolean status, int customerId, int employeeId) {
+    public OrderHeader(int orderHeaderId, Date date, boolean status, int customerId, String customerName, int employeeId, String employeeName) {
         this.orderHeaderId = orderHeaderId;
         this.date = date;
         this.status = status;
         this.customerId = customerId;
+        this.customerName = customerName;
         this.employeeId = employeeId;
+        this.employeeName = employeeName;
+    }
+
+    public OrderHeader(int orderHeaderId, Date date, boolean status, String customerName) {
+        this.orderHeaderId = orderHeaderId;
+        this.date = date;
+        this.status = status;
+        this.customerName = customerName;
     }
 
     public int getOrderHeaderId() {
@@ -66,12 +77,28 @@ public class OrderHeader {
         this.customerId = customerId;
     }
 
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
     public int getEmployeeId() {
         return employeeId;
     }
 
     public void setEmployeeId(int employeeId) {
         this.employeeId = employeeId;
+    }
+
+    public String getEmployeeName() {
+        return employeeName;
+    }
+
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
     }
 
 }
