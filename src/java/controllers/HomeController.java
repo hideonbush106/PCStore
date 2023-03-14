@@ -9,16 +9,13 @@ import db.ProductFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import models.Cart;
 import models.Product;
 import utils.Config;
 
@@ -39,13 +36,14 @@ public class HomeController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String controller = (String) request.getAttribute("controller");
         String action = (String) request.getAttribute("action");
         switch (action) {
             case "index":
                 //Processing code here
+                getList(request, response);
                 //Forward request & response to the main layout
                 request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
                 break;
@@ -53,25 +51,26 @@ public class HomeController extends HttpServlet {
                 //Processing code here
                 //Forward request & response to the main layout
                 request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
-            case "cart":
-                //Processing code here
-                //Forward request & response to the main layout
-                HttpSession session = request.getSession();
-                Cart cart = (Cart) session.getAttribute("cart");
-                if (cart == null) {
-                    request.setAttribute("message", "Cart empty");
-                }
-                request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
-            case "product":
-                //Processing code here
-                ProductFacade pf = new ProductFacade();
-                List<Product> list = pf.select();
-                request.setAttribute("list", list);
-                //Forward request & response to the main layout
-                request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
                 break;
             default:
             //Show error page
+        }
+    }
+       protected void getList(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            ProductFacade pf = new ProductFacade();
+            List<Product> list = pf.select();
+             Collections.shuffle(list);
+            request.setAttribute("list", list);
+            //Forward request & response to the main layout
+            request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+        } catch (SQLException ex) {
+            //Show the error page
+            request.setAttribute("message", ex.getMessage());
+            request.setAttribute("controller", "error");
+            request.setAttribute("action", "error");
+            request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
         }
     }
 
@@ -87,11 +86,7 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -105,11 +100,7 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
