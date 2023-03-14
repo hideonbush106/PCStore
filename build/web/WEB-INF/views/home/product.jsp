@@ -8,6 +8,24 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="utils.Utils" %>
 <h1>Product goes here</h1>
+    Sort by:
+<!--    <form action="<c:url value=""/>">
+        <label for="sortChoice"></label>
+        <select name="sortChoice" id="sortChoice">
+            <option value="price">Price</option>
+            <option value="brand">Brand</option>
+        </select>
+    </form>-->
+        
+    <form action="<c:url value="/home/sort.do"/>">
+        <label for="sortOrderChoice"></label>
+        <select name="sortOrderChoice" id="sortOrderChoice">
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+        </select>
+        <button type="submit" name="op" value="sortOrderChoice">Sort</button>
+        </form>
+
 <div style="display: flex; flex-wrap: wrap; align-content: center; justify-content: center">
    <c:forEach items="${list}" var="product" varStatus="loop" end="10">
                                         <!-- Single -->

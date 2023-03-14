@@ -38,6 +38,8 @@ public class ProductController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String action = (String) request.getAttribute("action");
+        String sortChoice = (String) request.getAttribute("sortChoice");
+        String sortOrderChoice = (String) request.getAttribute("sortOrderChoice");
         switch (action) {
             case "index":
                 //Processing code here
@@ -52,6 +54,7 @@ public class ProductController extends HttpServlet {
             default:
             //Show error page
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -107,6 +110,24 @@ public class ProductController extends HttpServlet {
             request.setAttribute("action", "error");
             request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
         }
+    }
+
+    protected void sort(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, SQLException {
+        try {
+            String sortChoice = (String) request.getAttribute("sortChoice");
+            String sortOrderChoice = (String) request.getAttribute("sortOrderChoice");
+            ProductFacade pf = new ProductFacade();
+            List<Product> sortedList = pf.sort(sortChoice, sortOrderChoice);
+            request.setAttribute("list", sortedList);
+            request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+        } catch (SQLException ex) {
+            request.setAttribute("message", ex.getMessage());
+            request.setAttribute("controller", "error");
+            request.setAttribute("action", "error");
+            request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+        }
+
     }
 
 }
