@@ -7,13 +7,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="utils.Utils" %>
+<h1>Product goes here</h1>
 <div style="display: flex; flex-wrap: wrap; align-content: center; justify-content: center">
-    <h1>hi</h1>
-    <c:forEach items="${list}" var="product" varStatus="loop" end="10">
+   <c:forEach items="${list}" var="product" varStatus="loop" end="10">
                                         <!-- Single -->
                                         <div class="product-single">
                                             <div class="sale-badge">
-                                                <span>sale</span>
+                                                <span>sale1</span>
                                             </div>
                                             <div class="product-thumbnail">
                                                 <a href="product-details.html"
