@@ -24,7 +24,7 @@
                             <div class="col-lg-12">
                                 <div class="hero-slider-single-content">
                                     <h2>
-                                        Leading Hand Tools
+                                        Leading Hand Tools 
                                         <span>Manufacturer</span>
                                     </h2>
                                     <p>

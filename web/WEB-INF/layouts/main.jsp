@@ -116,7 +116,7 @@
 									 		</li>
 									 		
 									 	</ul>
-									 	<h2 class="subtotal">Subtotal : <span>$220</span></h2>
+									 	<h2 class="subtotal">Subtota1 : <span>$220</span></h2>
 									 	<div class="minicart-btn">
 									 		<a class="button-1" href="cart.html">View Cart</a>
 									 		<a class="button-2" href="#">Checkout</a>

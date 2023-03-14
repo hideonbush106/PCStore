@@ -50,7 +50,7 @@
 				<div class="row">
 					<div class="col-lg-5">
 						<div class="top-text">
-							<p>Welcome to Electronics Shop</p>
+							<p>Welcome to PC Shop</p>
 						</div>
 					</div>
 					<div class="col-lg-7">

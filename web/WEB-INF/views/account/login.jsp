@@ -48,7 +48,7 @@
 		<div class="header-top">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-5">
+                                            <div class="col-lg-5">
 						<div class="top-text">
 							<p>Welcome to Electronics Shop</p>
 						</div>
