@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import models.Account;
+import models.Order;
 import models.OrderHeader;
 import utils.Config;
 
@@ -53,8 +54,9 @@ public class EmployeeController extends HttpServlet {
                 HttpSession session = request.getSession();
                 Account account = (Account) session.getAttribute("account");
                 OrderFacade of = new OrderFacade();
-                List<OrderHeader> orderList = of.readOrderHeader(account.getAccountId());
+                List<Order> orderList = of.readOrder(account.getAccountId());
                 request.setAttribute("list", orderList);
+
                 //Forward request & response to the main layout
                 request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
                 break;

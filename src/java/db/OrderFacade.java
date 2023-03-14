@@ -19,6 +19,8 @@ import models.Cart;
 import models.Customer;
 import models.Employee;
 import models.Item;
+import models.Order;
+import models.OrderDetail;
 import models.OrderHeader;
 import models.Product;
 import utils.DBContext;
@@ -60,20 +62,23 @@ public class OrderFacade {
         }
     }
 
-    public List<OrderHeader> readOrderHeader(int employeeId) throws SQLException {
+    public List<Order> readOrder(int employeeId) throws SQLException {
         Connection con = DBContext.getConnection();
-        List<OrderHeader> list = null;
-        PreparedStatement stm = con.prepareStatement("SELECT DISTINCT OrderHeader.OrderHeaderId AS OrderId, date, status, Customer.fullname AS customerName FROM OrderHeader INNER JOIN OrderDetail ON OrderHeader.OrderHeaderId = OrderDetail.OrderHeaderId INNER JOIN Employee ON Employee.EmployeeId = OrderHeader.EmployeeId INNER JOIN Product ON Product.ProductId = OrderDetail.ProductId INNER JOIN Customer ON Customer.CustomerId = OrderHeader.CustomerId WHERE Employee.EmployeeId = ?");
+        List<Order> list = null;
+        PreparedStatement stm = con.prepareStatement("SELECT OrderHeader.OrderHeaderId AS OrderId, date, status, Customer.fullname AS fullname, Product.productName AS product, quantity, OrderDetail.price AS cost FROM OrderDetail INNER JOIN Product ON Product.ProductId = OrderDetail.ProductId INNER JOIN OrderHeader ON OrderHeader.OrderHeaderId = OrderDetail.OrderHeaderId INNER JOIN Customer ON Customer.CustomerId = OrderHeader.CustomerId WHERE OrderHeader.EmployeeId = ?");
         stm.setInt(1, employeeId);
         ResultSet rs = stm.executeQuery();
         list = new ArrayList<>();
         while (rs.next()) {
-            OrderHeader orderHeader = new OrderHeader();
-            orderHeader.setOrderHeaderId(rs.getInt("OrderId"));
-            orderHeader.setDate(rs.getDate("date"));
-            orderHeader.setStatus(rs.getBoolean("status"));
-            orderHeader.setCustomerName(rs.getString("customerName"));
-            list.add(orderHeader);
+            Order order = new Order();
+            order.setOrderHeaderId(rs.getInt("OrderId"));
+            order.setDate(rs.getDate("date"));
+            order.setStatus(rs.getBoolean("status"));
+            order.setFullname(rs.getString("fullname"));
+            order.setProductName(rs.getString("product"));
+            order.setQuantity(rs.getInt("quantity"));
+            order.setPrice(rs.getDouble("cost"));
+            list.add(order);
         }
         con.close();
         return list;
