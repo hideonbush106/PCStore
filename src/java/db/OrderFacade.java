@@ -12,11 +12,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import models.Cart;
 import models.Customer;
 import models.Employee;
 import models.Item;
+import models.Order;
+import models.OrderDetail;
 import models.OrderHeader;
 import models.Product;
 import utils.DBContext;
@@ -54,5 +58,27 @@ public class OrderFacade {
         } finally {
             con.close();
         }
+    }
+
+    public List<Order> readOrder(int employeeId) throws SQLException {
+        Connection con = DBContext.getConnection();
+        List<Order> list = null;
+        PreparedStatement stm = con.prepareStatement("SELECT OrderHeader.OrderHeaderId AS OrderId, date, status, Customer.fullname AS fullname, Product.productName AS product, quantity, OrderDetail.price AS cost FROM OrderDetail INNER JOIN Product ON Product.ProductId = OrderDetail.ProductId INNER JOIN OrderHeader ON OrderHeader.OrderHeaderId = OrderDetail.OrderHeaderId INNER JOIN Customer ON Customer.CustomerId = OrderHeader.CustomerId WHERE OrderHeader.EmployeeId = ?");
+        stm.setInt(1, employeeId);
+        ResultSet rs = stm.executeQuery();
+        list = new ArrayList<>();
+        while (rs.next()) {
+            Order order = new Order();
+            order.setOrderHeaderId(rs.getInt("OrderId"));
+            order.setDate(rs.getDate("date"));
+            order.setStatus(rs.getBoolean("status"));
+            order.setFullname(rs.getString("fullname"));
+            order.setProductName(rs.getString("product"));
+            order.setQuantity(rs.getInt("quantity"));
+            order.setPrice(rs.getDouble("cost"));
+            list.add(order);
+        }
+        con.close();
+        return list;
     }
 }

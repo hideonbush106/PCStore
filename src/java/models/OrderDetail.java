@@ -10,8 +10,10 @@ package models;
  * @author Administrator
  */
 public class OrderDetail {
+
     private int orderDetailId;
     private int orderHeaderId;
+
     private int quantity;
     private double price;
 
@@ -21,6 +23,12 @@ public class OrderDetail {
     public OrderDetail(int orderDetailId, int orderHeaderId, int quantity, double price) {
         this.orderDetailId = orderDetailId;
         this.orderHeaderId = orderHeaderId;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
+    public OrderDetail(int orderDetailId, int quantity, double price) {
+        this.orderDetailId = orderDetailId;
         this.quantity = quantity;
         this.price = price;
     }
@@ -57,7 +65,4 @@ public class OrderDetail {
         this.price = price;
     }
 
-
-    
-    
 }

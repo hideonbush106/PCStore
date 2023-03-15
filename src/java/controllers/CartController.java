@@ -118,7 +118,6 @@ public class CartController extends HttpServlet {
         HttpSession session = request.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
         cart.empty();
-        System.out.println(cart.getMap());
         request.setAttribute("controller", "home");
         request.setAttribute("action", "cart");
         if (cart.getMap().isEmpty()) {
@@ -151,7 +150,7 @@ public class CartController extends HttpServlet {
         //dang gan mac dinh status don hang la true
         OrderHeader orderHeader = new OrderHeader(true);
         //dang gan mac dinh employee 2
-        Employee employee = new Employee(2);
+        Employee employee = new Employee(3);
         
         if (account == null) {
             request.setAttribute("action", "login");

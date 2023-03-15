@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/E:/PCStore/src/java/models/Images.java</file>
             <file>file:/E:/PCStore/src/java/db/OrderFacade.java</file>
             <file>file:/E:/PCStore/src/java/db/ImagesFacade.java</file>
@@ -11,6 +12,8 @@
             <file>file:/E:/PCStore/src/java/db/ProductFacade.java</file>
             <file>file:/E:/PCStore/src/java/models/Product.java</file>
             <file>file:/E:/PCStore/web/WEB-INF/views/home/index.jsp</file>
+=======
+>>>>>>> 7dc3349e1fadcced061ffa225728d19147fe6bc7
         </group>
     </open-files>
 </project-private>

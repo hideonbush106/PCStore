@@ -93,12 +93,6 @@ public class AdminController extends HttpServlet {
             case "create_handlerEmployee":
                 create_handlerEmployee(request, response);
                 break;
-            case "deleteEmployee": //Show the create form
-                deleteEmployee(request, response);
-                break;
-            case "delete_handlerEmployee":
-                delete_handlerEmployee(request, response);
-                break;
             default:
                 default_handler(request, response);
         }
@@ -107,9 +101,19 @@ public class AdminController extends HttpServlet {
     protected void products(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+            int currentPage = 1;
+            int recordsPerPage = 10;
+            if(request.getParameter("currentPage") != null) {
+                currentPage = Integer.parseInt(request.getParameter("currentPage"));
+            }
             ProductFacade pf = new ProductFacade();
-            List<Product> list = pf.select();
+            List<Product> list = pf.selectForEachPage(currentPage, recordsPerPage);
+            //need to add the pf.cal all the row
+            int numOfRecords = pf.countRows();
+            int numOfPages = (int) Math.ceil(numOfRecords * 1.0 / recordsPerPage);
             request.setAttribute("list", list);
+            request.setAttribute("numOfPages", numOfPages);
+            request.setAttribute("currentPage", currentPage);
             //Forward request & response to the main layout
             request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
         } catch (SQLException ex) {
@@ -444,36 +448,5 @@ public class AdminController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-    private void deleteEmployee(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String id = request.getParameter("id");
-        request.setAttribute("id", id);
-        request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
-    }
-
-    private void delete_handlerEmployee(HttpServletRequest request, HttpServletResponse response)
-            throws IOException, ServletException {
-        String op = request.getParameter("op");
-        switch (op) {
-            case "yes":
-                int id = Integer.parseInt(request.getParameter("id"));
-                EmployeeFacade ef = new EmployeeFacade();
-                try {
-                    ef.delete(id);
-                    response.sendRedirect(request.getContextPath() + "/admin/employees.do");
-                } catch (SQLException ex) {
-                    //Show the error page
-                    request.setAttribute("message", ex.getMessage());
-                    request.setAttribute("controller", "error");
-                    request.setAttribute("action", "error");
-                    request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
-                }
-                break;
-            case "no":
-                response.sendRedirect(request.getContextPath() + "/admin/employees.do");
-                break;
-        }
-    }
 
 }

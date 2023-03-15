@@ -89,7 +89,7 @@ CREATE TABLE [dbo].[Product](
 CREATE TABLE [dbo].[OrderHeader](
 	[OrderHeaderId] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
 	[date] [datetime] NOT NULL,
-	[status] [varchar](30) NULL,
+	[status] [bit] NOT NULL,
 	[CustomerId] [int] references Customer(CustomerId) NOT NULL,
 	[EmployeeId] [int] references Employee(EmployeeId) NOT NULL
 )
@@ -178,7 +178,7 @@ INSERT [dbo].[Product] ([ProductId], [productName], [price], [CategoryId], [Bran
 INSERT [dbo].[Product] ([ProductId], [productName], [price], [CategoryId], [BrandId], [description]) VALUES (39, N'Dell Premier Collaboration Keyboard - KB900', 120, 6, 8, 'This is the Worlds first Zoom-certified* rechargeable keyboard, built to transform collaboration, enhance productivity and provide all-day comfort.')
 INSERT [dbo].[Product] ([ProductId], [productName], [price], [CategoryId], [BrandId], [description]) VALUES (40, N'Alienware Dual-Mode Wireless Gaming Headset - AW720H', 160, 3, 8, 'Gear up for marathon gaming with a comfort-focused, Dolby Atmos®-enabled, easy-to-charge wireless headset.')
 SET IDENTITY_INSERT [dbo].[Product] OFF
--- All account has password "1"
+
 SET IDENTITY_INSERT [dbo].[Account] ON 
 INSERT [dbo].[Account] ([AccountId], [fullname], [password], [email], [role], [Address], [phoneNo]) VALUES
 (1, N'Admin','6B86B273FF34FCE19D6B804EFF5A3F5747ADA4EAA22F1D49C01E52DDB7875B4B', N'trungtin@gmail.com', 'ROLE_ADMIN', N'Vinhome S3.05', '0983532359'),
@@ -201,4 +201,5 @@ VALUES
 
 SET NOCOUNT OFF
 raiserror('The PCStore database in now ready for use.',0,1)
+
 ```
