@@ -31,7 +31,7 @@ public class ProductFacade {
         //Tạo đối tượng statement
         Statement stm = con.createStatement();
         //Thực thi lệnh SELECT
-        ResultSet rs = stm.executeQuery("SELECT ProductId, productName, price, category.name AS categoryName, brand.name as brandName, description FROM Product INNER JOIN Brand ON Product.BrandId = Brand.BrandId INNER JOIN Category ON Product.CategoryId = Category.CategoryId");
+        ResultSet rs = stm.executeQuery("SELECT ProductId, productName, price, category.name AS categoryName, brand.name as brandName, description, imgSrc FROM Product INNER JOIN Brand ON Product.BrandId = Brand.BrandId INNER JOIN Category ON Product.CategoryId = Category.CategoryId INNER JOIN Images ON Product.ProductId = Images.pId");
         list = new ArrayList<>();
         while (rs.next()) {
             //Doc mau tin hien hanh de vao doi tuong toy
@@ -42,6 +42,7 @@ public class ProductFacade {
             product.setCategoryName(rs.getString("categoryName"));
             product.setBrandName(rs.getString("brandName"));
             product.setDescription(rs.getString("description"));
+            product.setImgSrc(rs.getString("imgSrc"));
             //Them toy vao list
             list.add(product);
         }

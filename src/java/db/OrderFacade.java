@@ -38,7 +38,6 @@ public class OrderFacade {
             stm.setInt(3, customer.getCustomerId());
             stm.setInt(4, employee.getEmployeeId());
             stm.executeUpdate();
-
             Collection<Item> items = cart.getItem();
             for (Item item : items) {
                 System.out.println(item.getProduct().getProductId());
@@ -48,7 +47,6 @@ public class OrderFacade {
                 stm3.setDouble(3, item.getCost());
                 stm3.executeUpdate();
             }
-
             con.commit();
         } catch (Exception e) {
             e.printStackTrace();

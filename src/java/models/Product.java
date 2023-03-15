@@ -19,6 +19,7 @@ public class Product {
     private String brandName;
     private int brandId;
     private String description;
+    private String imgSrc;
 
     public Product() {
     }
@@ -103,5 +104,16 @@ public class Product {
     public void setBrandId(int brandId) {
         this.brandId = brandId;
     }
+
+    public String getImgSrc() {
+        return imgSrc;
+    }
+
+    public void setImgSrc(String imgSrc) {
+        this.imgSrc = imgSrc;
+    }
+    
+    
+    
 
 }

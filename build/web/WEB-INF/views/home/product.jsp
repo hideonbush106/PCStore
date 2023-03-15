@@ -11,6 +11,7 @@
     <c:forEach items="${list}" var="product" varStatus="loop">
         <div style="width: 30%; text-align: center; margin: 1rem">
             <h3 style="margin: 0;">${product.productName}</h3>
+            <img style="margin:0 ; width:30%; height:fit-content" src="<c:url value="${product.imgSrc}"/>" alt="">
             <p>${product.price}</p><br/>
             <h4 style="margin: 0;">${product.categoryName}</h4><br/>
             <h4 style="margin: 0;">${product.brandName}</h4><br/>
