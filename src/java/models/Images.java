@@ -3,24 +3,34 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package db;
+package models;
 
 /**
  *
  * @author Administrator
  */
 public class Images {
+    private int imgId;
     private int productId;
-    private String imageId;
+    private String imgSrc;
 
     public Images() {
     }
 
-    public Images(int productId, String imageId) {
+    public Images(int imgId, int productId, String imgSrc) {
+        this.imgId = imgId;
         this.productId = productId;
-        this.imageId = imageId;
+        this.imgSrc = imgSrc;
     }
-    
+
+    public int getImgId() {
+        return imgId;
+    }
+
+    public void setImgId(int imgId) {
+        this.imgId = imgId;
+    }
+
     public int getProductId() {
         return productId;
     }
@@ -29,13 +39,11 @@ public class Images {
         this.productId = productId;
     }
 
-    public String getImageId() {
-        return imageId;
+    public String getImgSrc() {
+        return imgSrc;
     }
 
-    public void setImageId(String imageId) {
-        this.imageId = imageId;
-    }
-    
-    
+    public void setImgSrc(String imgSrc) {
+        this.imgSrc = imgSrc;
+    }   
 }

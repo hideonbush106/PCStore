@@ -5,17 +5,22 @@
  */
 package controllers;
 
+import db.ProductFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.Product;
+import utils.Config;
 
 /**
  *
- * @author ADMIN
+ * @author Admin
  */
 @WebServlet(name = "ProductController", urlPatterns = {"/product"})
 public class ProductController extends HttpServlet {
@@ -32,17 +37,24 @@ public class ProductController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ProductController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("</body>");
-            out.println("</html>");
+        String action = (String) request.getAttribute("action");
+        String sortChoice = (String) request.getAttribute("sortChoice");
+        String sortOrderChoice = (String) request.getAttribute("sortOrderChoice");
+        switch (action) {
+            case "index":
+                //Processing code here
+                //Forward request & response to the main layout
+                index(request, response);
+                break;
+            case "aboutus":
+                //Processing code here
+                //Forward request & response to the main layout
+                request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+                break;
+            default:
+            //Show error page
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -84,4 +96,41 @@ public class ProductController extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+<<<<<<< HEAD
+=======
+    private void index(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        try {
+            ProductFacade pf = new ProductFacade();
+            List<Product> list = pf.select();
+            request.setAttribute("list", list);
+            //Forward request & response to the main layout
+            request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+        } catch (SQLException ex) {
+            //Show the error page
+            request.setAttribute("message", ex.getMessage());
+            request.setAttribute("controller", "error");
+            request.setAttribute("action", "error");
+            request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+        }
+    }
+
+    protected void sort(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, SQLException {
+        try {
+            String sortChoice = (String) request.getAttribute("sortChoice");
+            String sortOrderChoice = (String) request.getAttribute("sortOrderChoice");
+            ProductFacade pf = new ProductFacade();
+            List<Product> sortedList = pf.sort(sortChoice, sortOrderChoice);
+            request.setAttribute("list", sortedList);
+            request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+        } catch (SQLException ex) {
+            request.setAttribute("message", ex.getMessage());
+            request.setAttribute("controller", "error");
+            request.setAttribute("action", "error");
+            request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+        }
+
+    }
+
+>>>>>>> 6dd27a7cf8835a3614f2607dcbf8f42aaf1c515e
 }

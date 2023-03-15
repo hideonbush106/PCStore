@@ -3,30 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package db;
+package models;
 
 /**
  *
  * @author Administrator
  */
 public class Brand {
-    private int id;
+    private int brandId;
     private String name;
 
     public Brand() {
     }
 
-    public Brand(int id, String name) {
-        this.id = id;
+    public Brand(int brandId, String name) {
+        this.brandId = brandId;
         this.name = name;
     }
-    
-    public int getId() {
-        return id;
+
+    public int getBrandId() {
+        return brandId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setBrandId(int brandId) {
+        this.brandId = brandId;
     }
 
     public String getName() {
@@ -36,6 +36,8 @@ public class Brand {
     public void setName(String name) {
         this.name = name;
     }
+
+    
     
     
 }

@@ -3,8 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+
             <file>file:/D:/University/SP23-FPT/PRJ301/PCStore/web/WEB-INF/views/account/register.jsp</file>
             <file>file:/D:/University/SP23-FPT/PRJ301/PCStore/src/java/utils/Config.java</file>
+
+            <file>file:/E:/PCStore/src/java/models/Images.java</file>
+            <file>file:/E:/PCStore/src/java/db/OrderFacade.java</file>
+            <file>file:/E:/PCStore/src/java/db/ImagesFacade.java</file>
+            <file>file:/E:/PCStore/web/WEB-INF/views/home/product.jsp</file>
+            <file>file:/E:/PCStore/web/WEB-INF/views/account/login.jsp</file>
+            <file>file:/E:/PCStore/src/java/db/ProductFacade.java</file>
+            <file>file:/E:/PCStore/src/java/models/Product.java</file>
+            <file>file:/E:/PCStore/web/WEB-INF/views/home/index.jsp</file>
         </group>
     </open-files>
 </project-private>

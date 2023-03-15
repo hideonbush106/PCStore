@@ -6,29 +6,47 @@
 package models;
 
 public class Account {
-    private int id;
+
+    private int accountId;
     private String email;
     private String password;
-    private String username;
+    private String fullName;
     private String role;
+    private String address;
+    private String phoneNo;
 
     public Account() {
     }
 
-    public Account(int id, String email, String password, String username, String role) {
-        this.id = id;
+    //full constructor
+    public Account(int accountId, String email, String password, String fullName, String role, String address, String phoneNo) {
+        this.accountId = accountId;
         this.email = email;
         this.password = password;
-        this.username = username;
+        this.fullName = fullName;
         this.role = role;
+        this.address = address;
+        this.phoneNo = phoneNo;
     }
 
-    public int getId() {
-        return id;
+    public Account(int accountId) {
+        this.accountId = accountId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public Account(String email, String password, String fullName, String address, String phoneNo) {
+        this.email = email;
+        this.password = password;
+        this.fullName = fullName;
+        this.address = address;
+        this.phoneNo = phoneNo;
+    }
+
+    public int getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(int accountId) {
+        this.accountId = accountId;
     }
 
     public String getEmail() {
@@ -47,12 +65,12 @@ public class Account {
         this.password = password;
     }
 
-    public String getUsername() {
-        return username;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getRole() {
@@ -63,7 +81,20 @@ public class Account {
         this.role = role;
     }
 
-    
-    
-}
+    public String getAddress() {
+        return address;
+    }
 
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhoneNo() {
+        return phoneNo;
+    }
+
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo;
+    }
+
+}

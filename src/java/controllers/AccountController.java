@@ -7,14 +7,16 @@ package controllers;
 
 import models.Account;
 import db.AccountFacade;
+import db.CustomerFacade;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.Customer;
 import utils.Config;
 
 /**
@@ -47,6 +49,13 @@ public class AccountController extends HttpServlet {
                 //Xu ly login form
                 login_handler(request, response);
                 break;
+            //hien register form
+            case "register":
+                request.getRequestDispatcher(Config.REGISTER).forward(request, response);
+                break;
+            case "register_handler":
+                register_handler(request, response);
+                break;
             case "logout":
                 logout(request, response);
                 break;
@@ -67,18 +76,33 @@ public class AccountController extends HttpServlet {
                     //Kiem tra thong trong DB
                     AccountFacade af = new AccountFacade();
                     Account account = af.login(email, password);
-                    if (account == null) {
-                        //Neu login khong thanh cong thi quay ve login form 
-                        //de nhap lai thong tin
-                        request.setAttribute("message", "Incorrect email or password.");
-                        request.getRequestDispatcher("/account/login.do").forward(request, response);
-                    }else{
-                        //Neu login thanh cong
-                        //Luu account vao session
-                        HttpSession session = request.getSession();
-                        session.setAttribute("account", account);
-                        //Quay ve Home Page
-                        response.sendRedirect(request.getContextPath() + "/home/index.do");
+                    if (email == "" || password == "") {
+                        request.setAttribute("message", "Missing email or password.");
+                        request.getRequestDispatcher(Config.LOGIN).forward(request, response);
+                    } else {
+                        if (account == null) {
+                            //Neu login khong thanh cong thi quay ve login form 
+                            //de nhap lai thong tin
+                            request.setAttribute("message", "Incorrect email or password.");
+                            request.getRequestDispatcher(Config.LOGIN).forward(request, response);
+                        } else {
+                            //Neu login thanh cong
+                            //Luu account vao session
+                            HttpSession session = request.getSession();
+                            session.setAttribute("account", account);
+                            //Quay ve Home Page
+                            switch (account.getRole()) {
+                                case "ROLE_ADMIN":
+                                    response.sendRedirect(request.getContextPath() + "/admin/index.do");
+                                    break;
+                                case "ROLE_EMPLOYEE":
+                                    response.sendRedirect(request.getContextPath() + "/employees/index.do");
+                                    break;
+                                default:
+                                    response.sendRedirect(request.getContextPath() + "/home/index.do");
+                            }
+
+                        }
                     }
                     //
                     break;
@@ -90,10 +114,10 @@ public class AccountController extends HttpServlet {
         } catch (Exception ex) {
             //Quay ve login form de thong bao loi
             request.setAttribute("message", ex.toString());
-            request.getRequestDispatcher("/account/login.do").forward(request, response);
+            request.getRequestDispatcher(Config.LOGIN).forward(request, response);
         }
     }
-    
+
     protected void logout(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //Xoa session
@@ -101,6 +125,58 @@ public class AccountController extends HttpServlet {
         session.invalidate();
         //Quay ve trang chu
         response.sendRedirect(request.getContextPath() + "/home/index.do");
+    }
+
+    private void register_handler(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            String op = request.getParameter("op");
+            switch (op) {
+                case "register":
+                    //Lay thong tin register
+                    String email = request.getParameter("email");
+                    String password = request.getParameter("password");
+                    String fullName = request.getParameter("fullName");
+                    String address = request.getParameter("address");
+                    String phoneNo = request.getParameter("phoneNo");
+                    boolean cont = true;
+                    //Kiem tra thong trong DB
+                    Account account = new Account(email, password, fullName, address, phoneNo);
+                    Customer customer = new Customer(fullName, address, phoneNo);
+                    AccountFacade af = new AccountFacade();
+                    CustomerFacade cf = new CustomerFacade();
+                    List<Account> list = af.readEmail();
+                    if (email == "" || password == "" || fullName == "" || address == "" || phoneNo == "") {
+                        request.setAttribute("message", "Please fulfill the form");
+                        request.getRequestDispatcher(Config.REGISTER).forward(request, response);
+                    } else {
+                        for (Account accountEmail : list) {
+                            System.out.println(accountEmail.getEmail());
+                            if (accountEmail.getEmail().equals(email)) {
+                                request.setAttribute("message", "Email da dang ki");
+                                cont = false;
+                                request.getRequestDispatcher(Config.REGISTER).forward(request, response);
+                            }
+                        }
+
+                    }
+                    if (cont) {
+                        af.register(account);
+                        cf.create(customer);
+                        response.sendRedirect(request.getContextPath() + "/home/index.do");
+                    }
+                    break;
+
+                case "cancel":
+                    //Quay ve Home Page
+                    response.sendRedirect(request.getContextPath() + "/home/index.do");
+                    break;
+                default:
+            }
+        } catch (Exception ex) {
+            //Quay ve register form de thong bao loi
+            request.setAttribute("message", ex.toString());
+            request.getRequestDispatcher(Config.REGISTER).forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

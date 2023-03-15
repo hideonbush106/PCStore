@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package db;
+package models;
 
 import java.util.Date;
 
@@ -12,29 +12,45 @@ import java.util.Date;
  * @author Administrator
  */
 public class OrderHeader {
-    private int id;
+
+    private int orderHeaderId;
     private Date date;
-    private String status;
+    private boolean status;
     private int customerId;
+    private String customerName;
     private int employeeId;
+    private String employeeName;
 
     public OrderHeader() {
     }
 
-    public OrderHeader(int id, Date date, String status, int customerId, int employeeId) {
-        this.id = id;
+    public OrderHeader(boolean status) {
+        this.status = status;
+    }
+
+    public OrderHeader(int orderHeaderId, Date date, boolean status, int customerId, String customerName, int employeeId, String employeeName) {
+        this.orderHeaderId = orderHeaderId;
         this.date = date;
         this.status = status;
         this.customerId = customerId;
+        this.customerName = customerName;
         this.employeeId = employeeId;
+        this.employeeName = employeeName;
     }
 
-    public int getId() {
-        return id;
+    public OrderHeader(int orderHeaderId, Date date, boolean status, String customerName) {
+        this.orderHeaderId = orderHeaderId;
+        this.date = date;
+        this.status = status;
+        this.customerName = customerName;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getOrderHeaderId() {
+        return orderHeaderId;
+    }
+
+    public void setOrderHeaderId(int orderHeaderId) {
+        this.orderHeaderId = orderHeaderId;
     }
 
     public Date getDate() {
@@ -45,11 +61,11 @@ public class OrderHeader {
         this.date = date;
     }
 
-    public String getStatus() {
+    public boolean isStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 
@@ -61,6 +77,14 @@ public class OrderHeader {
         this.customerId = customerId;
     }
 
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
     public int getEmployeeId() {
         return employeeId;
     }
@@ -68,6 +92,13 @@ public class OrderHeader {
     public void setEmployeeId(int employeeId) {
         this.employeeId = employeeId;
     }
-    
-    
+
+    public String getEmployeeName() {
+        return employeeName;
+    }
+
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
+    }
+
 }

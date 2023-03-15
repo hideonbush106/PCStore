@@ -3,38 +3,58 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package db;
+package models;
 
 /**
  *
  * @author Administrator
  */
 public class Product {
-    private int id;
+
+    private int productId;
     private String productName;
     private double price;
-    private String category;
+    private String categoryName;
+    private int categoryId;
+    private String brandName;
     private int brandId;
     private String description;
+    private String imgSrc;
 
     public Product() {
     }
 
-    public Product(int id, String productName, double price, String category, int brandId, String description) {
-        this.id = id;
+    public Product(int productId, String productName, double price, int categoryId, int brandId, String description) {
+        this.productId = productId;
         this.productName = productName;
         this.price = price;
-        this.category = category;
+        this.categoryId = categoryId;
         this.brandId = brandId;
         this.description = description;
     }
 
-    public int getId() {
-        return id;
+    public Product(String productName, double price, int categoryId, int brandId, String description) {
+        this.productName = productName;
+        this.price = price;
+        this.categoryId = categoryId;
+        this.brandId = brandId;
+        this.description = description;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
     public String getProductName() {
@@ -53,12 +73,28 @@ public class Product {
         this.price = price;
     }
 
-    public String getCategory() {
-        return category;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public String getBrandName() {
+        return brandName;
+    }
+
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getBrandId() {
@@ -69,13 +105,15 @@ public class Product {
         this.brandId = brandId;
     }
 
-    public String getDescription() {
-        return description;
+    public String getImgSrc() {
+        return imgSrc;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setImgSrc(String imgSrc) {
+        this.imgSrc = imgSrc;
     }
     
     
+    
+
 }

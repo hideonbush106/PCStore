@@ -13,4 +13,5 @@ public class Config {
 
     public static final String LAYOUT = "WEB-INF/layouts/main.jsp";
     public static final String LOGIN = "WEB-INF/views/account/login.jsp";
+    public static final String REGISTER = "WEB-INF/views/account/register.jsp";
 }

@@ -3,34 +3,42 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package db;
+package models;
 
 /**
  *
  * @author Administrator
  */
 public class OrderDetail {
-    private int id;
+
+    private int orderDetailId;
     private int orderHeaderId;
+
     private int quantity;
     private double price;
 
     public OrderDetail() {
     }
 
-    public OrderDetail(int id, int orderHeaderId, int quantity, double price) {
-        this.id = id;
+    public OrderDetail(int orderDetailId, int orderHeaderId, int quantity, double price) {
+        this.orderDetailId = orderDetailId;
         this.orderHeaderId = orderHeaderId;
         this.quantity = quantity;
         this.price = price;
     }
 
-    public int getId() {
-        return id;
+    public OrderDetail(int orderDetailId, int quantity, double price) {
+        this.orderDetailId = orderDetailId;
+        this.quantity = quantity;
+        this.price = price;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getOrderDetailId() {
+        return orderDetailId;
+    }
+
+    public void setOrderDetailId(int orderDetailId) {
+        this.orderDetailId = orderDetailId;
     }
 
     public int getOrderHeaderId() {
@@ -56,5 +64,4 @@ public class OrderDetail {
     public void setPrice(double price) {
         this.price = price;
     }
-    
 }
