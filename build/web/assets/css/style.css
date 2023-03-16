@@ -4455,4 +4455,12 @@ span.menu-expand {
   #image-preview img {
     width: 100%; }
 
+.product-page {
+  width: 300px;
+  height: 450px; }
+  .product-page img {
+    width: 300px;
+    height: 300px;
+    object-fit: contain; }
+
 /*# sourceMappingURL=style.css.map */

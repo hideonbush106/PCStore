@@ -45,6 +45,13 @@ public class Cart {
         }
         return total;
     }
+    public int getQuantity(){
+    int count=0;
+             for (Item item : map.values()) {
+            count++;
+        }
+    return count;
+}
 
     public void add(Item item) {
         int productId = item.getProduct().getProductId();

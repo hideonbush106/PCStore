@@ -51,6 +51,7 @@ public class ProductController extends HttpServlet {
                 //Forward request & response to the main layout
                 request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
                 break;
+                
             default:
             //Show error page
         }
@@ -99,8 +100,12 @@ public class ProductController extends HttpServlet {
     private void index(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try {
             ProductFacade pf = new ProductFacade();
-            List<Product> list = pf.select();
-            request.setAttribute("list", list);
+            String id=request.getParameter("id");
+            Product product = pf.read(Integer.parseInt(id));
+            request.setAttribute("product", product);
+            int categoryid=pf.getCategoryId(Integer.parseInt(id));
+            List<Product> list=pf.relatedProducts(categoryid);
+              request.setAttribute("list", list);
             //Forward request & response to the main layout
             request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
         } catch (SQLException ex) {

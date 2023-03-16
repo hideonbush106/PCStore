@@ -84,6 +84,7 @@ public class CartController extends HttpServlet {
         //Lay cart tu session
         HttpSession session = request.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
+ 
         if (cart == null) {
             //neu session chua co cart thi tao moi 
             cart = new Cart();

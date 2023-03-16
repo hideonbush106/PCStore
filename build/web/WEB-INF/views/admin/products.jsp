@@ -70,7 +70,7 @@
             <c:if test="${startPage lt 1}">
                 <c:set var="startPage" value="1"/>
             </c:if>
-            <c:set var="endPage" value="${currentPage + 4}"/>
+            <c:set var="endPage" value="${currentPage + 5}"/>
             <c:if test="${endPage gt numOfPages}">
                 <c:set var="endPage" value="${numOfPages}"/>
             </c:if>
