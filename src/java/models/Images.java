@@ -23,6 +23,12 @@ public class Images {
         this.imgSrc = imgSrc;
     }
 
+    public Images(int productId, String imgSrc) {
+        this.productId = productId;
+        this.imgSrc = imgSrc;
+    }
+
+    
     public int getImgId() {
         return imgId;
     }
