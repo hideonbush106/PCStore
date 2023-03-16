@@ -228,16 +228,78 @@ public class ProductFacade {
     }
 
     public List<Product> search(String searchName) throws SQLException {
+        String query = "%" + searchName + "%";
         List<Product> list = null;
         //Tạo connection để kết nối vào DBMS
         Connection con = DBContext.getConnection();
         //Tạo đối tượng statement
-        Statement stm = con.createStatement();
         //Thực thi lệnh SELECT
-        ResultSet rs = stm.executeQuery("SELECT ProductId, productName, price, category.name AS categoryName, brand.name as brandName, description, imgSrc FROM Product INNER JOIN Brand ON Product.BrandId = Brand.BrandId INNER JOIN Category ON Product.CategoryId = Category.CategoryId INNER JOIN Images ON Product.ProductId = Images.pId WHERE productName LIKE ? OR Brand.name LIKE ?");
+        PreparedStatement stm = con.prepareStatement("SELECT ProductId, productName, price, category.name AS categoryName, brand.name as brandName, description, imgSrc FROM Product INNER JOIN Brand ON Product.BrandId = Brand.BrandId INNER JOIN Category ON Product.CategoryId = Category.CategoryId INNER JOIN Images ON Product.ProductId = Images.pId WHERE productName LIKE ? OR Brand.name LIKE ? OR Category.name LIKE ?");
+        stm.setString(1, query);
+        stm.setString(2, query);
+        stm.setString(3, query);
+        ResultSet rs = stm.executeQuery();
         list = new ArrayList<>();
         while (rs.next()) {
             //Doc mau tin hien hanh de vao doi tuong toy
+            Product product = new Product();
+            product.setProductId(rs.getInt("productId"));
+            product.setProductName(rs.getString("productName"));
+            product.setPrice(rs.getDouble("price"));
+            product.setCategoryName(rs.getString("categoryName"));
+            product.setBrandName(rs.getString("brandName"));
+            product.setDescription(rs.getString("description"));
+            product.setImgSrc(rs.getString("imgSrc"));
+            //Them toy vao list
+            list.add(product);
+        }
+        con.close();
+        return list;
+    }
+
+    public List<Product> sort(String sortBy, String sortDirection) throws SQLException {
+        List<Product> list = null;
+        //Tạo connection để kết nối vào DBMS
+        Connection con = DBContext.getConnection();
+        String sql = "SELECT ProductId, productName, price, category.name AS categoryName, brand.name as brandName, description, imgSrc FROM Product INNER JOIN Brand ON Product.BrandId = Brand.BrandId INNER JOIN Category ON Product.CategoryId = Category.CategoryId INNER JOIN Images ON Product.ProductId = Images.pId ORDER BY " + sortBy + " " + sortDirection;
+        //Tạo đối tượng statement
+        //Thực thi lệnh SELECT
+        
+        PreparedStatement stm = con.prepareStatement(sql);
+        ResultSet rs = stm.executeQuery();
+        list = new ArrayList<>();
+        while (rs.next()) {
+            Product product = new Product();
+            product.setProductId(rs.getInt("productId"));
+            product.setProductName(rs.getString("productName"));
+            product.setPrice(rs.getDouble("price"));
+            product.setCategoryName(rs.getString("categoryName"));
+            product.setBrandName(rs.getString("brandName"));
+            product.setDescription(rs.getString("description"));
+            product.setImgSrc(rs.getString("imgSrc"));
+            //Them toy vao list
+            list.add(product);
+        }
+        con.close();
+        return list;
+    }
+
+    public List<Product> filter(String brandName, String categoryName) throws SQLException {
+        String queryBrand = "%" + brandName + "%";
+        String queryCategory = "%" + categoryName + "%";
+        System.out.println(queryBrand + queryCategory);
+        List<Product> list = null;
+        //Tạo connection để kết nối vào DBMS
+        Connection con = DBContext.getConnection();
+        String sql = "SELECT ProductId, productName, price, category.name AS categoryName, brand.name as brandName, description, imgSrc FROM Product INNER JOIN Brand ON Product.BrandId = Brand.BrandId INNER JOIN Category ON Product.CategoryId = Category.CategoryId INNER JOIN Images ON Product.ProductId = Images.pId WHERE brand.name LIKE ? AND category.name LIKE ?";
+        //Tạo đối tượng statement
+        //Thực thi lệnh SELECT
+        PreparedStatement stm = con.prepareStatement(sql);
+        stm.setString(1, queryBrand);
+        stm.setString(2, queryCategory);
+        ResultSet rs = stm.executeQuery();
+        list = new ArrayList<>();
+        while (rs.next()) {
             Product product = new Product();
             product.setProductId(rs.getInt("productId"));
             product.setProductName(rs.getString("productName"));

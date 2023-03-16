@@ -8,7 +8,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="utils.Utils" %>
 <h1>Product goes here</h1>
-Sort by:
 <%--    <form action="<c:url value=""/>">
     <label for="sortChoice"></label>
     <select name="sortChoice" id="sortChoice">
@@ -18,21 +17,39 @@ Sort by:
 </form>--%>
 
 <form action="<c:url value="/filter"/>">
-    By
     <select name="sortDirection">
-        <option value="asc">A - Z</option>
-        <option value="desc">Z - A</option>
+        <option value="asc" ${sortDirection == "asc" ? "selected" : ""}>A - Z</option>
+        <option value="desc" ${sortDirection == "desc" ? "selected" : ""}>Z - A</option>
     </select>
     <select name="sortBy">
-        <option value="productName">Name</option>
-        <option value="brand">Brand</option>
-        <option value="price">Price</option>
+        <option value="productName" ${sortBy == "productName" ? "selected" : ""}>Name</option>
+        <option value="brandName" ${sortBy == "brandName" ? "selected" : ""}>Brand</option>
+        <option value="price" ${sortBy == "price" ? "selected" : ""}>Price</option>
     </select>
     <button type="submit" name="op" value="sort">Apply</button>
 </form>
+    
+<form action="<c:url value="/filter"/>">
+    Brand:
+    <select name="brandName">
+        <option value="">All</option>
+        <c:forEach items="${blist}" var="brand">
+            <option value="${brand.name}" ${brand.name == brandName ? "selected" : ""}>${brand.name}</option>
+        </c:forEach>
+    </select>
+    Category:
+    <select name="categoryName">
+        <option value="">All</option>
+        <c:forEach items="${clist}" var="category">
+            <option value="${category.name}" ${category.name == categoryName ? "selected" : ""}>${category.name}</option>
+        </c:forEach>
+    </select>
+    <button type="submit" name="op" value="filter">Filter</button>
+</form>
+    
 <form action="<c:url value="/filter"/>">
     Search:
-    <input type="text" name="searchName"/>
+    <input type="text" name="searchName" value="${searchName}"/>
     <button type="submit" name="op" value="search">Search</button>
 </form>
 

@@ -5,13 +5,23 @@
  */
 package controllers;
 
+import db.BrandFacade;
+import db.CategoryFacade;
+import db.ProductFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.Brand;
+import models.Category;
+import models.Product;
 import utils.Config;
 
 /**
@@ -31,26 +41,52 @@ public class FilterController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         String op = (String) request.getParameter("op");
         switch (op) {
             case "search": {
                 String searchName = (String) request.getParameter("searchName");
                 //TODO: write search (contains name and brand)
-
+                ProductFacade pf = new ProductFacade();
+                List<Product> list = pf.search(searchName);
+                request.setAttribute("list", list);
                 request.setAttribute("action", "product");
                 request.setAttribute("controller", "home");
+                request.setAttribute("searchName", searchName);
                 request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
                 break;
             }
             case "sort": {
                 //TODO: wrtie sort bt name, product or price, asc or desc
                 String sortDirection = (String) request.getParameter("sortDirection");
-                String sortBy = request.getParameter("sortBy");
-                
+                String sortBy = (String) request.getParameter("sortBy");
+                ProductFacade pf = new ProductFacade();
+                List<Product> list = pf.sort(sortBy, sortDirection);
+                request.setAttribute("list", list);
                 request.setAttribute("action", "product");
                 request.setAttribute("controller", "home");
+                request.setAttribute("sortDirection", sortDirection);
+                request.setAttribute("sortBy", sortBy);
+                request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+                break;
+            }
+            case "filter": {
+                String brandName = (String) request.getParameter("brandName");
+                String categoryName = (String) request.getParameter("categoryName");
+                ProductFacade pf = new ProductFacade();
+                List<Product> list = pf.filter(brandName, categoryName);
+                BrandFacade bf = new BrandFacade();
+                CategoryFacade cf = new CategoryFacade();
+                List<Brand> blist = bf.select();
+                List<Category> clist = cf.select();
+                request.setAttribute("list", list);
+                request.setAttribute("action", "product");
+                request.setAttribute("controller", "home");
+                request.setAttribute("brandName", brandName);
+                request.setAttribute("categoryName", categoryName);
+                request.setAttribute("blist", blist);
+                request.setAttribute("clist", clist);
                 request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
                 break;
             }
@@ -69,7 +105,11 @@ public class FilterController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(FilterController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -83,7 +123,11 @@ public class FilterController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(FilterController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
