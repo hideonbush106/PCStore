@@ -160,7 +160,7 @@ public class ProductFacade {
         //Tạo connection để kết nối vào DBMS
         Connection con = DBContext.getConnection();
         //Tạo đối tượng statement
-        PreparedStatement stm = con.prepareStatement("SELECT ProductId, productName, price, category.name AS categoryName, brand.name as brandName, description FROM Product INNER JOIN Brand ON Product.BrandId = Brand.BrandId INNER JOIN Category ON Product.CategoryId = Category.CategoryId WHERE ProductId = ?");
+        PreparedStatement stm = con.prepareStatement("SELECT ProductId, productName, price, category.name AS categoryName, brand.name as brandName, description, imgSrc FROM Product INNER JOIN Brand ON Product.BrandId = Brand.BrandId INNER JOIN Category ON Product.CategoryId = Category.CategoryId INNER JOIN Images ON Product.ProductId = Images.pId WHERE ProductId = ?");
         //Thực thi lệnh SELECT
         stm.setInt(1, productId);
         ResultSet rs = stm.executeQuery();
@@ -173,6 +173,7 @@ public class ProductFacade {
             product.setCategoryName(rs.getString("categoryName"));
             product.setBrandName(rs.getString("brandName"));
             product.setDescription(rs.getString("description"));
+               product.setImgSrc(rs.getString("imgSrc"));
         }
         con.close();
         return product;
@@ -183,7 +184,7 @@ public class ProductFacade {
         List<Product> list = null;
         //Tạo connection để kết nối vào DBMS
         Connection con = DBContext.getConnection();
-        PreparedStatement stm = con.prepareStatement("SELECT ProductId, productName, price, category.name AS categoryName, brand.name as brandName, description FROM Product INNER JOIN Brand ON Product.BrandId = Brand.BrandId INNER JOIN Category ON Product.CategoryId = Category.CategoryId ORDER BY brandName ?" );
+        PreparedStatement stm = con.prepareStatement("SELECT ProductId, productName, price, category.name AS categoryName, brand.name as brandName, description, imgSrc FROM Product INNER JOIN Brand ON Product.BrandId = Brand.BrandId INNER JOIN Category ON Product.CategoryId = Category.CategoryId INNER JOIN Images ON Product.ProductId = Images.pId ORDER BY brandName ?" );
         stm.setString(1, sortOrderChoice);
 //        stm.setString(2, sortOrderChoice);
         ResultSet rs = stm.executeQuery();
@@ -197,6 +198,7 @@ public class ProductFacade {
             product.setCategoryName(rs.getString("categoryName"));
             product.setBrandName(rs.getString("brandName"));
             product.setDescription(rs.getString("description"));
+              product.setImgSrc(rs.getString("imgSrc"));
             //Them toy vao list
             list.add(product);
         }

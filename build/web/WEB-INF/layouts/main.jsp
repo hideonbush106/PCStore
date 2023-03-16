@@ -461,23 +461,24 @@
                                             <div class="mini-cart">
                                                 <div class="mini-cart-icon">
                                                     <i class="fas fa-shopping-cart"></i>
-                                                    <span class="counter">02</span>
-                                                    <span class="counter-cart"><small>Your Cart</small>$10.00</span>
+                                                    <span class="counter">${sessionScope.cart != null ? sessionScope.cart.quantity :0 }</span>
+                                                    <span class="counter-cart"><small>Your Cart</small>$${sessionScope.cart != null ? sessionScope.cart.total :0 }</span>
                                                     <!-- Mini Cart Content -->
                                                     <div class="minicart-content-wrapper">
                                                         <ul class="cart-list-full">
+                                                              <c:forEach items="${sessionScope.cart.getItem()}" var="item" varStatus="loop" end="8">
                                                             <!-- Single -->
                                                             <li class="cart-list-single">
-                                                                <img src="<c:url value="/assets/img/product/1.jpg"/>" alt="img">
-                                                                <h5><a href="#">simple product</a></h5>
-                                                                <span class="price">$120</span>
+                                                                <img src="<c:url value="${item.getProduct().imgSrc}"/>" alt="img">
+                                                                <h5><a href="#">${item.getProduct().productName}</a></h5>
+                                                                <span class="price">${item.getProduct().price}</span>
                                                                 <div class="close"><i class="fas fa-times"></i></div>
                                                             </li>
-
+                                                              </c:forEach>
                                                         </ul>
-                                                        <h2 class="subtotal">Subtota1 : <span>$220</span></h2>
+                                                        <h2 class="subtotal">Subtota1 : <span>$${sessionScope.cart.total}</span></h2>
                                                         <div class="minicart-btn">
-                                                            <a class="button-1" href="cart.html">View Cart</a>
+                                                            <a class="button-1" href="<c:url value="/home/cart.do"/>">View Cart</a>
                                                             <a class="button-2" href="#">Checkout</a>
                                                         </div>
                                                     </div>
@@ -513,7 +514,7 @@
                                                         </ul>
                                                         <h2 class="subtotal">Subtotal : <span>$220</span></h2>
                                                         <div class="minicart-btn">
-                                                            <a class="button-1" href="cart.html">View Cart</a>
+                                                            <a class="button-1" href="<c:url value="/home/cart.do"/> ">View Cart</a>
                                                             <a class="button-2" href="#">Checkout</a>
                                                         </div>
                                                     </div>
@@ -525,7 +526,7 @@
                                                 <ul>
                                                     <li>  <a href="<c:url value="/" />">Home</a></li>
                                                     <li><a href="<c:url value="/home/aboutus.do" />">About Us</a></li>
-                                                    <li><a href="<c:url value="/product/index.do" />">Product</a></li>
+                                                    <li><a href="<c:url value="/home/product.do" />">Product</a></li>
 
                                                     <li><a href="contact.html">Contact</a></li>
                                                 </ul>

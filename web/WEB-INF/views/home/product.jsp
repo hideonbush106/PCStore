@@ -28,7 +28,7 @@ Sort by:
 
 <div style="display: flex; flex-wrap: wrap; align-content: center; justify-content: space-around">
   
-    <c:forEach items="${list}" var="product" varStatus="loop" end="8">
+    <c:forEach items="${list}" var="product" varStatus="loop" >
         <!-- Single -->
         <div class="product-single product-page">
             <div class="sale-badge">
@@ -45,21 +45,25 @@ Sort by:
                     >
                     <ul>
                         <li>
-                            <a href="cart.html"
-                               ><i
+                             <c:if test="${sessionScope.account.role == 'ROLE_CUSTOMER'}">
+                                <a href="<c:url value="/cart?op=add&productId=${product.productId}"/>"><i
                                     class="fas fa-shopping-cart"
-                                    ></i
-                                ></a>
+                                    ></i></a>
+                             </c:if>
+                            <c:if test="${sessionScope.account == null}">
+                                <a href="<c:url value="/account/login.do" />"><i class="fa-regular fa-user"></i></a>
+                             </c:if>
+
                         </li>
                         <li>
-                            <a href="wishlist.html"
+                            <a  href="<c:url value="/product/index.do?id=${product.productId}"/>"
                                ><i
                                     class="far fa-heart"
                                     ></i
                                 ></a>
                         </li>
                         <li>
-                            <a href="#"
+                            <a href="<c:url value="/product/index.do?id=${product.productId}"/>"
                                ><i
                                     class="far fa-eye"
                                     ></i
@@ -70,7 +74,7 @@ Sort by:
             </div>
             <div class="product-content">
                 <h4>
-                    <a href="product-details.html"
+                    <a  href="<c:url value="/product/index.do?id=${product.productId}"/>"
                        >${product.productName}</a
                     >
                 </h4>
@@ -84,11 +88,11 @@ Sort by:
     </c:forEach>
 </div><%--handle logic for the pagination --%>
      <c:if test="${numOfPages >= 1}">
-            <c:set var="startPage" value="${currentPage - 5}"/>
+            <c:set var="startPage" value="${currentPage -5 }"/>
             <c:if test="${startPage lt 1}">
                 <c:set var="startPage" value="1"/>
             </c:if>
-            <c:set var="endPage" value="${currentPage + 4}"/>
+            <c:set var="endPage" value="${currentPage + 10}"/>
             <c:if test="${endPage gt numOfPages}">
                 <c:set var="endPage" value="${numOfPages}"/>
             </c:if>
