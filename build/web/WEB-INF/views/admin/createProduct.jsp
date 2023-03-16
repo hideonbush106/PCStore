@@ -172,7 +172,7 @@
                 <div class="card mb-4">
                     <div class="card-body">
                         <h3 class="h6">Image</h3>
-                        <input id="image-upload" type="file" name="image[]" multiple>
+                        <input name="imgSrc" type="text" value="${product.imgSrc}">
                             <div id="image-preview"></div>
                     </div>
                 </div>
