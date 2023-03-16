@@ -5,25 +5,21 @@
  */
 package controllers;
 
-import db.ProductFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.Product;
 import utils.Config;
 
 /**
  *
  * @author Admin
  */
-@WebServlet(name = "ProductController", urlPatterns = {"/product"})
-public class ProductController extends HttpServlet {
+@WebServlet(name = "FilterController", urlPatterns = {"/filter"})
+public class FilterController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,25 +33,28 @@ public class ProductController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String action = (String) request.getAttribute("action");
-        String sortChoice = (String) request.getAttribute("sortChoice");
-        String sortOrderChoice = (String) request.getAttribute("sortOrderChoice");
-        switch (action) {
-            case "index":
-                //Processing code here
-                //Forward request & response to the main layout
-                index(request, response);
-                break;
-            case "aboutus":
-                //Processing code here
-                //Forward request & response to the main layout
+        String op = (String) request.getParameter("op");
+        switch (op) {
+            case "search": {
+                String searchName = (String) request.getParameter("searchName");
+                //TODO: write search (contains name and brand)
+
+                request.setAttribute("action", "product");
+                request.setAttribute("controller", "home");
                 request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
                 break;
-
-            default:
-            //Show error page
+            }
+            case "sort": {
+                //TODO: wrtie sort bt name, product or price, asc or desc
+                String sortDirection = (String) request.getParameter("sortDirection");
+                String sortBy = request.getParameter("sortBy");
+                
+                request.setAttribute("action", "product");
+                request.setAttribute("controller", "home");
+                request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+                break;
+            }
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -96,25 +95,5 @@ public class ProductController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-    private void index(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        try {
-            ProductFacade pf = new ProductFacade();
-            String id = request.getParameter("id");
-            Product product = pf.read(Integer.parseInt(id));
-            request.setAttribute("product", product);
-            int categoryid = pf.getCategoryId(Integer.parseInt(id));
-            List<Product> list = pf.relatedProducts(categoryid);
-            request.setAttribute("list", list);
-            //Forward request & response to the main layout
-            request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
-        } catch (SQLException ex) {
-            //Show the error page
-            request.setAttribute("message", ex.getMessage());
-            request.setAttribute("controller", "error");
-            request.setAttribute("action", "error");
-            request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
-        }
-    }
 
 }
