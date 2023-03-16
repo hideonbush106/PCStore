@@ -97,35 +97,6 @@
                                     </div>	
                                 </div>
                                 <!-- MiniCart -->
-                                <div class="col-lg-2">
-                                    <div class="desktop-mini-cart">
-                                        <div class="mini-cart">
-                                            <div class="mini-cart-icon">
-                                                <i class="fas fa-shopping-cart"></i>
-                                                <span class="counter">02</span>
-                                                <span class="counter-cart"><small>Your Cart</small>$10.00</span>
-                                                <!-- Mini Cart Content -->
-                                                <div class="minicart-content-wrapper">
-                                                    <ul class="cart-list-full">
-                                                        <!-- Single -->
-                                                        <li class="cart-list-single">
-                                                            <img src="<c:url value="/assets/img/product/1.jpg"/>" alt="img">
-                                                            <h5><a href="#">simple product</a></h5>
-                                                            <span class="price">$120</span>
-                                                            <div class="close"><i class="fas fa-times"></i></div>
-                                                        </li>
-
-                                                    </ul>
-                                                    <h2 class="subtotal">Subtota1 : <span>$220</span></h2>
-                                                    <div class="minicart-btn">
-                                                        <a class="button-1" href="cart.html">View Cart</a>
-                                                        <a class="button-2" href="#">Checkout</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -140,27 +111,6 @@
                                     <div class="canvas_open">
                                         <a href="javascript:void(0)"><i class="fas fa-bars"></i></a>
                                     </div>
-                                    <div class="mobile-mini-cart">
-                                        <div class="mini-cart">
-                                            <div class="mini-cart-icon">
-                                                <i class="fas fa-shopping-cart"></i>
-                                                <span class="counter">02</span>
-                                                <span class="counter-cart"><small>Your Cart</small>$10.00</span>
-                                                <!-- Mini Cart Content -->
-                                                <div class="minicart-content-wrapper">
-                                                    <ul class="cart-list-full">
-
-
-                                                    </ul>
-                                                    <h2 class="subtotal">Subtotal : <span>$220</span></h2>
-                                                    <div class="minicart-btn">
-                                                        <a class="button-1" href="cart.html">View Cart</a>
-                                                        <a class="button-2" href="#">Checkout</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="menu">
                                         <nav>
                                             <ul>
@@ -168,7 +118,6 @@
                                                 <li><a href="<c:url value="/home/aboutus.do" />">About Us</a></li>
                                                 <li><a href="<c:url value="/home/product.do" />">Product</a></li>
 
-                                                <li><a href="contact.html">Contact</a></li>
                                             </ul>
                                         </nav>
                                     </div>
@@ -200,22 +149,10 @@
                                         <a href="<c:url value="index.jsp"/>">Home</a>
                                     </li>
                                     <li class="menu-item-has-children">
-                                        <a href="about.html">about Us</a>
+                                       <a href="<c:url value="/home/aboutus.do" />">About Us</a>
                                     </li>
-
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Shop</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="shop.html">Shop</a></li>
-                                            <li><a href="shop2-columns.html">Shop 2 Columns</a></li>
-                                            <li><a href="shop-grid.html">Shop Grid</a></li>
-                                            <li><a href="shop-left-sidebar.html">Shop Left Sidebar</a></li>
-                                            <li><a href="shop-list.html">Shop List</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="menu-item-has-children">
-                                        <a href="contact.html"> Contact Us</a> 
+                                     <li class="menu-item-has-children">
+                                       <a href="<c:url value="/home/product.do" />">Product</a>
                                     </li>
                                 </ul>
                             </div>

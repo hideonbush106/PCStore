@@ -255,7 +255,8 @@ public class AdminController extends HttpServlet {
                     int categoryId = Integer.parseInt(request.getParameter("categoryId"));
                     int brandId = Integer.parseInt(request.getParameter("brandId"));
                     String description = request.getParameter("description");
-                    Product product = new Product(productId, productName, price, categoryId, brandId, description);
+                     String imgSrc = request.getParameter("imgSrc");
+                    Product product = new Product(productId, productName, price, categoryId, brandId, description,imgSrc);
                     ProductFacade pf = new ProductFacade();
                     pf.update(product);
                     response.sendRedirect(request.getContextPath() + "/admin/products.do");

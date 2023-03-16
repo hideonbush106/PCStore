@@ -93,8 +93,7 @@ public class ProductFacade {
         //Tạo connection để kết nối vào DBMS
         Connection con = DBContext.getConnection();
         //Tạo đối tượng statement
-        PreparedStatement stm = con.prepareStatement("SELECT ProductId, productName, price,Product.CategoryId,Product.BrandId, category.name AS categoryName, brand.name as brandName, description, imgSrc FROM Product INNER JOIN Brand ON Product.BrandId = Brand.BrandId INNER JOIN Category ON Product.CategoryId = Category.CategoryId INNER JOIN Images ON Product.ProductId = Images.pId where ProductId= ?" +
-" ");
+        PreparedStatement stm = con.prepareStatement("SELECT ProductId, productName, price,Product.CategoryId,Product.BrandId, category.name AS categoryName, brand.name as brandName, description, imgSrc FROM Product INNER JOIN Brand ON Product.BrandId = Brand.BrandId INNER JOIN Category ON Product.CategoryId = Category.CategoryId INNER JOIN Images ON Product.ProductId = Images.pId where ProductId= ?");
         //Thực thi lệnh SELECT
         stm.setInt(1, productId);
         ResultSet rs = stm.executeQuery();

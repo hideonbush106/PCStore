@@ -167,53 +167,57 @@
 
                                     <c:forEach items="${list}" var="product" varStatus="loop" end="10">
                                         <!-- Single -->
-                                        <div class="product-single">
+                                                                        <div class="product-single product-page">
                                             <div class="sale-badge">
                                                 <span>sale</span>
                                             </div>
                                             <div class="product-thumbnail">
-                                                <a href="product-details.html"
-                                                    ><img
-                                                        src="https://bizweb.dktcdn.net/100/416/452/products/dell-9570-1.jpg?v=1612512400560"
+                                                <a href="<c:url value="/product/index.do?id=${product.productId}"/>"
+                                                   ><img
+                                                        src="<c:url value="${product.imgSrc}"/>"
                                                         alt="product"
-                                                /></a>
+                                                        /></a>
                                                 <div
                                                     class="product-thumbnail-overly"
-                                                >
+                                                    >
                                                     <ul>
                                                         <li>
-                                                            <a href="cart.html"
-                                                                ><i
+                                                             <c:if test="${sessionScope.account.role == 'ROLE_CUSTOMER'}">
+                                                                <a href="<c:url value="/cart?op=add&productId=${product.productId}"/>"><i
                                                                     class="fas fa-shopping-cart"
-                                                                ></i
-                                                            ></a>
+                                                                    ></i></a>
+                                                             </c:if>
+                                                            <c:if test="${sessionScope.account == null}">
+                                                                <a href="<c:url value="/account/login.do" />"><i class="fa-regular fa-user"></i></a>
+                                                             </c:if>
+
                                                         </li>
                                                         <li>
-                                                            <a href="wishlist.html"
-                                                                ><i
+                                                            <a  href="<c:url value="/product/index.do?id=${product.productId}"/>"
+                                                               ><i
                                                                     class="far fa-heart"
-                                                                ></i
-                                                            ></a>
+                                                                    ></i
+                                                                ></a>
                                                         </li>
                                                         <li>
-                                                            <a href="#"
-                                                                ><i
+                                                            <a href="<c:url value="/product/index.do?id=${product.productId}"/>"
+                                                               ><i
                                                                     class="far fa-eye"
-                                                                ></i
-                                                            ></a>
+                                                                    ></i
+                                                                ></a>
                                                         </li>
                                                     </ul>
                                                 </div>
                                             </div>
                                             <div class="product-content">
                                                 <h4>
-                                                    <a href="product-details.html"
-                                                        >${product.productName}</a
+                                                    <a  href="<c:url value="/product/index.do?id=${product.productId}"/>"
+                                                       >${product.productName}</a
                                                     >
                                                 </h4>
                                                 <div class="pricing">
                                                     <span
-                                                        >$ ${product.price} <del>$<%= Utils.getRandomNumber() %></del></span
+                                                        >$ ${product.price} <del>${product.price+Utils.getRandomNumber()}</del></span
                                                     >
                                                 </div>
                                             </div>
@@ -267,60 +271,64 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="latest-product-full owl-carousel">
-                             <c:forEach items="${list}" var="product" varStatus="loop" end="">
+                             <c:forEach items="${list}" var="product" varStatus="loop" end="4">
                                         <!-- Single -->
-                                        <div class="product-single">
-                                            <div class="sale-badge">
-                                                <span>sale</span>
-                                            </div>
-                                            <div class="product-thumbnail">
-                                                <a href="product-details.html"
-                                                    ><img
-                                                        src="https://bizweb.dktcdn.net/100/416/452/products/dell-9570-1.jpg?v=1612512400560"
-                                                        alt="product"
-                                                /></a>
-                                                <div
-                                                    class="product-thumbnail-overly"
-                                                >
-                                                    <ul>
-                                                        <li>
-                                                            <a href="cart.html"
-                                                                ><i
-                                                                    class="fas fa-shopping-cart"
-                                                                ></i
-                                                            ></a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="wishlist.html"
-                                                                ><i
-                                                                    class="far fa-heart"
-                                                                ></i
-                                                            ></a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#"
-                                                                ><i
-                                                                    class="far fa-eye"
-                                                                ></i
-                                                            ></a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="product-content">
-                                                <h4>
-                                                    <a href="product-details.html"
-                                                        >${product.productName}</a
-                                                    >
-                                                </h4>
-                                                <div class="pricing">
-                                                    <span
-                                                        >$ ${product.price} <del>$<%= Utils.getRandomNumber() %></del></span
-                                                    >
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </c:forEach>
+                                <div class="product-single product-page">
+                                         <div class="sale-badge">
+                                             <span>sale</span>
+                                         </div>
+                                         <div class="product-thumbnail">
+                                             <a href="<c:url value="/product/index.do?id=${product.productId}"/>"
+                                                ><img
+                                                     src="<c:url value="${product.imgSrc}"/>"
+                                                     alt="product"
+                                                     /></a>
+                                             <div
+                                                 class="product-thumbnail-overly"
+                                                 >
+                                                 <ul>
+                                                     <li>
+                                                          <c:if test="${sessionScope.account.role == 'ROLE_CUSTOMER'}">
+                                                             <a href="<c:url value="/cart?op=add&productId=${product.productId}"/>"><i
+                                                                 class="fas fa-shopping-cart"
+                                                                 ></i></a>
+                                                          </c:if>
+                                                         <c:if test="${sessionScope.account == null}">
+                                                             <a href="<c:url value="/account/login.do" />"><i class="fa-regular fa-user"></i></a>
+                                                          </c:if>
+
+                                                     </li>
+                                                     <li>
+                                                         <a  href="<c:url value="/product/index.do?id=${product.productId}"/>"
+                                                            ><i
+                                                                 class="far fa-heart"
+                                                                 ></i
+                                                             ></a>
+                                                     </li>
+                                                     <li>
+                                                         <a href="<c:url value="/product/index.do?id=${product.productId}"/>"
+                                                            ><i
+                                                                 class="far fa-eye"
+                                                                 ></i
+                                                             ></a>
+                                                     </li>
+                                                 </ul>
+                                             </div>
+                                         </div>
+                                         <div class="product-content">
+                                             <h4>
+                                                 <a  href="<c:url value="/product/index.do?id=${product.productId}"/>"
+                                                    >${product.productName}</a
+                                                 >
+                                             </h4>
+                                             <div class="pricing">
+                                                 <span
+                                                     >$ ${product.price} <del>${product.price+Utils.getRandomNumber()}</del></span
+                                                 >
+                                             </div>
+                                         </div>
+                                     </div>     
+                             </c:forEach>
                         </div>
                     </div>
                 </div>
@@ -337,15 +345,15 @@
                             <h3 class="deal-title">Popular items</h3>
                             <div class="deal-popular-product-all">
                                 <!-- Singel -->
-                               <c:forEach items="${list}" var="product" varStatus="loop" end="4">
+                               <c:forEach items="${list}" var="product" varStatus="loop" end="4" >
                                     <div class="deal-popular-product-single">
                                     <img
-                                        src="https://bizweb.dktcdn.net/100/416/452/products/dell-9570-1.jpg?v=1612512400560"
+                                        src="<c:url value="${product.imgSrc}"/>"
                                         alt="product"
                                     />
                                     <div class="content">
                                         <h5>
-                                            <a href="#"
+                                            <a href="<c:url value="/cart?op=add&productId=${product.productId}"/>"
                                                 >${product.productName}</a
                                             >
                                         </h5>
@@ -361,7 +369,7 @@
                                 <div
                                     class="deal-popular-product-single read-btn"
                                 >
-                                    <a href="<c:url value="product/index.do"/>">View More +</a>
+                                    <a href="<c:url value="/home/product.do" />">View More +</a>
                                 </div>
                             </div>
                         </div>
@@ -379,7 +387,7 @@
                                                 class="deal-product-slider-single-img"
                                             >
                                                 <img
-                                                    src="https://www.nvidia.com/content/dam/en-zz/Solutions/geforce/ada/rtx-4090/geforce-rtx-4090-100vp-l@2x.jpg"
+                                                    src="<c:url value="${product.imgSrc}"/>"
                                                     alt="product"
                                                 />
                                             </div>
@@ -392,7 +400,7 @@
                                                     <div
                                                         class="count-time"
                                                         id="eShopCountdown"
-                                                        data-countdown-codepopular="2023/03/18"
+                                                        data-countdown-codepopular="2023/03/21"
                                                     >
                                                         <ul>
                                                             <li>
@@ -455,19 +463,14 @@
                                                         ></span>
                                                     </div>
                                                     <div class="pricing">
-                                                        <span
-                                                            >$200
-                                                            <del
-                                                                >$210</del
-                                                            ></span
-                                                        >
+                                                         <span>$ ${product.price} <del>${product.price+Utils.getRandomNumber()}</del></span>
                                                     </div>
                                                     <p>
                                                         ${product.description}
                                                     </p>
                                                     <a
                                                         class="button-1"
-                                                       href="<c:url value="product/index.do"/>"
+                                                     <a  href="<c:url value="/product/index.do?id=${product.productId}"/>"
                                                         >Shop Now</a
                                                     >
                                                 </div>

@@ -64,6 +64,12 @@ public class HomeController extends HttpServlet {
                 //Forward request & response to the main layout
                 request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
                 break;
+                case "checkout":
+                    //Processing code here
+               // products(request,response);
+                //Forward request & response to the main layout
+                request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+                break;
             default:
             //Show error page
         }
