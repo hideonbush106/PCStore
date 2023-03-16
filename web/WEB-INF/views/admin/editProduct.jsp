@@ -178,7 +178,7 @@
                 <div class="card mb-4">
                     <div class="card-body">
                         <h3 class="h6">Image</h3>
-                        <input type="file" id="file-ip-1" accept="image/*" onchange="showPreview(event);">
+                        <input name="imgSrc" type="text" value="${product.imgSrc}">
                          <div class="preview">
                             <img id="file-ip-1-preview">
                         </div>

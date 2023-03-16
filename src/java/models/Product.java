@@ -34,12 +34,13 @@ public class Product {
         this.imgSrc=imgSrc;
     }
 
-    public Product(String productName, double price, int categoryId, int brandId, String description) {
+    public Product(String productName, double price, int categoryId, int brandId, String description, String imgSrc) {
         this.productName = productName;
         this.price = price;
         this.categoryId = categoryId;
         this.brandId = brandId;
         this.description = description;
+        this.imgSrc = imgSrc;
     }
 
     public int getCategoryId() {
