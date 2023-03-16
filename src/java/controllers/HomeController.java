@@ -52,6 +52,12 @@ public class HomeController extends HttpServlet {
                 //Forward request & response to the main layout
                 request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
                 break;
+            case "product":
+                    //Processing code here
+                products(request,response);
+                //Forward request & response to the main layout
+                request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+                break;
             default:
             //Show error page
         }
@@ -63,6 +69,32 @@ public class HomeController extends HttpServlet {
             List<Product> list = pf.select();
              Collections.shuffle(list);
             request.setAttribute("list", list);
+            //Forward request & response to the main layout
+            request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+        } catch (SQLException ex) {
+            //Show the error page
+            request.setAttribute("message", ex.getMessage());
+            request.setAttribute("controller", "error");
+            request.setAttribute("action", "error");
+            request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+        }
+    }
+       protected void products(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            int currentPage = 1;
+            int recordsPerPage = 10;
+            if(request.getParameter("currentPage") != null) {
+                currentPage = Integer.parseInt(request.getParameter("currentPage"));
+            }
+            ProductFacade pf = new ProductFacade();
+            List<Product> list = pf.selectForEachPage(currentPage, recordsPerPage);
+            //need to add the pf.cal all the row
+            int numOfRecords = pf.countRows();
+            int numOfPages = (int) Math.ceil(numOfRecords * 1.0 / recordsPerPage);
+            request.setAttribute("list", list);
+            request.setAttribute("numOfPages", numOfPages);
+            request.setAttribute("currentPage", currentPage);
             //Forward request & response to the main layout
             request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
         } catch (SQLException ex) {

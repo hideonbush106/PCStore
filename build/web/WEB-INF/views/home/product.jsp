@@ -26,33 +26,18 @@ Sort by:
     <button type="submit" name="op" value="sortOrderChoice">Sort</button>
 </form>
 
-<div style="display: flex; flex-wrap: wrap; align-content: center; justify-content: center">
-    <c:forEach items="${list}" var="product" varStatus="loop">
-        <div style="width: 30%; text-align: center; margin: 1rem">
-            <h3 style="margin: 0;">${product.productName}</h3>
-            <img style="margin:0 ; width:30%; height:fit-content" src="<c:url value="${product.imgSrc}"/>" alt="">
-            <p>${product.price}</p><br/>
-            <h4 style="margin: 0;">${product.categoryName}</h4><br/>
-            <h4 style="margin: 0;">${product.brandName}</h4><br/>
-            <p style="text-align: justify">${product.description}</p><br/>
-            <c:if test="${sessionScope.account.role == 'ROLE_CUSTOMER'}">
-                <a href="<c:url value="/cart?op=add&productId=${product.productId}"/>">Add to cart</a>
-            </c:if>
-            <c:if test="${sessionScope.account == null}">
-                <p>Login to buy nha!</p>
-            </c:if>
-        </div>
-    </c:forEach>
-    <c:forEach items="${list}" var="product" varStatus="loop" end="10">
+<div style="display: flex; flex-wrap: wrap; align-content: center; justify-content: space-around">
+  
+    <c:forEach items="${list}" var="product" varStatus="loop" end="8">
         <!-- Single -->
-        <div class="product-single">
+        <div class="product-single product-page">
             <div class="sale-badge">
-                <span>sale1</span>
+                <span>sale</span>
             </div>
             <div class="product-thumbnail">
-                <a href="product-details.html"
+                <a href="<c:url value="/product/index.do?id=${product.productId}"/>"
                    ><img
-                        src="https://bizweb.dktcdn.net/100/416/452/products/dell-9570-1.jpg?v=1612512400560"
+                        src="<c:url value="${product.imgSrc}"/>"
                         alt="product"
                         /></a>
                 <div
@@ -91,10 +76,49 @@ Sort by:
                 </h4>
                 <div class="pricing">
                     <span
-                        >$ ${product.price} <del>$<%= Utils.getRandomNumber()%></del></span
+                        >$ ${product.price} <del>${product.price+Utils.getRandomNumber()}</del></span
                     >
                 </div>
             </div>
         </div>
     </c:forEach>
-</div>
+</div><%--handle logic for the pagination --%>
+     <c:if test="${numOfPages >= 1}">
+            <c:set var="startPage" value="${currentPage - 5}"/>
+            <c:if test="${startPage lt 1}">
+                <c:set var="startPage" value="1"/>
+            </c:if>
+            <c:set var="endPage" value="${currentPage + 4}"/>
+            <c:if test="${endPage gt numOfPages}">
+                <c:set var="endPage" value="${numOfPages}"/>
+            </c:if>
+            <div class="pagination justify-content-center">
+                <c:choose>
+                    <c:when test="${currentPage gt 1}">
+                        <button class="page-item"><a href="<c:url value='/home/product.do?currentPage=${currentPage - 1}'/>" ><i class="fa-sharp fa-solid fa-arrow-left"></i></a></button>
+                    </c:when>
+                    <c:otherwise>
+                        <button class="disabled page-item"><i class="fa-sharp fa-solid fa-arrow-left"></i></button>
+                    </c:otherwise>
+                </c:choose>
+                <c:forEach begin="${startPage}" end="${endPage}" var="i">
+                    <c:choose>
+                        <c:when test="${i eq currentPage}">
+                            <button class="actived"><a href="#"><c:out value="${i}"/></a></button>
+                        </c:when>
+                        <c:otherwise>
+                            <button class="page-item"><a href="<c:url value='/home/product.do?currentPage=${i}'/>"><c:out value="${i}"/></a></button>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+                <c:choose>
+                    <c:when test="${currentPage lt numOfPages}">
+                        <button clas="page-item"><a href="<c:url value='/home/product.do?currentPage=${currentPage + 1}'/>"><i class="fa-sharp fa-solid fa-arrow-right"></i></a></button>
+                    </c:when>
+                    <c:otherwise>
+                    <button class="disabled page-item"><i class="fa-sharp fa-solid fa-arrow-right"></i></button>
+                        </c:otherwise>
+                            </c:choose>
+          
+            </div>
+      </c:if>

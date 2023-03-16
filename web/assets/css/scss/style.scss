@@ -2506,3 +2506,12 @@ deal-product-slider-single-img{
        
     }
 }
+.product-page{
+    width:300px;
+    height:450px;
+    img{
+        width:300px;
+        height:300px;
+        object-fit: contain;
+    }
+}
