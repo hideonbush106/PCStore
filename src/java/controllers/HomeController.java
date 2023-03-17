@@ -18,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import models.Brand;
 import models.Category;
 import models.Product;
@@ -94,21 +95,24 @@ public class HomeController extends HttpServlet {
     protected void products(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+            HttpSession session = request.getSession();
+            ProductFacade pf = new ProductFacade();
+            BrandFacade bf = new BrandFacade();
+            CategoryFacade cf = new CategoryFacade();
             int currentPage = 1;
             int recordsPerPage = 10;
             if (request.getParameter("currentPage") != null) {
                 currentPage = Integer.parseInt(request.getParameter("currentPage"));
             }
-            ProductFacade pf = new ProductFacade();
-            List<Product> list = pf.selectForEachPage(currentPage, recordsPerPage);
-            BrandFacade bf = new BrandFacade();
-            CategoryFacade cf = new CategoryFacade();
+            if (session.getAttribute("list") == null) {
+                List<Product> list = pf.selectForEachPage(currentPage, recordsPerPage);
+                session.setAttribute("list", list);
+            }
             List<Brand> blist = bf.select();
             List<Category> clist = cf.select();
             //need to add the pf.cal all the row
             int numOfRecords = pf.countRows();
             int numOfPages = (int) Math.ceil(numOfRecords * 1.0 / recordsPerPage);
-            request.setAttribute("list", list);
             request.setAttribute("blist", blist);
             request.setAttribute("clist", clist);
             request.setAttribute("numOfPages", numOfPages);

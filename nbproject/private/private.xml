@@ -3,15 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/layouts/main.jsp</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/views/admin/products.jsp</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/src/java/controllers/AdminController.java</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/src/java/controllers/HomeController.java</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/src/java/controllers/ProductController.java</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/views/home/product.jsp</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/src/java/models/Product.java</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/src/java/db/ProductFacade.java</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/web/assets/css/scss/style.scss</file>
+            <file>file:/D:/University/SP23-FPT/PRJ301/PCStore/web/WEB-INF/views/home/product.jsp</file>
+            <file>file:/D:/University/SP23-FPT/PRJ301/PCStore/src/java/db/ProductFacade.java</file>
+            <file>file:/D:/University/SP23-FPT/PRJ301/PCStore/src/java/controllers/FilterController.java</file>
         </group>
     </open-files>
 </project-private>

@@ -19,6 +19,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import models.Brand;
 import models.Category;
 import models.Product;
@@ -44,13 +45,31 @@ public class FilterController extends HttpServlet {
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         String op = (String) request.getParameter("op");
+        HttpSession session = request.getSession();
         switch (op) {
             case "search": {
                 String searchName = (String) request.getParameter("searchName");
                 //TODO: write search (contains name and brand)
+                session.setAttribute("searchName", searchName);
+                int currentPage = 1;
+                int recordsPerPage = 10;
+                if (request.getParameter("currentPage") != null) {
+                    currentPage = Integer.parseInt(request.getParameter("currentPage"));
+                }
                 ProductFacade pf = new ProductFacade();
-                List<Product> list = pf.search(searchName);
-                request.setAttribute("list", list);
+                List<Product> list = pf.search(searchName, currentPage, recordsPerPage); //change to sort, search, filter...
+                int numOfRecords = pf.search(searchName).size();
+                int numOfPages = (int) Math.ceil(numOfRecords * 1.0 / recordsPerPage);
+                request.setAttribute("numOfPages", numOfPages);
+                request.setAttribute("currentPage", currentPage);
+
+                BrandFacade bf = new BrandFacade();
+                CategoryFacade cf = new CategoryFacade();
+                List<Brand> blist = bf.select();
+                List<Category> clist = cf.select();
+                request.setAttribute("blist", blist);
+                request.setAttribute("clist", clist);
+                session.setAttribute("list", list);
                 request.setAttribute("action", "product");
                 request.setAttribute("controller", "home");
                 request.setAttribute("searchName", searchName);
@@ -61,9 +80,24 @@ public class FilterController extends HttpServlet {
                 //TODO: wrtie sort bt name, product or price, asc or desc
                 String sortDirection = (String) request.getParameter("sortDirection");
                 String sortBy = (String) request.getParameter("sortBy");
+                int currentPage = 1;
+                int recordsPerPage = 10;
+                if (request.getParameter("currentPage") != null) {
+                    currentPage = Integer.parseInt(request.getParameter("currentPage"));
+                }
                 ProductFacade pf = new ProductFacade();
-                List<Product> list = pf.sort(sortBy, sortDirection);
-                request.setAttribute("list", list);
+                List<Product> list = pf.sort(sortBy, sortDirection, currentPage, recordsPerPage); //change to sort, search, filter...
+                int numOfRecords = pf.sort(sortBy, sortDirection).size();
+                int numOfPages = (int) Math.ceil(numOfRecords * 1.0 / recordsPerPage);
+                request.setAttribute("numOfPages", numOfPages);
+                request.setAttribute("currentPage", currentPage);
+                BrandFacade bf = new BrandFacade();
+                CategoryFacade cf = new CategoryFacade();
+                List<Brand> blist = bf.select();
+                List<Category> clist = cf.select();
+                request.setAttribute("blist", blist);
+                request.setAttribute("clist", clist);
+                session.setAttribute("list", list);
                 request.setAttribute("action", "product");
                 request.setAttribute("controller", "home");
                 request.setAttribute("sortDirection", sortDirection);
@@ -80,13 +114,13 @@ public class FilterController extends HttpServlet {
                 CategoryFacade cf = new CategoryFacade();
                 List<Brand> blist = bf.select();
                 List<Category> clist = cf.select();
-                request.setAttribute("list", list);
+                request.setAttribute("blist", blist);
+                request.setAttribute("clist", clist);
+                session.setAttribute("list", list);
                 request.setAttribute("action", "product");
                 request.setAttribute("controller", "home");
                 request.setAttribute("brandName", brandName);
                 request.setAttribute("categoryName", categoryName);
-                request.setAttribute("blist", blist);
-                request.setAttribute("clist", clist);
                 request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
                 break;
             }

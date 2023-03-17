@@ -27,9 +27,7 @@
         <option value="price" ${sortBy == "price" ? "selected" : ""}>Price</option>
     </select>
     <button type="submit" name="op" value="sort">Apply</button>
-</form>
-    
-<form action="<c:url value="/filter"/>">
+
     Brand:
     <select name="brandName">
         <option value="">All</option>
@@ -45,17 +43,15 @@
         </c:forEach>
     </select>
     <button type="submit" name="op" value="filter">Filter</button>
-</form>
-    
-<form action="<c:url value="/filter"/>">
+
     Search:
-    <input type="text" name="searchName" value="${searchName}"/>
+    <input type="text" name="searchName" value="${sessionScope.searchName}"/>
     <button type="submit" name="op" value="search">Search</button>
 </form>
 
 <div style="display: flex; flex-wrap: wrap; align-content: center; justify-content: space-around">
 
-    <c:forEach items="${list}" var="product" varStatus="loop" >
+    <c:forEach items="${sessionScope.list}" var="product" varStatus="loop" >
         <!-- Single -->
         <div class="product-single product-page">
             <div class="sale-badge">
