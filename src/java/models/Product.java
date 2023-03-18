@@ -42,6 +42,15 @@ public class Product {
         this.description = description;
         this.imgSrc = imgSrc;
     }
+     public Product(String productName, double price, int categoryId, int brandId, String description) {
+        this.productName = productName;
+        this.price = price;
+        this.categoryId = categoryId;
+        this.brandId = brandId;
+        this.description = description;
+    }
+
+
 
     public int getCategoryId() {
         return categoryId;

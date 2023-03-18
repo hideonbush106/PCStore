@@ -56,8 +56,7 @@
 					<div class="col-lg-7">
 						<div class="top-list">
 							<a href="#"><i class="fas fa-mobile-alt"></i> +02456 054546</a>
-							<a href="wishlist.html"><i class="far fa-heart"></i> Wishlist</a>
-							<a href="login.html"><i class="fas fa-user"></i> Login / Register</a>
+                                                         <a href="<c:url value="/account/login.do" />"><i class="fas fa-user"></i> Login / Register</a>
 						</div>
 					</div>
 				</div>
@@ -70,7 +69,7 @@
 					<!-- Logo -->
 					<div class="col-lg-2">
 						<div class="logo">
-                                                    <h2><a href="<c:url value="index.jsp"/>"><img src="<c:url value="/assets/img/logo.png"/>"></a></h2>
+                                                    <h2><a href="<c:url value="/home/index.do" /> "><img src="<c:url value="/assets/img/logo.png"/>"></a></h2>
 						</div>
 					</div>
 					<!-- Search Bar -->
@@ -82,158 +81,35 @@
 							</form>
 						</div>	
 					</div>
-					<!-- MiniCart -->
-					<div class="col-lg-2">
-						<div class="desktop-mini-cart">
-							<div class="mini-cart">
-								<div class="mini-cart-icon">
-									<i class="fas fa-shopping-cart"></i>
-									<span class="counter">02</span>
-									<span class="counter-cart"><small>Your Cart</small>$10.00</span>
-									 <!-- Mini Cart Content -->
-									 <div class="minicart-content-wrapper">
-									 	<ul class="cart-list-full">
-									 		<!-- Single -->
-									 		<li class="cart-list-single">
-                                                                                            <img src="<c:url value="/assets/img/product/1.jpg"/>" alt="img">
-									 			<h5><a href="#">simple product</a></h5>
-									 			<span class="price">$120</span>
-									 			<div class="close"><i class="fas fa-times"></i></div>
-									 		</li>
-									 		
-									 	</ul>
-									 	<h2 class="subtotal">Subtotal : <span>$220</span></h2>
-									 	<div class="minicart-btn">
-									 		<a class="button-1" href="cart.html">View Cart</a>
-									 		<a class="button-2" href="#">Checkout</a>
-									 	</div>
-									 </div>
-								</div>
-							</div>
-						</div>
-					</div>
+					
+					
 				</div>
 			</div>
 		</div>
-		<!-- Header Bottom -->
-		<div class="header-bottm">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="logo-2">
-                                                    <h2><a href="<c:url value="index.jsp"/>"><img src="<c:url value="/assets/img/logo.png"/>"></a></h2>
-						</div>
-						<div class="canvas_open">
-					        <a href="javascript:void(0)"><i class="fas fa-bars"></i></a>
-					    </div>
-					    <div class="mobile-mini-cart">
-							<div class="mini-cart">
-								<div class="mini-cart-icon">
-									<i class="fas fa-shopping-cart"></i>
-									<span class="counter">02</span>
-									<span class="counter-cart"><small>Your Cart</small>$10.00</span>
-									 <!-- Mini Cart Content -->
-									 <div class="minicart-content-wrapper">
-									 	<ul class="cart-list-full">
-									 		
-									 		
-									 	</ul>
-									 	<h2 class="subtotal">Subtotal : <span>$220</span></h2>
-									 	<div class="minicart-btn">
-									 		<a class="button-1" href="cart.html">View Cart</a>
-									 		<a class="button-2" href="#">Checkout</a>
-									 	</div>
-									 </div>
-								</div>
-							</div>
-						</div>
-						<div class="menu">
-							<nav>
-								<ul>
-                                                                    <li><a href="<c:url value="/home/index.do"/>">Home</a></li>
-									<li><a href="about.html">About</a></li>
-						
-									<li><a href="shop.html">Shop <i class="fa fa-angle-down"></i></a>
-										<ul class="submenu-item">
-											<li><a href="shop.html">Shop</a></li>
-											<li><a href="shop2-columns.html">Shop 2 Columns</a></li>
-											<li><a href="shop-grid.html">Shop Grid</a></li>
-											<li><a href="shop-left-sidebar.html">Shop Left Sidebar</a></li>
-											<li><a href="shop-list.html">Shop List</a></li>
-										</ul>
-									</li>
-									<li><a href="contact.html">Contact</a></li>
-								</ul>
-							</nav>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		
 	</header>
 	<!-- Header -->
 
 	<!-- Start Mobile Menu Area -->
-	<div class="mobile-menu-area">
-		
-		<!--offcanvas menu area start-->
-	    <div class="off_canvars_overlay">
-	                
-	    </div>
-	    <div class="offcanvas_menu">
-	        <div class="offcanvas_menu_wrapper">
-	            <div class="canvas_close">
-	                <a href="javascript:void(0)"><i class="fas fa-times"></i></a>  
-	            </div>
-	            <div class="mobile-logo">
-                        <h2><a href="<c:url value="index.jsp"/>"><img src="<c:url value="/assets/img/logo.png" />"></a></h2>
-	            </div>
-	            <div id="menu" class="text-left ">
-	                <ul class="offcanvas_main_menu">
-	                    <li class="menu-item-has-children">
-	                        <a href="<c:url value="index.jsp"/>">Home</a>
-	                    </li>
-	                    <li class="menu-item-has-children">
-	                        <a href="about.html">about Us</a>
-	                    </li>
-	                    
-	                    <li class="menu-item-has-children">
-	                        <a href="#">Shop</a>
-	                        <ul class="sub-menu">
-	                        	<li><a href="shop.html">Shop</a></li>
-								<li><a href="shop2-columns.html">Shop 2 Columns</a></li>
-								<li><a href="shop-grid.html">Shop Grid</a></li>
-								<li><a href="shop-left-sidebar.html">Shop Left Sidebar</a></li>
-								<li><a href="shop-list.html">Shop List</a></li>
-	                        </ul>
-	                    </li>
-	                  
-	                    <li class="menu-item-has-children">
-	                        <a href="contact.html"> Contact Us</a> 
-	                    </li>
-	                </ul>
-	            </div>
-	        </div>
-	    </div>
-    </div>
+	
     <!--offcanvas menu area end-->
 	<!-- End Mobile Menu Area -->
 	<!-- Start BreadCrumb Area -->
-	<div class="breadcrumb-area pt-100 pb-100" >
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="breadcrumb-content">
-						<h2>Login</h2>
-						<ul>
-                                                    <li><a href="<c:url value="index.jsp"/>">Home</a></li>
-							<li class="active">Login</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+ <div class="breadcrumb-area pt-100 pb-100 " style="background-image: url(https://images.unsplash.com/photo-1616440347437-b1c73416efc2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80)">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="breadcrumb-content">
+                                        <h2>Login</h2>
+                                        <ul>
+                                            <li><a href="<c:url value="/home/index.do" /> ">Home</a></li>
+                                            <li>Login</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 	<!-- End BreadCrumb Area -->
 
 	<!-- Start Login Register Form -->

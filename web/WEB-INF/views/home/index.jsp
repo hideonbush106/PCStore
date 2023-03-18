@@ -271,7 +271,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="latest-product-full owl-carousel">
-                             <c:forEach items="${list}" var="product" varStatus="loop" end="4">
+                             <c:forEach items="${list}" var="product" varStatus="loop"  begin="11" end="14">
                                         <!-- Single -->
                                 <div class="product-single product-page">
                                          <div class="sale-badge">
@@ -345,7 +345,7 @@
                             <h3 class="deal-title">Popular items</h3>
                             <div class="deal-popular-product-all">
                                 <!-- Singel -->
-                               <c:forEach items="${list}" var="product" varStatus="loop" end="4" >
+                               <c:forEach items="${list}" var="product" varStatus="loop" begin="15" end="19" >
                                     <div class="deal-popular-product-single">
                                     <img
                                         src="<c:url value="${product.imgSrc}"/>"

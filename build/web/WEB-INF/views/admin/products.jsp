@@ -26,12 +26,12 @@
         </div>
       </div>
     </div>
+                 <div class="table-container">
     <table class="table table-striped table-hover">
 							<thead>
 								<tr>
-								<th class="checkall">
-								<input type="checkbox" id="selectAll">
-								<label for="selectAll"></label></th>
+								<th >Thumbnail
+								</th>
 								<th>No.</th>
                                                                 <th>Name</th>
                                                                 <th>Price</th>
@@ -45,9 +45,7 @@
 							<tbody>
                                                             <c:forEach items="${list}" var="product" varStatus="loop">
                                                                 <tr>
-                                                                    <td><span class="custom-checkbox">
-								<input type="checkbox" id="checkbox1" name="option[]" value="1">
-								<label for="checkbox1"></label></td>
+                                                                    <td class="img-table"><img src="<c:url value="${product.imgSrc}" />" class="img-table"</td>
                                                                     <td>${product.productId}</td>
                                                                     <td>${product.productName}</td>
                                                                     <td>${product.price}</td>
@@ -56,6 +54,7 @@
                                                                     <td>${product.description}</td>
                                                                     <td><div class="operations">
                                                                             <a href="<c:url value="/admin/editProduct.do?id=${product.productId}"/>"><i class="fa-sharp fa-solid fa-pen text-warning"></i></a>
+                                                                        <a href="<c:url value="/admin/upload_img.do?id=${product.productId}"/>"><i class="fa-sharp fa-solid fa-image"></i></a>
                                                                         <a href="<c:url value="/admin/deleteProduct.do?id=${product.productId}"/>"><i class="fa-sharp fa-solid fa-trash text-danger"></i></a>
                                                                         </div>
                                                                     </td>
@@ -64,6 +63,7 @@
 							</tbody>
                                                         
 						</table>
+                    </div> 
     <%--handle logic for the pagination --%>
      <c:if test="${numOfPages >= 1}">
             <c:set var="startPage" value="${currentPage - 5}"/>

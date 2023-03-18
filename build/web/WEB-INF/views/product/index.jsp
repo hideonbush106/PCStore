@@ -42,27 +42,7 @@
                                 </div>
                             </div>
                                 --%>
-                        </div>
-                        <div class="modal_tab_button">    
-                            <ul class="nav product_navactive owl-carousel" role="tablist">
-                                <li >
-                                    <a class="nav-link active" data-toggle="tab" href="#detailstab1" role="tab" aria-controls="detailstab1" aria-selected="false"><img src="assets/img/product/1.jpg" alt="img"></a>
-                                </li>
-                                <li>
-                                     <a class="nav-link" data-toggle="tab" href="#detailstab2" role="tab" aria-controls="detailstab2" aria-selected="false"><img src="assets/img/product/2.jpg" alt="img"></a>
-                                </li>
-                                <li>
-                                   <a class="nav-link button_three" data-toggle="tab" href="#detailstab3" role="tab" aria-controls="detailstab3" aria-selected="false"><img src="assets/img/product/3.jpg" alt="img"></a>
-                                </li>
-                                <li>
-                                   <a class="nav-link" data-toggle="tab" href="#detailstab4" role="tab" aria-controls="detailstab4" aria-selected="false"><img src="assets/img/product/4.jpg" alt="img"></a>
-                                </li>
-                                <li>
-                                   <a class="nav-link" data-toggle="tab" href="#detailstab5" role="tab" aria-controls="detailstab5" aria-selected="false"><img src="assets/img/product/5.jpg" alt="img"></a>
-                                </li>
-
-                            </ul>
-                        </div>    
+                        </div> 
                     </div>
 				</div>
 				<div class="col-md-7 col-lg-6">
@@ -86,7 +66,7 @@
                                 <span class="quantity">
 				  					<input type="number" min="1" max="1000" step="1" value="1">
 								</span>
-                                <button class="button-1" type="submit">add to cart</button>
+                                <button><a href="<c:url value="/cart?op=add&productId=${product.productId}"/>">add to cart</a></button>
                             </form>
                         </div>
                         <h3>Share This Product</h3>
