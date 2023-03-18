@@ -37,7 +37,7 @@ public class HomeController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+       
         String controller = (String) request.getAttribute("controller");
         String action = (String) request.getAttribute("action");
         switch (action) {
@@ -59,6 +59,12 @@ public class HomeController extends HttpServlet {
                 request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
                 break;
             case "cart":
+                    //Processing code here
+               // products(request,response);
+                //Forward request & response to the main layout
+                request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+                break;
+                case "checkout":
                     //Processing code here
                // products(request,response);
                 //Forward request & response to the main layout

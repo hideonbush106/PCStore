@@ -48,7 +48,7 @@ public class CartController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, NoSuchAlgorithmException {
-        response.setContentType("text/html;charset=UTF-8");
+       
         //String url = response.encodeURL("index.jsp");
         //response.sendRedirect(url);
         //or

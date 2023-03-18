@@ -26,7 +26,11 @@
         <link rel="stylesheet" href="<c:url value="/assets/css/responsive.css"/>" type="text/css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    </head>
+        <link rel="stylesheet" href="<c:url value="/assets/css/spur.css"/>" type="text/css"/>
+        <link rel="stylesheet" href="<c:url value="/assets/css/rome.css"/>" type="text/css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+        <script src="<c:url value="/assets/js/chart-js-config.js"/>"></script>
+            </head>
     <body>
         <!-- Preloader -->
         <div id="preloader" class="preeloader">
@@ -60,7 +64,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-7">
-                                    <div class="top-list">
+                                    <div class="top-list d-flex align-items-center justify-content-lg-end">
                                         <a href="#"><i class="fas fa-mobile-alt"></i> +02456 054546</a>
                                         <c:if test="${sessionScope.account == null}">
                                             <%--check if login --%>
@@ -97,35 +101,6 @@
                                     </div>	
                                 </div>
                                 <!-- MiniCart -->
-                                <div class="col-lg-2">
-                                    <div class="desktop-mini-cart">
-                                        <div class="mini-cart">
-                                            <div class="mini-cart-icon">
-                                                <i class="fas fa-shopping-cart"></i>
-                                                <span class="counter">02</span>
-                                                <span class="counter-cart"><small>Your Cart</small>$10.00</span>
-                                                <!-- Mini Cart Content -->
-                                                <div class="minicart-content-wrapper">
-                                                    <ul class="cart-list-full">
-                                                        <!-- Single -->
-                                                        <li class="cart-list-single">
-                                                            <img src="<c:url value="/assets/img/product/1.jpg"/>" alt="img">
-                                                            <h5><a href="#">simple product</a></h5>
-                                                            <span class="price">$120</span>
-                                                            <div class="close"><i class="fas fa-times"></i></div>
-                                                        </li>
-
-                                                    </ul>
-                                                    <h2 class="subtotal">Subtota1 : <span>$220</span></h2>
-                                                    <div class="minicart-btn">
-                                                        <a class="button-1" href="cart.html">View Cart</a>
-                                                        <a class="button-2" href="#">Checkout</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -140,27 +115,6 @@
                                     <div class="canvas_open">
                                         <a href="javascript:void(0)"><i class="fas fa-bars"></i></a>
                                     </div>
-                                    <div class="mobile-mini-cart">
-                                        <div class="mini-cart">
-                                            <div class="mini-cart-icon">
-                                                <i class="fas fa-shopping-cart"></i>
-                                                <span class="counter">02</span>
-                                                <span class="counter-cart"><small>Your Cart</small>$10.00</span>
-                                                <!-- Mini Cart Content -->
-                                                <div class="minicart-content-wrapper">
-                                                    <ul class="cart-list-full">
-
-
-                                                    </ul>
-                                                    <h2 class="subtotal">Subtotal : <span>$220</span></h2>
-                                                    <div class="minicart-btn">
-                                                        <a class="button-1" href="cart.html">View Cart</a>
-                                                        <a class="button-2" href="#">Checkout</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="menu">
                                         <nav>
                                             <ul>
@@ -168,7 +122,6 @@
                                                 <li><a href="<c:url value="/home/aboutus.do" />">About Us</a></li>
                                                 <li><a href="<c:url value="/home/product.do" />">Product</a></li>
 
-                                                <li><a href="contact.html">Contact</a></li>
                                             </ul>
                                         </nav>
                                     </div>
@@ -200,22 +153,10 @@
                                         <a href="<c:url value="index.jsp"/>">Home</a>
                                     </li>
                                     <li class="menu-item-has-children">
-                                        <a href="about.html">about Us</a>
+                                       <a href="<c:url value="/home/aboutus.do" />">About Us</a>
                                     </li>
-
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Shop</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="shop.html">Shop</a></li>
-                                            <li><a href="shop2-columns.html">Shop 2 Columns</a></li>
-                                            <li><a href="shop-grid.html">Shop Grid</a></li>
-                                            <li><a href="shop-left-sidebar.html">Shop Left Sidebar</a></li>
-                                            <li><a href="shop-list.html">Shop List</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="menu-item-has-children">
-                                        <a href="contact.html"> Contact Us</a> 
+                                     <li class="menu-item-has-children">
+                                       <a href="<c:url value="/home/product.do" />">Product</a>
                                     </li>
                                 </ul>
                             </div>
@@ -275,36 +216,8 @@
                                             </form>
                                         </div>	
                                     </div>
-                                    <!-- MiniCart -->
-                                    <div class="col-lg-2">
-                                        <div class="desktop-mini-cart">
-                                            <div class="mini-cart">
-                                                <div class="mini-cart-icon">
-                                                    <i class="fas fa-shopping-cart"></i>
-                                                    <span class="counter">02</span>
-                                                    <span class="counter-cart"><small>Your Cart</small>$10.00</span>
-                                                    <!-- Mini Cart Content -->
-                                                    <div class="minicart-content-wrapper">
-                                                        <ul class="cart-list-full">
-                                                            <!-- Single -->
-                                                            <li class="cart-list-single">
-                                                                <img src="<c:url value="/assets/img/product/1.jpg"/>" alt="img">
-                                                                <h5><a href="#">simple product</a></h5>
-                                                                <span class="price">$120</span>
-                                                                <div class="close"><i class="fas fa-times"></i></div>
-                                                            </li>
-
-                                                        </ul>
-                                                        <h2 class="subtotal">Subtotal : <span>$220</span></h2>
-                                                        <div class="minicart-btn">
-                                                            <a class="button-1" href="cart.html">View Cart</a>
-                                                            <a class="button-2" href="#">Checkout</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+               
+                                    
                                 </div>
                             </div>
                         </div>
@@ -319,27 +232,7 @@
                                         <div class="canvas_open">
                                             <a href="javascript:void(0)"><i class="fas fa-bars"></i></a>
                                         </div>
-                                        <div class="mobile-mini-cart">
-                                            <div class="mini-cart">
-                                                <div class="mini-cart-icon">
-                                                    <i class="fas fa-shopping-cart"></i>
-                                                    <span class="counter">02</span>
-                                                    <span class="counter-cart"><small>Your Cart</small>$10.00</span>
-                                                    <!-- Mini Cart Content -->
-                                                    <div class="minicart-content-wrapper">
-                                                        <ul class="cart-list-full">
-
-
-                                                        </ul>
-                                                        <h2 class="subtotal">Subtotal : <span>$220</span></h2>
-                                                        <div class="minicart-btn">
-                                                            <a class="button-1" href="cart.html">View Cart</a>
-                                                            <a class="button-2" href="#">Checkout</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                     
                                         <div class="menu">
                                             <nav>
                                                 <ul>
@@ -347,6 +240,7 @@
                                                     <li><a href="<c:url value="/admin/products.do" />">Product</a></li>
                                                     <li>  <a href="<c:url value="/admin/employees.do" />">Employee</a></li>
                                                     <li>  <a href="<c:url value="/admin/customers.do" />">Customer</a></li>
+                                                
 
                                                 </ul>
                                             </nav>
@@ -419,7 +313,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-7">
-                                        <div class="top-list">
+                                        <div class="top-list d-flex align-items-center">
                                             <a href="#"><i class="fas fa-mobile-alt"></i> +02456 054546</a>
                                             <c:if test="${sessionScope.account == null}">
                                                 <%--check if login --%>
@@ -634,35 +528,7 @@
                                         </div>	
                                     </div>
                                     <!-- MiniCart -->
-                                    <div class="col-lg-2">
-                                        <div class="desktop-mini-cart">
-                                            <div class="mini-cart">
-                                                <div class="mini-cart-icon">
-                                                    <i class="fas fa-shopping-cart"></i>
-                                                    <span class="counter">02</span>
-                                                    <span class="counter-cart"><small>Your Cart</small>$10.00</span>
-                                                    <!-- Mini Cart Content -->
-                                                    <div class="minicart-content-wrapper">
-                                                        <ul class="cart-list-full">
-                                                            <!-- Single -->
-                                                            <li class="cart-list-single">
-                                                                <img src="<c:url value="/assets/img/product/1.jpg"/>" alt="img">
-                                                                <h5><a href="#">simple product</a></h5>
-                                                                <span class="price">$120</span>
-                                                                <div class="close"><i class="fas fa-times"></i></div>
-                                                            </li>
-
-                                                        </ul>
-                                                        <h2 class="subtotal">Subtotal : <span>$220</span></h2>
-                                                        <div class="minicart-btn">
-                                                            <a class="button-1" href="cart.html">View Cart</a>
-                                                            <a class="button-2" href="#">Checkout</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                   
                                 </div>
                             </div>
                         </div>
@@ -677,27 +543,7 @@
                                         <div class="canvas_open">
                                             <a href="javascript:void(0)"><i class="fas fa-bars"></i></a>
                                         </div>
-                                        <div class="mobile-mini-cart">
-                                            <div class="mini-cart">
-                                                <div class="mini-cart-icon">
-                                                    <i class="fas fa-shopping-cart"></i>
-                                                    <span class="counter">02</span>
-                                                    <span class="counter-cart"><small>Your Cart</small>$10.00</span>
-                                                    <!-- Mini Cart Content -->
-                                                    <div class="minicart-content-wrapper">
-                                                        <ul class="cart-list-full">
-
-
-                                                        </ul>
-                                                        <h2 class="subtotal">Subtotal : <span>$220</span></h2>
-                                                        <div class="minicart-btn">
-                                                            <a class="button-1" href="cart.html">View Cart</a>
-                                                            <a class="button-2" href="#">Checkout</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    
                                         <div class="menu">
                                             <nav>
                                                 <ul>
@@ -842,5 +688,11 @@
         <script src="<c:url value="/assets/js/wow.min.js"/>"></script>
         <script src="<c:url value="/assets/js/script.js"/>"></script>
         <script src="<c:url value="/assets/js/mobile-menu.js"/>"></script>
+         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+      <script src="<c:url value="/assets/js/spur.js"/>" ></script>
+      <script src="<c:url value="/assets/js/rome.js"/>"></script>
+        <script src="<c:url value="/assets/js/main.js"/>"></script>
+
     </body>
 </html>

@@ -36,7 +36,7 @@ public class ProductController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+       
         String action = (String) request.getAttribute("action");
         String sortChoice = (String) request.getAttribute("sortChoice");
         String sortOrderChoice = (String) request.getAttribute("sortOrderChoice");

@@ -83,7 +83,7 @@ public class ProductFacade {
         stm.setInt(3, product.getCategoryId());
         stm.setInt(4, product.getBrandId());
         stm.setString(5, product.getDescription());
-        stm.setString(6,product.getImgSrc());
+        stm.setString(6,null);
         int count = stm.executeUpdate();
         con.close();
     }
@@ -138,7 +138,16 @@ public class ProductFacade {
         int count = stm.executeUpdate();
         con.close();
         // neu xoa khong duoc thi gay ra ngoai le
+    } public void updateImg(Product product,String imgSrc) throws SQLException {
+        Connection con = DBContext.getConnection();
+        PreparedStatement stm = con.prepareStatement("update product set imgSrc = ? where productId = ?");
+        stm.setString(1,imgSrc);
+        stm.setInt(2, product.getProductId());
+        int count = stm.executeUpdate();
+        con.close();
+        // neu xoa khong duoc thi gay ra ngoai le
     }
+    
     public int countRows() throws SQLException {
         int count=0;
         //Tạo connection để kết nối vào DBMS
