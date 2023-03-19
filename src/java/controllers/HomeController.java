@@ -5,6 +5,8 @@
  */
 package controllers;
 
+import db.BrandFacade;
+import db.CategoryFacade;
 import db.ProductFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,6 +18,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import models.Brand;
+import models.Category;
 import models.Product;
 import utils.Config;
 
@@ -53,14 +58,14 @@ public class HomeController extends HttpServlet {
                 request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
                 break;
             case "product":
-                    //Processing code here
-                products(request,response);
+                //Processing code here
+                products(request, response);
                 //Forward request & response to the main layout
                 request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
                 break;
             case "cart":
-                    //Processing code here
-               // products(request,response);
+                //Processing code here
+                // products(request,response);
                 //Forward request & response to the main layout
                 request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
                 break;
@@ -74,12 +79,13 @@ public class HomeController extends HttpServlet {
             //Show error page
         }
     }
-       protected void getList(HttpServletRequest request, HttpServletResponse response)
+
+    protected void getList(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             ProductFacade pf = new ProductFacade();
             List<Product> list = pf.select();
-             Collections.shuffle(list);
+            Collections.shuffle(list);
             request.setAttribute("list", list);
             //Forward request & response to the main layout
             request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
@@ -91,20 +97,30 @@ public class HomeController extends HttpServlet {
             request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
         }
     }
-       protected void products(HttpServletRequest request, HttpServletResponse response)
+
+    protected void products(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+            HttpSession session = request.getSession();
+            ProductFacade pf = new ProductFacade();
+            BrandFacade bf = new BrandFacade();
+            CategoryFacade cf = new CategoryFacade();
             int currentPage = 1;
             int recordsPerPage = 10;
-            if(request.getParameter("currentPage") != null) {
+            if (request.getParameter("currentPage") != null) {
                 currentPage = Integer.parseInt(request.getParameter("currentPage"));
             }
-            ProductFacade pf = new ProductFacade();
-            List<Product> list = pf.selectForEachPage(currentPage, recordsPerPage);
+            if (session.getAttribute("list") == null) {
+                List<Product> list = pf.selectForEachPage(currentPage, recordsPerPage);
+                session.setAttribute("list", list);
+            }
+            List<Brand> blist = bf.select();
+            List<Category> clist = cf.select();
             //need to add the pf.cal all the row
             int numOfRecords = pf.countRows();
             int numOfPages = (int) Math.ceil(numOfRecords * 1.0 / recordsPerPage);
-            request.setAttribute("list", list);
+            request.setAttribute("blist", blist);
+            request.setAttribute("clist", clist);
             request.setAttribute("numOfPages", numOfPages);
             request.setAttribute("currentPage", currentPage);
             //Forward request & response to the main layout
