@@ -5,7 +5,9 @@
  */
 package models;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -19,6 +21,7 @@ public class Revenue {
     private String productName;
     private int quantity;
     private double cost;
+    
 
     public Revenue() {
     }
@@ -80,4 +83,5 @@ public class Revenue {
         this.cost = cost;
     }
 
+    
 }

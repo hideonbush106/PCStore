@@ -100,7 +100,9 @@
 			                        </ul>
 			                        <p class="credit">You can pay with your credit<br> card if you don't have a paypal account</p>
 			                        <span class="grand-total">Grand Total :  <span>${sessionScope.cart.total}</span></span>
-			                        <button type="submit" class="button-1">Place Order Now</button>
+                                                <form action="<c:url value="/cart"/>">
+                                                    <button type="submit" name="op" value="checkout" class="button-1">Place Order Now</button>
+                                                </form>
 			                    </div>
                             </div>
 						</div>
