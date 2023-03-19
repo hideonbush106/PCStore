@@ -117,10 +117,10 @@
 					<div class="login-register-form-full">
 						<h3>Register</h3>
 						<form action="<c:url value="/account/register_handler.do"/>">
-							<input type="email" class="form-control" name="email" placeholder="Your Email">
+							<input type="email" class="form-control" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Your Email">
 							<input type="password" class="form-control" name="password" placeholder="Your Password">
 							<input type="text" class="form-control" name="fullName" placeholder="Your Full Name">
-							<input type="tel" class="form-control" name="phoneNo" placeholder="Your phone Number">
+							<input type="tel" class="form-control" name="phoneNo" pattern="[0]{1}[0-9]{9}" placeholder="Your phone Number">
                                                         <input type="text" class="form-control" name="address" placeholder="Your Address">
 							<button class="button-1" type="submit" name="op" value="register">Register</button>
 						</form>
