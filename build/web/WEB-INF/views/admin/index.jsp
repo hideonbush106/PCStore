@@ -121,13 +121,13 @@
                                         <div class="col-md-6">
                                           <div class="form-group">
                                             <label for="input_from">From</label>
-                                           <input type="date" name="dateFrom" value="${dateFrom}"/>
+                                           <input type="date" name="dateFrom" value="${dateFrom}" class="form-control" class="form-control"/>
                                           </div>
                                         </div>
                                         <div class="col-md-6">
                                           <div class="form-group">
                                             <label for="input_from">To</label>
-                                           <input type="date" name="dateTo" value="${dateTo}"/>
+                                           <input type="date" name="dateTo" value="${dateTo}"  class="form-control" id="input_to"/>
                                           </div>
                                            <button type="submit" name="op" value="view">Submit</button>
                                         </div>

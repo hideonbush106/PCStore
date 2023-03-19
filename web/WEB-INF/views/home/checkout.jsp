@@ -89,6 +89,7 @@
                                     </tfoot>
                                 </table>
                                 <div class="form-group payment">
+                                               
 			                        <h4 class="deal-title">Payment Method</h4>
 			                        <ul>
 			                            <li><label class="inline"><input class="form-check-input" type="checkbox"><span class="input"></span>Direct Bank
