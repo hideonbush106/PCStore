@@ -14,9 +14,15 @@ import db.CustomerFacade;
 import db.EmployeeFacade;
 import models.Product;
 import db.ProductFacade;
+import db.RevenueFacade;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,6 +32,7 @@ import models.Account;
 import models.Category;
 import models.Customer;
 import models.Employee;
+import models.Revenue;
 import utils.Config;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -56,13 +63,12 @@ public class AdminController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         String controller = (String) request.getAttribute("controller");
         String action = (String) request.getAttribute("action");
         switch (action) {
             case "index":
-                //Processing code here
-                //Forward request & response to the main layout
-                request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+                index(request, response);
                 break;
             case "products": //Processing code here
                 products(request, response);
@@ -102,9 +108,6 @@ public class AdminController extends HttpServlet {
                 break;
             case "create_handlerEmployee":
                 create_handlerEmployee(request, response);
-                break;
-            case "upload_img":
-                uploadImg(request,response);
                 break;
             default:
                 default_handler(request, response);
@@ -204,9 +207,8 @@ public class AdminController extends HttpServlet {
                     int categoryId = Integer.parseInt(request.getParameter("categoryId"));
                     String description = request.getParameter("description");
                     int brandId = Integer.parseInt(request.getParameter("brandId"));
-
                     //Tao doi tuong Product
-                    Product product = new Product(productName,price,categoryId,brandId,description);
+                    Product product = new Product(productName, price, categoryId, brandId, description);
                     //Luu toy vao request de bao ton trang thai cua form
                     request.setAttribute("product", product);
                     //Insert toy vao db
@@ -269,8 +271,7 @@ public class AdminController extends HttpServlet {
                     int categoryId = Integer.parseInt(request.getParameter("categoryId"));
                     int brandId = Integer.parseInt(request.getParameter("brandId"));
                     String description = request.getParameter("description");
-                    String imgSrc = request.getParameter("imgSrc");
-                    Product product = new Product(productId, productName, price, categoryId, brandId, description,imgSrc);
+                    Product product = new Product(productId, productName, price, categoryId, brandId, description);
                     ProductFacade pf = new ProductFacade();
                     pf.update(product);
                     response.sendRedirect(request.getContextPath() + "/admin/products.do");
@@ -445,43 +446,6 @@ public class AdminController extends HttpServlet {
         request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
     }
 
-    private void uploadImage(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        // Check that we have a file upload request
-        Part part = request.getPart("file");
-        String fileName = part.getSubmittedFileName();
-
-        String path = getServletContext().getRealPath("/" + "files" + File.separator + fileName);
-
-        InputStream is = part.getInputStream();
-        boolean test = uploadFile(is, path);
-        if (test) {
-            out.println("uploaded");
-        } else {
-            out.println("something wrong");
-        }
-
-    }
-
-    public boolean uploadFile(InputStream is, String path) {
-        boolean test = false;
-        try {
-            byte[] byt = new byte[is.available()];
-            is.read();
-
-            FileOutputStream fops = new FileOutputStream(path);
-            fops.write(byt);
-            fops.flush();
-            fops.close();
-
-            test = true;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return test;
-    }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -494,7 +458,15 @@ public class AdminController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+
+        } catch (ParseException ex) {
+            Logger.getLogger(AdminController.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -508,7 +480,15 @@ public class AdminController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+
+        } catch (ParseException ex) {
+            Logger.getLogger(AdminController.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

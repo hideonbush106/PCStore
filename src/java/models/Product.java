@@ -123,8 +123,5 @@ public class Product {
     public void setImgSrc(String imgSrc) {
         this.imgSrc = imgSrc;
     }
-    
-    
-    
 
 }

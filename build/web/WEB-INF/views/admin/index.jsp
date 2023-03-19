@@ -117,18 +117,19 @@
                         <div class="col-xl-6">
                             <div class="card spur-card">
                                 <div class="card-header">
-                                    <form action="#" class="row">
+                                    <form action="<c:url value="/admin/viewRevenue.do"/>" class="row">
                                         <div class="col-md-6">
                                           <div class="form-group">
                                             <label for="input_from">From</label>
-                                            <input type="text" class="form-control" id="input_from" placeholder="Start Date">
+                                           <input type="date" name="dateTo" value="${dateTo}"/>
                                           </div>
                                         </div>
                                         <div class="col-md-6">
                                           <div class="form-group">
                                             <label for="input_from">To</label>
-                                            <input type="text" class="form-control" id="input_to" placeholder="Start Date">
+                                           <input type="date" name="dateTo" value="${dateTo}"/>
                                           </div>
+                                           <button type="submit" name="op" value="view">Submit</button>
                                         </div>
                                     </form>
                                 </div>
@@ -148,25 +149,16 @@
 							
 							<tbody>
                                  
-                                                                <tr>
-                                                                    <td>1</td>
-                                                                    <td>2</td>
-                                                                    <td>Phong Ngu</td>
-                                                                    <td>3</td>
-                                                                    <td>200</td>
-                                                                    <td>600</td>
-                                                                   
-                                                                </tr>
-                                                                 <tr>
-                                                                    <td>1</td>
-                                                                    <td>2</td>
-                                                                    <td>Phong Ngu</td>
-                                                                    <td>3</td>
-                                                                    <td>200</td>
-                                                                    <td>600</td>
-                                                                   
-                                                                </tr>
-                                
+                                                                <c:forEach var="revenue" items="${list}" varStatus="loop">
+            <tr>
+                <td>${revenue.orderDetailId}</td>
+                <td>${revenue.date}</td>
+                <td>${revenue.productId}</td>
+                <td>${revenue.productName}</td>
+                <td>${revenue.quantity}</td>
+                <td>${revenue.cost}</td>
+            </tr>
+        </c:forEach>
 							</tbody>
                                                         
 						</table>

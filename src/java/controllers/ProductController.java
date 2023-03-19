@@ -51,7 +51,7 @@ public class ProductController extends HttpServlet {
                 //Forward request & response to the main layout
                 request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
                 break;
-                
+
             default:
             //Show error page
         }
@@ -100,12 +100,12 @@ public class ProductController extends HttpServlet {
     private void index(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try {
             ProductFacade pf = new ProductFacade();
-            String id=request.getParameter("id");
+            String id = request.getParameter("id");
             Product product = pf.read(Integer.parseInt(id));
             request.setAttribute("product", product);
-            int categoryid=pf.getCategoryId(Integer.parseInt(id));
-            List<Product> list=pf.relatedProducts(categoryid);
-              request.setAttribute("list", list);
+            int categoryid = pf.getCategoryId(Integer.parseInt(id));
+            List<Product> list = pf.relatedProducts(categoryid);
+            request.setAttribute("list", list);
             //Forward request & response to the main layout
             request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
         } catch (SQLException ex) {
@@ -115,24 +115,6 @@ public class ProductController extends HttpServlet {
             request.setAttribute("action", "error");
             request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
         }
-    }
-
-    protected void sort(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
-        try {
-            String sortChoice = (String) request.getAttribute("sortChoice");
-            String sortOrderChoice = (String) request.getAttribute("sortOrderChoice");
-            ProductFacade pf = new ProductFacade();
-            List<Product> sortedList = pf.sort(sortChoice, sortOrderChoice);
-            request.setAttribute("list", sortedList);
-            request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
-        } catch (SQLException ex) {
-            request.setAttribute("message", ex.getMessage());
-            request.setAttribute("controller", "error");
-            request.setAttribute("action", "error");
-            request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
-        }
-
     }
 
 }
