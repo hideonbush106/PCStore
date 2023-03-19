@@ -62,13 +62,13 @@ public class AdminController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ParseException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         String controller = (String) request.getAttribute("controller");
         String action = (String) request.getAttribute("action");
         switch (action) {
             case "index":
-                index(request, response);
+                request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
                 break;
             case "products": //Processing code here
                 products(request, response);
@@ -108,6 +108,9 @@ public class AdminController extends HttpServlet {
                 break;
             case "create_handlerEmployee":
                 create_handlerEmployee(request, response);
+                break;
+            case "viewRevenue":
+                viewRevenue(request, response);
                 break;
             default:
                 default_handler(request, response);
@@ -445,6 +448,20 @@ public class AdminController extends HttpServlet {
         request.setAttribute("action", "error");
         request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
     }
+ 
+    private void viewRevenue(HttpServletRequest request, HttpServletResponse response) throws ParseException, SQLException, ServletException, IOException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date dateFrom = sdf.parse(request.getParameter("dateFrom"));
+        Date dateTo = sdf.parse(request.getParameter("dateTo"));
+        RevenueFacade rf = new RevenueFacade();
+        List<Revenue> list = rf.readBetweenDate(dateFrom, dateTo);
+        request.setAttribute("list", list);
+        request.setAttribute("dateFrom", request.getParameter("dateFrom"));
+        request.setAttribute("dateTo", request.getParameter("dateTo"));
+        request.setAttribute("controller", "admin");
+        request.setAttribute("action", "index");
+        request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -460,10 +477,8 @@ public class AdminController extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-
         } catch (ParseException ex) {
-            Logger.getLogger(AdminController.class
-                    .getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -482,10 +497,8 @@ public class AdminController extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-
         } catch (ParseException ex) {
-            Logger.getLogger(AdminController.class
-                    .getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -500,5 +513,6 @@ public class AdminController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 
 }
