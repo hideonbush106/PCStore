@@ -12,7 +12,20 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Error</h1>
+        <div class="error-404-page pt-100 pb-100">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2">
+					<div class="error-404-full-content">
+						<h3>404</h3>
+						<h4>Sorry! The Page Not Found</h4>
+						<p>The Link You Folowed Probably Broken, or the page has been removed.</p>
+						<a class="button-1" href="index.html">Go to Home</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
         ${message}
     </body>
 </html>

@@ -2290,7 +2290,8 @@ p {
 
 .product-content {
   background: #cccccc5e;
-  padding: 15px 10px; }
+  padding: 15px 10px;
+  height: 100%; }
 
 .product-thumbnail-overly {
   width: 100%;
@@ -4457,10 +4458,16 @@ span.menu-expand {
 
 .product-page {
   width: 300px;
-  height: 450px; }
+  height: 480px; }
   .product-page img {
     width: 300px;
     height: 300px;
     object-fit: contain; }
+
+.img-table {
+  width: 100px; }
+
+.table-container {
+  width: 100%; }
 
 /*# sourceMappingURL=style.css.map */

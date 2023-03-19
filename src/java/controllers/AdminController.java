@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import javax.servlet.http.Part;
 import db.AccountFacade;
 import models.Brand;
 import db.BrandFacade;
@@ -33,11 +34,21 @@ import models.Customer;
 import models.Employee;
 import models.Revenue;
 import utils.Config;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import static java.lang.System.out;
+import java.nio.file.Paths;
+import javax.servlet.annotation.MultipartConfig;
 
 /**
  *
  * @author ADMIN
  */
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
+                 maxFileSize = 1024 * 1024 * 10, // 10MB
+                 maxRequestSize = 1024 * 1024 * 50) // 50MB
 @WebServlet(name = "AdminController", urlPatterns = {"/admin"})
 public class AdminController extends HttpServlet {
 
@@ -51,7 +62,7 @@ public class AdminController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ParseException, SQLException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String controller = (String) request.getAttribute("controller");
         String action = (String) request.getAttribute("action");
@@ -97,9 +108,6 @@ public class AdminController extends HttpServlet {
                 break;
             case "create_handlerEmployee":
                 create_handlerEmployee(request, response);
-                break;
-            case "viewRevenue":
-                viewRevenue(request, response);
                 break;
             default:
                 default_handler(request, response);
@@ -199,9 +207,8 @@ public class AdminController extends HttpServlet {
                     int categoryId = Integer.parseInt(request.getParameter("categoryId"));
                     String description = request.getParameter("description");
                     int brandId = Integer.parseInt(request.getParameter("brandId"));
-                    String imgSrc = request.getParameter("imgSrc");
                     //Tao doi tuong Product
-                    Product product = new Product(productName, price, categoryId, brandId, description, imgSrc);
+                    Product product = new Product(productName, price, categoryId, brandId, description);
                     //Luu toy vao request de bao ton trang thai cua form
                     request.setAttribute("product", product);
                     //Insert toy vao db
@@ -251,7 +258,7 @@ public class AdminController extends HttpServlet {
         }
     }
 
-    protected void edit_handlerProduct(HttpServletRequest request, HttpServletResponse response)
+     protected void edit_handlerProduct(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String op = request.getParameter("op");
         switch (op) {
@@ -264,8 +271,7 @@ public class AdminController extends HttpServlet {
                     int categoryId = Integer.parseInt(request.getParameter("categoryId"));
                     int brandId = Integer.parseInt(request.getParameter("brandId"));
                     String description = request.getParameter("description");
-                    String imgSrc = request.getParameter("imgSrc");
-                    Product product = new Product(productId, productName, price, categoryId, brandId, description, imgSrc);
+                    Product product = new Product(productId, productName, price, categoryId, brandId, description);
                     ProductFacade pf = new ProductFacade();
                     pf.update(product);
                     response.sendRedirect(request.getContextPath() + "/admin/products.do");
@@ -281,7 +287,27 @@ public class AdminController extends HttpServlet {
                 break;
         }
     }
-
+     protected void uploadImg(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            //Lay id tu client
+            int id = Integer.parseInt(request.getParameter("id"));
+            //Doc mau tin toy tuong ung voi id
+            ProductFacade pf = new ProductFacade();
+            Product product = pf.read(id);
+            //Doc toan bo table brand
+            //lay list brand
+            request.setAttribute("product", product);
+            request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+        } catch (SQLException ex) {
+            //Show the error page
+            request.setAttribute("message", ex.getMessage());
+            request.setAttribute("controller", "error");
+            request.setAttribute("action", "error");
+            request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+        }
+    }
+    
     protected void deleteProduct(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id = request.getParameter("id");
@@ -417,26 +443,6 @@ public class AdminController extends HttpServlet {
         request.setAttribute("message", "Invalid request.");
         request.setAttribute("controller", "error");
         request.setAttribute("action", "error");
-        request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
-    }
-
-    private void index(HttpServletRequest request, HttpServletResponse response)
-            throws IOException, ServletException, ParseException, SQLException {
-        RevenueFacade rf = new RevenueFacade();
-        request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
-    }
-
-    private void viewRevenue(HttpServletRequest request, HttpServletResponse response) throws ParseException, SQLException, ServletException, IOException {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date dateFrom = sdf.parse(request.getParameter("dateFrom"));
-        Date dateTo = sdf.parse(request.getParameter("dateTo"));
-        RevenueFacade rf = new RevenueFacade();
-        List<Revenue> list = rf.readBetweenDate(dateFrom, dateTo);
-        request.setAttribute("list", list);
-        request.setAttribute("dateFrom", request.getParameter("dateFrom"));
-        request.setAttribute("dateTo", request.getParameter("dateTo"));
-        request.setAttribute("controller", "admin");
-        request.setAttribute("action", "index");
         request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
     }
 

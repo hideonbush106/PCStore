@@ -4,5 +4,5 @@
     Author     : Admin
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="multipart/form-data" pageEncoding="UTF-8"%>
 <jsp:forward page="/home/index.do"/>

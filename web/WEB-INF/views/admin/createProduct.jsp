@@ -26,7 +26,7 @@
                     </div>
         </div>
      
-
+        <i>${message}</i>
         <!-- Main content -->
         <div class="row">
             <!-- Left side -->
@@ -166,18 +166,9 @@
                     </div>
                 </div>
             </div>
-            <!-- Right side -->
-            <div class="col-lg-4">
-                <!-- Image -->
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h3 class="h6">Image</h3>
-                        <input type="text" name="imgSrc" value="${product.imgSrc}"/>
-                            <div id="image-preview"></div>
-                    </div>
-                </div>
-        </div>
     </div>
+                                
+                       
         <script>
   const imageUpload = document.querySelector('#image-upload');
 const imagePreview = document.querySelector('#image-preview');
@@ -195,6 +186,8 @@ imageUpload.addEventListener('change', () => {
   </script>
 </div>
                                   </form
+                                        
+                   
                              
 
 </c:if>
