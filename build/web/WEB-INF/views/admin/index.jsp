@@ -121,7 +121,7 @@
                                         <div class="col-md-6">
                                           <div class="form-group">
                                             <label for="input_from">From</label>
-                                           <input type="date" name="dateTo" value="${dateTo}"/>
+                                           <input type="date" name="dateFrom" value="${dateFrom}"/>
                                           </div>
                                         </div>
                                         <div class="col-md-6">

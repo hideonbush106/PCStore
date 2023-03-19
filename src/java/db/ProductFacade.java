@@ -191,32 +191,6 @@ public class ProductFacade {
         return product;
     }
     
-    public List<Product> sort(String sortChoice, String sortOrderChoice) throws SQLException {
-        
-        List<Product> list = null;
-        //Tạo connection để kết nối vào DBMS
-        Connection con = DBContext.getConnection();
-        PreparedStatement stm = con.prepareStatement("SELECT ProductId, productName, price, category.name AS categoryName, brand.name as brandName, description, imgSrc FROM Product INNER JOIN Brand ON Product.BrandId = Brand.BrandId INNER JOIN Category ON Product.CategoryId = Category.CategoryId ORDER BY brandName ?" );
-        stm.setString(1, sortOrderChoice);
-//        stm.setString(2, sortOrderChoice);
-        ResultSet rs = stm.executeQuery();
-        list = new ArrayList<>();
-        while (rs.next()) {
-            //Doc mau tin hien hanh de vao doi tuong toy
-            Product product = new Product();
-            product.setProductId(rs.getInt("productId"));
-            product.setProductName(rs.getString("productName"));
-            product.setPrice(rs.getDouble("price"));
-            product.setCategoryName(rs.getString("categoryName"));
-            product.setBrandName(rs.getString("brandName"));
-            product.setDescription(rs.getString("description"));
-              product.setImgSrc(rs.getString("imgSrc"));
-            //Them toy vao list
-            list.add(product);
-        }
-        con.close();
-        return list;
-    }
     public Integer getCategoryId(int productId) throws SQLException {
         int id = 0;
         //Tạo connection để kết nối vào DBMS
