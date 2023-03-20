@@ -4,30 +4,44 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/E:/PCStore/web/WEB-INF/views/admin/createProduct.jsp</file>
+            <file>file:/E:/PCStore/src/java/db/RevenueFacade.java</file>
             <file>file:/E:/PCStore/src/java/controllers/AdminController.java</file>
+            <file>file:/E:/PCStore/src/java/db/CustomerFacade.java</file>
+            <file>file:/E:/PCStore/web/WEB-INF/views/employees/orderList.jsp</file>
             <file>file:/E:/PCStore/src/java/controllers/FrontController.java</file>
+            <file>file:/E:/PCStore/web/WEB-INF/views/employees/index.jsp</file>
+            <file>file:/E:/PCStore/src/java/db/CategoryFacade.java</file>
+            <file>file:/E:/PCStore/web/WEB-INF/views/account/register.jsp</file>
             <file>file:/E:/PCStore/src/java/controllers/FilterController.java</file>
+            <file>file:/E:/PCStore/src/java/db/AccountFacade.java</file>
             <file>file:/E:/PCStore/web/WEB-INF/views/admin/products.jsp</file>
             <file>file:/E:/PCStore/web/WEB-INF/views/admin/index.jsp</file>
             <file>file:/E:/PCStore/web/WEB-INF/views/home/aboutus.jsp</file>
             <file>file:/E:/PCStore/web/WEB-INF/views/home/product.jsp</file>
             <file>file:/E:/PCStore/src/java/db/ProductFacade.java</file>
+            <file>file:/E:/PCStore/src/java/controllers/servletContext.java</file>
             <file>file:/E:/PCStore/src/java/controllers/CartController.java</file>
             <file>file:/E:/PCStore/web/WEB-INF/views/home/setting.jsp</file>
             <file>file:/E:/PCStore/web/WEB-INF/views/product/index.jsp</file>
             <file>file:/E:/PCStore/src/java/models/Product.java</file>
             <file>file:/E:/PCStore/src/java/models/OrderHeader.java</file>
+            <file>file:/E:/PCStore/web/WEB-INF/layouts/main.jsp</file>
             <file>file:/E:/PCStore/src/java/controllers/EmployeeController.java</file>
             <file>file:/E:/PCStore/web/assets/css/style.css</file>
             <file>file:/E:/PCStore/web/assets/css/spur.css</file>
             <file>file:/E:/PCStore/src/java/controllers/ProductController.java</file>
             <file>file:/E:/PCStore/src/java/models/OrderDetail.java</file>
             <file>file:/E:/PCStore/src/java/controllers/UploadFileController.java</file>
+            <file>file:/E:/PCStore/src/java/db/BrandFacade.java</file>
             <file>file:/E:/PCStore/src/java/controllers/HomeController.java</file>
             <file>file:/E:/PCStore/src/java/models/Account.java</file>
+            <file>file:/E:/PCStore/web/WEB-INF/views/account/login.jsp</file>
+            <file>file:/E:/PCStore/src/java/db/OrderFacade.java</file>
             <file>file:/E:/PCStore/src/java/controllers/AccountController.java</file>
+            <file>file:/E:/PCStore/src/java/utils/Config.java</file>
             <file>file:/E:/PCStore/src/java/models/Cart.java</file>
             <file>file:/E:/PCStore/web/WEB-INF/views/admin/editProduct.jsp</file>
+            <file>file:/E:/PCStore/src/java/db/EmployeeFacade.java</file>
             <file>file:/E:/PCStore/web/WEB-INF/views/home/index.jsp</file>
         </group>
     </open-files>

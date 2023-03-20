@@ -68,7 +68,7 @@ public class AdminController extends HttpServlet {
         String action = (String) request.getAttribute("action");
         switch (action) {
             case "index":
-                request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+                index(request, response);
                 break;
             case "products": //Processing code here
                 products(request, response);
@@ -116,7 +116,21 @@ public class AdminController extends HttpServlet {
                 default_handler(request, response);
         }
     }
-
+    private void index(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        try {
+            RevenueFacade rf = new RevenueFacade();
+            List<Revenue> list = rf.readOrder();
+            request.setAttribute("list", list);
+            //Forward request & response to the main layout
+            request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+        } catch (SQLException ex) {
+            //Show the error page
+            request.setAttribute("message", ex.getMessage());
+            request.setAttribute("controller", "error");
+            request.setAttribute("action", "error");
+            request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+        }
+    }
     protected void products(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
