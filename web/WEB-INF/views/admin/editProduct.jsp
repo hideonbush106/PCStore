@@ -63,6 +63,14 @@
                                     <textarea  type="text" name="description" class="form-control">${product.description}</textarea>
                                 </div>
                             </div>
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label class="form-label"
+                                        >Product Quantity</label
+                                    >
+                                    <textarea  type="text" name="quantity" class="form-control">${product.quantity}</textarea>
+                                </div>
+                            </div>
 
                     </div>
                 </div>

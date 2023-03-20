@@ -210,8 +210,9 @@ public class AdminController extends HttpServlet {
                     int categoryId = Integer.parseInt(request.getParameter("categoryId"));
                     String description = request.getParameter("description");
                     int brandId = Integer.parseInt(request.getParameter("brandId"));
+                    int quantity = Integer.parseInt(request.getParameter("quantity"));
                     //Tao doi tuong Product
-                    Product product = new Product(productName, price, categoryId, brandId, description);
+                    Product product = new Product(productName, price, categoryId, brandId, description,quantity);
                     //Luu toy vao request de bao ton trang thai cua form
                     request.setAttribute("product", product);
                     //Insert toy vao db
@@ -274,7 +275,8 @@ public class AdminController extends HttpServlet {
                     int categoryId = Integer.parseInt(request.getParameter("categoryId"));
                     int brandId = Integer.parseInt(request.getParameter("brandId"));
                     String description = request.getParameter("description");
-                    Product product = new Product(productId, productName, price, categoryId, brandId, description);
+                    int quantity = Integer.parseInt(request.getParameter("quantity"));
+                    Product product = new Product(productId, productName, price, categoryId, brandId, description,quantity);
                     ProductFacade pf = new ProductFacade();
                     pf.update(product);
                     response.sendRedirect(request.getContextPath() + "/admin/products.do");

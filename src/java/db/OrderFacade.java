@@ -45,10 +45,16 @@ public class OrderFacade {
             Collection<Item> items = cart.getItem();
             for (Item item : items) {
                 System.out.println(item.getProduct().getProductId());
-                PreparedStatement stm3 = con.prepareStatement("insert into OrderDetail values((SELECT TOP 1 orderHeaderId from OrderHeader order by orderHeaderId desc),?,?,?)");
-                stm3.setInt(1, item.getProduct().getProductId());
-                stm3.setInt(2, item.getQuantity());
-                stm3.setDouble(3, item.getCost());
+                PreparedStatement stm2 = con.prepareStatement("insert into OrderDetail values((SELECT TOP 1 orderHeaderId from OrderHeader order by orderHeaderId desc),?,?,?)");
+                stm2.setInt(1, item.getProduct().getProductId());
+                stm2.setInt(2, item.getQuantity());
+                stm2.setDouble(3, item.getCost());
+                stm2.executeUpdate();
+            }
+            PreparedStatement stm3 = con.prepareStatement("update product set quantity = quantity - ? where productId = ?");
+            for(Item item:items){
+                stm3.setInt(1,item.getQuantity());
+                stm3.setInt(2,item.getProduct().getProductId());
                 stm3.executeUpdate();
             }
             con.commit();
@@ -63,7 +69,7 @@ public class OrderFacade {
     public List<Order> readOrder(int employeeId) throws SQLException {
         Connection con = DBContext.getConnection();
         List<Order> list = null;
-        PreparedStatement stm = con.prepareStatement("SELECT OrderHeader.OrderHeaderId AS OrderId, date, status, Customer.fullname AS fullname, Product.productName AS product, quantity, OrderDetail.price AS cost FROM OrderDetail INNER JOIN Product ON Product.ProductId = OrderDetail.ProductId INNER JOIN OrderHeader ON OrderHeader.OrderHeaderId = OrderDetail.OrderHeaderId INNER JOIN Customer ON Customer.CustomerId = OrderHeader.CustomerId WHERE OrderHeader.EmployeeId = ?");
+        PreparedStatement stm = con.prepareStatement("SELECT OrderHeader.OrderHeaderId AS OrderId, date, status, Customer.fullname AS fullname, Product.productName AS product, OrderDetail.quantity as quantity, OrderDetail.price AS cost FROM OrderDetail INNER JOIN Product ON Product.ProductId = OrderDetail.ProductId INNER JOIN OrderHeader ON OrderHeader.OrderHeaderId = OrderDetail.OrderHeaderId INNER JOIN Customer ON Customer.CustomerId = OrderHeader.CustomerId WHERE OrderHeader.EmployeeId = ?");
         stm.setInt(1, employeeId);
         ResultSet rs = stm.executeQuery();
         list = new ArrayList<>();

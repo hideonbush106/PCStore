@@ -3,15 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/PCStore/web/WEB-INF/views/admin/customers.jsp</file>
+            <file>file:/E:/PCStore/web/WEB-INF/views/admin/createProduct.jsp</file>
             <file>file:/E:/PCStore/src/java/db/RevenueFacade.java</file>
             <file>file:/E:/PCStore/src/java/controllers/AdminController.java</file>
-            <file>file:/E:/PCStore/src/java/db/CustomerFacade.java</file>
+            <file>file:/E:/PCStore/web/WEB-INF/views/admin/products.jsp</file>
             <file>file:/E:/PCStore/web/WEB-INF/views/admin/index.jsp</file>
-            <file>file:/E:/PCStore/src/java/db/ProductFacade.java</file>
-            <file>file:/E:/PCStore/src/java/controllers/AccountController.java</file>
-            <file>file:/E:/PCStore/src/java/db/CategoryFacade.java</file>
-            <file>file:/E:/PCStore/web/WEB-INF/views/account/register.jsp</file>
+            <file>file:/E:/PCStore/src/java/db/OrderFacade.java</file>
             <file>file:/E:/PCStore/src/java/models/Revenue.java</file>
         </group>
     </open-files>

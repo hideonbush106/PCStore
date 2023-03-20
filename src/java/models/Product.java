@@ -20,11 +20,12 @@ public class Product {
     private int brandId;
     private String description;
     private String imgSrc;
+    private int quantity;
 
     public Product() {
     }
 
-    public Product(int productId, String productName, double price, int categoryId, int brandId, String description, String imgSrc) {
+    public Product(int productId, String productName, double price, int categoryId, int brandId, String description, String imgSrc,int quantity) {
         this.productId = productId;
         this.productName = productName;
         this.price = price;
@@ -32,31 +33,35 @@ public class Product {
         this.brandId = brandId;
         this.description = description;
         this.imgSrc=imgSrc;
+        this.quantity = quantity;
     }
 
-    public Product(String productName, double price, int categoryId, int brandId, String description, String imgSrc) {
+    public Product(String productName, double price, int categoryId, int brandId, String description, String imgSrc,int quantity) {
         this.productName = productName;
         this.price = price;
         this.categoryId = categoryId;
         this.brandId = brandId;
         this.description = description;
         this.imgSrc = imgSrc;
+        this.quantity = quantity;
     }
-     public Product(int productId,String productName, double price, int categoryId, int brandId, String description) {
+     public Product(int productId,String productName, double price, int categoryId, int brandId, String description,int quantity) {
          this.productId=productId;
         this.productName = productName;
         this.price = price;
         this.categoryId = categoryId;
         this.brandId = brandId;
         this.description = description;
+        this.quantity = quantity;
     }
-   public Product(String productName, double price, int categoryId, int brandId, String description) {
+   public Product(String productName, double price, int categoryId, int brandId, String description,int quantity) {
  
         this.productName = productName;
         this.price = price;
         this.categoryId = categoryId;
         this.brandId = brandId;
         this.description = description;
+        this.quantity = quantity;
     }
 
 
@@ -131,5 +136,14 @@ public class Product {
     public void setImgSrc(String imgSrc) {
         this.imgSrc = imgSrc;
     }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+    
 
 }
