@@ -466,6 +466,8 @@ public class AdminController extends HttpServlet {
         request.setAttribute("dateTo", request.getParameter("dateTo"));
         request.setAttribute("controller", "admin");
         request.setAttribute("action", "index");
+         ArrayList<Revenue> fivelist = rf.read5daysRevenue();
+            request.setAttribute("fivelist", fivelist);
         request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
     }
      protected void getChart(HttpServletRequest request, HttpServletResponse response)

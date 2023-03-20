@@ -12,35 +12,16 @@
     <div class="container">
 
         <!-- Product Details -->
-        <div class="row">
-            <div class="col-md-5 col-lg-6">
-                <div class="modal_tab">  
+ 
+            <div class="col-md-5 col-lg-12">
+                <div class="row">
+                <div class="modal_tab col-lg-6">  
                     <div class="tab-content product-details-large">
                         <div class="tab-pane fade show active" id="detailstab1" role="tabpanel" >
                             <div class="modal_tab_img">
                                 <a href="#"><img src="<c:url value="${product.imgSrc}"/>"alt="img"></a>    
                             </div>
-                          <%-- <div class="tab-pane fade" id="detailstab2" role="tabpanel">
-                                <div class="modal_tab_img">
-                                    <a href="#"><img src="<c:url value="${product.imgSrc}"/>"alt="img"></a>    
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="detailstab3" role="tabpanel">
-                                <div class="modal_tab_img">
-                                    <a href="#"><img src="assets/img/product/3.jpg" alt="img"></a>    
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="detailstab4" role="tabpanel">
-                                <div class="modal_tab_img">
-                                    <a href="#"><img src="assets/img/product/4.jpg" alt="img"></a>    
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="detailstab5" role="tabpanel">
-                                <div class="modal_tab_img">
-                                    <a href="#"><img src="assets/img/product/5.jpg" alt="img"></a>    
-                                </div>
-                            </div>
-                                --%>
+
                         </div> 
                     </div>
 				</div>
@@ -65,8 +46,13 @@
                                 <span class="quantity">
 				  					<input type="number" min="1" max="1000" step="1" value="1">
 								</span>
-                                <button><a href="<c:url value="/cart?op=add&productId=${product.productId}"/>">add to cart</a></button>
-                            </form>
+                                <c:if test="${sessionScope.account.role == 'ROLE_CUSTOMER'}">
+                               <button class="btn-primary btn"><a href="<c:url value="/cart?op=add&productId=${product.productId}"/>" style="color:white">Add To cart</a></button>
+                                </c:if>
+                               <c:if test="${sessionScope.account.role != 'ROLE_CUSTOMER'}">
+                               <button class="btn-primary btn"> <a href="<c:url value="/account/login.do" />" style="color:white">Login To Buy</a></button>
+                                </c:if>
+                                </form>
                         </div>
                         <h3>Share This Product</h3>
                         <ul class="share-product">
@@ -78,6 +64,7 @@
                         </ul>
 					</div>
 				</div>
+                            </div>
 			</div>
 			<div class="row mt-50 section-bg">
 				<div class="shop-details-full-content">
@@ -160,7 +147,7 @@
                         </ul>
                     </div>    
                 </div>
-            </div>
+  
             <div class="col-md-7 col-lg-6">
                 <div class="product-details-img-full">
                     <h2>${product.productName} </h2>
