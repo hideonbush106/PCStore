@@ -4,7 +4,7 @@
     <jsp:forward page="/home/index.do"/>
 </c:if>
 <c:if test="${sessionScope.account.role == 'ROLE_ADMIN'}">
-        <form action="<c:url value="/admin/edit_handlerProduct.do"/>">
+        <form action="<c:url value="/admin/edit_handlerEmployee.do"/>">
    <div class="container-fluid">
         <div class="container">
         <!-- Title -->

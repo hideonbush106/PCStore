@@ -14,7 +14,7 @@
     <form action="<c:url value="/admin/delete_handlerProduct.do" />">
         <input type="hidden" name="id" value="${id}" />
         Are you sure to delete the product with id = ${id}?<br/>
-        <button type="subtmit" name="op" value="yes"> Yes</button>
-        <button type="subtmit" name="op" value="no"> No</button>
+        <button type="subtmit" name="op" value="yes" class="btn-light"> Yes</button>
+        <button type="subtmit" name="op" value="no" class="btn-danger"> No</button>
     </form>
 </c:if>
