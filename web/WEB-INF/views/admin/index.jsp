@@ -23,16 +23,16 @@
                             </div>
                             <div class="stats-data">
                                 <c:forEach var="revenue" items="${list}" varStatus="loop">
-                                    <form action="<c:url value="/admin/viewRevenue.do"/>">
+                                    <form action="<c:url value="/admin/index.do"/>">
                                         <c:set var="totalcost" value="${totalcost + revenue.cost}" />
                                         <c:set var="totalquantity" value="${totalquantity + revenue.quantity}" />
                                     </form>
                                 </c:forEach>
                                 <div class="stats-number">$${totalcost}</div>
-                                <div class="stats-change">
+                                <%--<div class="stats-change">
                                     <span class="stats-percentage">+17.5%</span>
                                     <span class="stats-timeframe">from last month</span>
-                                </div>
+                                </div>--%>
                             </div>
                         </div>
                     </div>

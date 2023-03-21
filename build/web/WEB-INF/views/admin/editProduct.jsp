@@ -68,7 +68,7 @@
                                     <label class="form-label"
                                         >Product Quantity</label
                                     >
-                                    <textarea  type="text" name="quantity" class="form-control">${product.quantity}</textarea>
+                                    <input value="${product.quantity}" type="number" step="1" name="quantity" min="0" class="form-control"/>
                                 </div>
                             </div>
 
