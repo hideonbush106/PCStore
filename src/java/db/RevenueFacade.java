@@ -71,7 +71,7 @@ public class RevenueFacade {
 
     Connection con = DBContext.getConnection();
     ArrayList<Revenue> list = new ArrayList<>();
-    PreparedStatement stm = con.prepareStatement("SELECT CONVERT(VARCHAR(10), CAST(OrderHeader.date AS DATE), 120) AS date, SUM(OrderDetail.price * OrderDetail.quantity) AS total_revenue FROM OrderHeader INNER JOIN OrderDetail ON OrderHeader.orderHeaderId = OrderDetail.orderHeaderId WHERE OrderHeader.date >= ? GROUP BY CAST(OrderHeader.date AS DATE) ORDER BY CAST(OrderHeader.date AS DATE) DESC;");
+    PreparedStatement stm = con.prepareStatement("SELECT CONVERT(VARCHAR(10), CAST(OrderHeader.date AS DATE), 120) AS date, SUM(OrderDetail.price) AS total_revenue FROM OrderHeader INNER JOIN OrderDetail ON OrderHeader.orderHeaderId = OrderDetail.orderHeaderId WHERE OrderHeader.date >= ? GROUP BY CAST(OrderHeader.date AS DATE) ORDER BY CAST(OrderHeader.date AS DATE) DESC;");
     stm.setDate(1, new java.sql.Date(fiveDaysAgo.getTime()));
     ResultSet rs = stm.executeQuery();
     while (rs.next()) {
