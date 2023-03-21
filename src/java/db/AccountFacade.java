@@ -70,6 +70,8 @@ public class AccountFacade {
             account.setPassword(rs.getString("password"));
             account.setFullName(rs.getString("fullName"));
             account.setRole(rs.getString("role"));
+            account.setAddress(rs.getString("address"));
+            account.setPhoneNo(rs.getString("phoneNo"));
         }
         con.close();
         return account;
