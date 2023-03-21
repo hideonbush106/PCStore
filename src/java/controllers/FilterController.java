@@ -9,7 +9,6 @@ import db.BrandFacade;
 import db.CategoryFacade;
 import db.ProductFacade;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -51,18 +50,8 @@ public class FilterController extends HttpServlet {
                 String searchName = (String) request.getParameter("searchName");
                 //TODO: write search (contains name and brand)
                 session.setAttribute("searchName", searchName);
-                int currentPage = 1;
-                int recordsPerPage = 10;
-                if (request.getParameter("currentPage") != null) {
-                    currentPage = Integer.parseInt(request.getParameter("currentPage"));
-                }
                 ProductFacade pf = new ProductFacade();
-                List<Product> list = pf.search(searchName, currentPage, recordsPerPage); //change to sort, search, filter...
-                int numOfRecords = pf.search(searchName).size();
-                int numOfPages = (int) Math.ceil(numOfRecords * 1.0 / recordsPerPage);
-                request.setAttribute("numOfPages", numOfPages);
-                request.setAttribute("currentPage", currentPage);
-
+                List<Product> list = pf.search(searchName); //change to sort, search, filter...
                 BrandFacade bf = new BrandFacade();
                 CategoryFacade cf = new CategoryFacade();
                 List<Brand> blist = bf.select();
@@ -80,17 +69,8 @@ public class FilterController extends HttpServlet {
                 //TODO: wrtie sort bt name, product or price, asc or desc
                 String sortDirection = (String) request.getParameter("sortDirection");
                 String sortBy = (String) request.getParameter("sortBy");
-                int currentPage = 1;
-                int recordsPerPage = 10;
-                if (request.getParameter("currentPage") != null) {
-                    currentPage = Integer.parseInt(request.getParameter("currentPage"));
-                }
                 ProductFacade pf = new ProductFacade();
-                List<Product> list = pf.sort(sortBy, sortDirection, currentPage, recordsPerPage); //change to sort, search, filter...
-                int numOfRecords = pf.sort(sortBy, sortDirection).size();
-                int numOfPages = (int) Math.ceil(numOfRecords * 1.0 / recordsPerPage);
-                request.setAttribute("numOfPages", numOfPages);
-                request.setAttribute("currentPage", currentPage);
+                List<Product> list = pf.sort(sortBy, sortDirection); //change to sort, search, filter...
                 BrandFacade bf = new BrandFacade();
                 CategoryFacade cf = new CategoryFacade();
                 List<Brand> blist = bf.select();
