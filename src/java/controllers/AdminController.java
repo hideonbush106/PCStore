@@ -40,6 +40,7 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import static java.lang.System.out;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import javax.servlet.annotation.MultipartConfig;
 
 /**
@@ -68,6 +69,7 @@ public class AdminController extends HttpServlet {
         String action = (String) request.getAttribute("action");
         switch (action) {
             case "index":
+                getChart(request,response);
                 request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
                 break;
             case "products": //Processing code here
@@ -112,11 +114,28 @@ public class AdminController extends HttpServlet {
             case "viewRevenue":
                 viewRevenue(request, response);
                 break;
+              case "upload_img":
+                uploadImg(request,response);
+                break;    
             default:
                 default_handler(request, response);
         }
     }
-
+    private void index(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        try {
+            RevenueFacade rf = new RevenueFacade();
+            List<Revenue> list = rf.readOrder();
+            request.setAttribute("list", list);
+            //Forward request & response to the main layout
+            request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+        } catch (SQLException ex) {
+            //Show the error page
+            request.setAttribute("message", ex.getMessage());
+            request.setAttribute("controller", "error");
+            request.setAttribute("action", "error");
+            request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+        }
+    }
     protected void products(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
@@ -304,6 +323,7 @@ public class AdminController extends HttpServlet {
             //lay list brand
             request.setAttribute("product", product);
             request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+            request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
         } catch (SQLException ex) {
             //Show the error page
             request.setAttribute("message", ex.getMessage());
@@ -462,7 +482,25 @@ public class AdminController extends HttpServlet {
         request.setAttribute("dateTo", request.getParameter("dateTo"));
         request.setAttribute("controller", "admin");
         request.setAttribute("action", "index");
+         ArrayList<Revenue> fivelist = rf.read5daysRevenue();
+            request.setAttribute("fivelist", fivelist);
         request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+    }
+     protected void getChart(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+              RevenueFacade rf = new RevenueFacade();
+            ArrayList<Revenue> fivelist = rf.read5daysRevenue();
+            request.setAttribute("fivelist", fivelist);
+            //Forward request & response to the main layout
+            request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+        } catch (SQLException ex) {
+            //Show the error page
+            request.setAttribute("message", ex.getMessage());
+            request.setAttribute("controller", "error");
+            request.setAttribute("action", "error");
+            request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

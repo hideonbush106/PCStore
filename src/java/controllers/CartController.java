@@ -48,7 +48,7 @@ public class CartController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, NoSuchAlgorithmException {
-       
+
         //String url = response.encodeURL("index.jsp");
         //response.sendRedirect(url);
         //or
@@ -72,34 +72,41 @@ public class CartController extends HttpServlet {
                 checkout(request, response);
                 break;
         }
-        
+
     }
-    
+
     protected void add(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         int productId = Integer.parseInt(request.getParameter("productId"));
         ProductFacade pf = new ProductFacade();
         Product product = pf.readForCart(productId);
-        Item item = new Item(product, 1);
-        //Lay cart tu session
-        HttpSession session = request.getSession();
-        Cart cart = (Cart) session.getAttribute("cart");
- 
-        if (cart == null) {
-            //neu session chua co cart thi tao moi 
-            cart = new Cart();
-            session.setAttribute("cart", cart);
+        if (product.getQuantity() == 0) {
+            request.setAttribute("message", "This product is out of stock !");
+            request.setAttribute("controller", "home");
+            request.setAttribute("action", "product");
+            request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+        } else {
+            Item item = new Item(product, 1);
+            //Lay cart tu session
+            HttpSession session = request.getSession();
+            Cart cart = (Cart) session.getAttribute("cart");
+
+            if (cart == null) {
+                //neu session chua co cart thi tao moi 
+                cart = new Cart();
+                session.setAttribute("cart", cart);
+            }
+            //them item vao cart
+            cart.add(item);
+            //quay ve trang index.jsp
+            request.setAttribute("controller", "home");
+            request.setAttribute("action", "product");
+            List<Product> list = pf.select();
+            request.setAttribute("list", list);
+            request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
         }
-        //them item vao cart
-        cart.add(item);
-        //quay ve trang index.jsp
-        request.setAttribute("controller", "home");
-        request.setAttribute("action", "product");
-        List<Product> list = pf.select();
-        request.setAttribute("list", list);
-        request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
     }
-    
+
     protected void delete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("productId"));
@@ -113,7 +120,7 @@ public class CartController extends HttpServlet {
         request.setAttribute("action", "cart");
         request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
     }
-    
+
     protected void empty(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -126,7 +133,7 @@ public class CartController extends HttpServlet {
         }
         request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
     }
-    
+
     protected void update(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("productId"));
@@ -138,28 +145,29 @@ public class CartController extends HttpServlet {
         request.setAttribute("action", "cart");
         request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
     }
-    
+
     protected void checkout(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, NoSuchAlgorithmException {
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("account");
         Cart cart = (Cart) session.getAttribute("cart");
         OrderFacade of = new OrderFacade();
-        
+
         CustomerFacade cf = new CustomerFacade();
         Customer customer = cf.read(account.getAccountId());
         //dang gan mac dinh status don hang la true
         OrderHeader orderHeader = new OrderHeader(true);
         //dang gan mac dinh employee 2
         Employee employee = new Employee(3);
-        
+
         if (account == null) {
             request.setAttribute("action", "login");
             request.getRequestDispatcher(Config.LOGIN).forward(request, response);
         }
         of.addOrder(customer, cart, orderHeader, employee);
         cart.empty();
-        empty(request, response);
+        request.setAttribute("controller", "home");
+        request.setAttribute("action", "product");
         request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
     }
 
@@ -177,11 +185,11 @@ public class CartController extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(CartController.class
                     .getName()).log(Level.SEVERE, null, ex);
-            
+
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(CartController.class
                     .getName()).log(Level.SEVERE, null, ex);
@@ -201,11 +209,11 @@ public class CartController extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(CartController.class
                     .getName()).log(Level.SEVERE, null, ex);
-            
+
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(CartController.class
                     .getName()).log(Level.SEVERE, null, ex);

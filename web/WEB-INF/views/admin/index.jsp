@@ -23,16 +23,16 @@
                             </div>
                             <div class="stats-data">
                                 <c:forEach var="revenue" items="${list}" varStatus="loop">
-                                    <form action="<c:url value="/admin/viewRevenue.do"/>">
+                                    <form action="<c:url value="/admin/index.do"/>">
                                         <c:set var="totalcost" value="${totalcost + revenue.cost}" />
                                         <c:set var="totalquantity" value="${totalquantity + revenue.quantity}" />
                                     </form>
                                 </c:forEach>
                                 <div class="stats-number">$${totalcost}</div>
-                                <div class="stats-change">
+                                <%--<div class="stats-change">
                                     <span class="stats-percentage">+17.5%</span>
                                     <span class="stats-timeframe">from last month</span>
-                                </div>
+                                </div>--%>
                             </div>
                         </div>
                     </div>
@@ -74,52 +74,62 @@
                         <div class="card-body spur-card-body-chart">
                             <canvas id="spurChartjsBar"></canvas>
                             <script>
-                                var ctx = document.getElementById("spurChartjsBar").getContext('2d');
-                                var myChart = new Chart(ctx, {
-                                    type: 'bar',
-                                    data: {
-                                        labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-                                        datasets: [{
-                                                label: 'Blue',
-                                                data: [12, 19, 3, 5, 2],
-                                                backgroundColor: window.chartColors.primary,
-                                                borderColor: 'transparent'
-                                            }]
-                                    },
-                                    options: {
-                                        legend: {
-                                            display: false
-                                        },
-                                        scales: {
-                                            yAxes: [{
-                                                    ticks: {
-                                                        beginAtZero: true
-                                                    }
+                                var fivelist  = [];
+                                <c:forEach var="item" items="${fivelist}">
+                                  fivelist.push(${item.cost});
+                                </c:forEach>
+                                     var fivelistday  = [];
+                               
+                                        var ctx = document.getElementById("spurChartjsBar").getContext('2d');
+                                        var myChart = new Chart(ctx, {
+                                            type: 'bar',
+                                            data: {
+                                                labels: ["Thursday", "Friday", "Saturday", "Sunday", "Monday"],
+                                                datasets: [{
+                                                    label: 'Blue',
+                                                    data: [fivelist[4], fivelist[3], fivelist[2],  fivelist[1],  fivelist[0]],
+                                                    backgroundColor: window.chartColors.primary,
+                                                    borderColor: 'transparent'
                                                 }]
-                                        }
-                                    }
-                                });
-                            </script>
+                                            },
+                                            options: {
+                                                legend: {
+                                                    display: false
+                                                },
+                                                scales: {
+                                                    yAxes: [{
+                                                        ticks: {
+                                                            beginAtZero: true
+                                                        }
+                                                    }]
+                                                }
+                                            }
+                                        });
+                                    </script>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-6">
                     <div class="card spur-card">
                         <div class="card-header">
-                            <form action="<c:url value="/admin/viewRevenue.do"/>" class="row">
+                            <form action="<c:url value="/admin/viewRevenue.do"/>" >
+                                <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group">
+                                    <div class="form-group d-flex ">
                                         <label for="input_from">From</label>
-                                        <input type="date" name="dateFrom" value="${dateFrom}"/>
+                                        <input type="date" name="dateFrom" value="${dateFrom}" class="form-control"/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group">
+                                    <div class="form-group d-flex">
                                         <label for="input_from">To</label>
-                                        <input type="date" name="dateTo" value="${dateTo}"/>
+                                        <input type="date" name="dateTo" value="${dateTo}" class="form-control"/>
+
                                     </div>
-                                    <button type="submit" name="op" value="view">Submit</button>
+                                   
                                 </div>
+                                </div>
+                                        <button type="submit" name="op" value="view" class="btn btn-primary">Submit</button>
                             </form>
                         </div>
                         <table class="table table-striped table-hover">

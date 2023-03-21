@@ -210,7 +210,7 @@
                                     <!-- Search Bar -->
                                     <div class="col-lg-8">
                                         <div class="header-search-form">
-                                            <form action="#">
+                                            <form action="">
                                                 <input type="search" name="search" placeholder="Search keyword here...">
                                                 <button type="submit"><i class="fas fa-search"></i></button>
                                             </form>
@@ -373,7 +373,7 @@
                                                         <h2 class="subtotal">Subtota1 : <span>$${sessionScope.cart.total}</span></h2>
                                                         <div class="minicart-btn">
                                                             <a class="button-1" href="<c:url value="/home/cart.do"/>">View Cart</a>
-                                                            <a class="button-2" href="#">Checkout</a>
+                                                            <a class="button-2" href="<c:url value="/home/checkout.do"/>">Checkout</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -519,14 +519,7 @@
                                         </div>
                                     </div>
                                     <!-- Search Bar -->
-                                    <div class="col-lg-8">
-                                        <div class="header-search-form">
-                                            <form action="#">
-                                                <input type="search" name="search" placeholder="Search keyword here...">
-                                                <button type="submit"><i class="fas fa-search"></i></button>
-                                            </form>
-                                        </div>	
-                                    </div>
+                                    
                                     <!-- MiniCart -->
                                    
                                 </div>

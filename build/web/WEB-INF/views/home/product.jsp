@@ -17,7 +17,7 @@
 </form>--%>
 
 <form action="<c:url value="/filter"/>">
-    <select name="sortDirection">
+    <select name="sortDirection" >
         <option value="asc" ${sortDirection == "asc" ? "selected" : ""}>A - Z</option>
         <option value="desc" ${sortDirection == "desc" ? "selected" : ""}>Z - A</option>
     </select>
@@ -48,9 +48,8 @@
     <input type="text" name="searchName" value="${sessionScope.searchName}"/>
     <button type="submit" name="op" value="search">Search</button>
 </form>
-
+<div style="display: flex; flex-wrap: wrap; align-content: center; justify-content: space-around"><i style="color: red; font-weight: bold; font-size: larger ">${message}</i></div>
 <div style="display: flex; flex-wrap: wrap; align-content: center; justify-content: space-around">
-
     <c:forEach items="${sessionScope.list}" var="product" varStatus="loop" >
         <!-- Single -->
         <div class="product-single product-page">
@@ -102,9 +101,7 @@
                     >
                 </h4>
                 <div class="pricing">
-                    <span
-                        >$ ${product.price} <del>${product.price+Utils.getRandomNumber()}</del></span
-                    >
+                    <span>$ ${product.price} <del>${product.price+Utils.getRandomNumber()}</del></span>
                 </div>
             </div>
         </div>

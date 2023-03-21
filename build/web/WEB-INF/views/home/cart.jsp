@@ -45,7 +45,7 @@
                             <td>${item.product.price}</td>
                             <td class="pro-quantity">
                                 <span class="quantity">
-				<input type="number" min="1" max="1000" step="1" value="${item.quantity}" name="quantity">
+				<input type="number" min="1" max="${item.product.quantity}" step="1" value="${item.quantity}" name="quantity">
 				</span>
                                     </td>
                             <td>${item.cost}</td>
