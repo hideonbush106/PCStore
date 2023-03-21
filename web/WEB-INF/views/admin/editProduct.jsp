@@ -63,6 +63,14 @@
                                     <textarea  type="text" name="description" class="form-control">${product.description}</textarea>
                                 </div>
                             </div>
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label class="form-label"
+                                        >Product Quantity</label
+                                    >
+                                    <input value="${product.quantity}" type="number" step="1" name="quantity" min="0" class="form-control"/>
+                                </div>
+                            </div>
 
                     </div>
                 </div>

@@ -38,7 +38,9 @@
                                                                 <th>Category</th>
                                                                 <th>Brand</th>
                                                                 <th>Description</th>
+                                                                <th>Quantity</th>
                                                                 <th>Operations</th>
+                                                                
 								</tr>
 							</thead>
 							
@@ -52,6 +54,7 @@
                                                                     <td>${product.categoryName}</td>
                                                                     <td>${product.brandName}</td>
                                                                     <td>${product.description}</td>
+                                                                    <td>${product.quantity}</td>
                                                                     <td><div class="operations">
                                                                             <a href="<c:url value="/admin/editProduct.do?id=${product.productId}"/>"><i class="fa-sharp fa-solid fa-pen text-warning"></i></a>
                                                                         <a href="<c:url value="/admin/upload_img.do?id=${product.productId}"/>"><i class="fa-sharp fa-solid fa-image"></i></a>

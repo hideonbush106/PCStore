@@ -26,7 +26,7 @@ public class RevenueFacade {
     public List<Revenue> readOrder() throws SQLException {
         Connection con = DBContext.getConnection();
         List<Revenue> list = new ArrayList<>();
-        PreparedStatement stm = con.prepareStatement("SELECT OrderDetailId, date, OrderDetail.ProductId as productId, productName, quantity, OrderDetail.price as cost from OrderHeader inner join OrderDetail on OrderHeader.OrderHeaderId = OrderDetail.OrderHeaderId inner join Product on OrderDetail.productId = Product.productid");
+        PreparedStatement stm = con.prepareStatement("SELECT OrderDetailId, date, OrderDetail.ProductId as productId, productName, OrderDetail.quantity as quantity, OrderDetail.price as cost from OrderHeader inner join OrderDetail on OrderHeader.OrderHeaderId = OrderDetail.OrderHeaderId inner join Product on OrderDetail.productId = Product.productid");
         ResultSet rs = stm.executeQuery();
         while (rs.next()) {
             Revenue revenue = new Revenue();
@@ -42,20 +42,10 @@ public class RevenueFacade {
         return list;
     }
 
-//    public double getTotalCost(Date date) throws SQLException {
-//        double totalCost = 0;
-//        Connection con = DBContext.getConnection();
-//        PreparedStatement stm = con.prepareStatement("select sum(OrderDetail.price) as totalcost from OrderHeader inner join OrderDetail on OrderHeader.OrderHeaderId = OrderDetail.OrderHeaderId inner join Product on OrderDetail.productId = Product.productid where date = ? ");
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//        stm.setString(1, sdf.format(date));
-//        ResultSet rs = stm.executeQuery();
-//        totalCost = rs.getDouble("sum");
-//        return totalCost;
-//    }
     public List<Revenue> readBetweenDate(Date dateFrom, Date dateTo) throws SQLException {
         Connection con = DBContext.getConnection();
         List<Revenue> list = new ArrayList<>();
-        PreparedStatement stm = con.prepareStatement("SELECT OrderDetailId, date, OrderDetail.ProductId as productId, productName, quantity, OrderDetail.price as cost from OrderHeader inner join OrderDetail on OrderHeader.OrderHeaderId = OrderDetail.OrderHeaderId inner join Product on OrderDetail.productId = Product.productid WHERE date BETWEEN ? AND ?");
+        PreparedStatement stm = con.prepareStatement("SELECT OrderDetailId, date, OrderDetail.ProductId as productId, productName, OrderDetail.quantity as quantity, OrderDetail.price as cost from OrderHeader inner join OrderDetail on OrderHeader.OrderHeaderId = OrderDetail.OrderHeaderId inner join Product on OrderDetail.productId = Product.productid WHERE date BETWEEN ? AND ?");
         stm.setDate(1, new java.sql.Date(dateFrom.getTime()));
         stm.setDate(2, new java.sql.Date(dateTo.getTime()));
         ResultSet rs = stm.executeQuery();
