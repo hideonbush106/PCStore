@@ -152,7 +152,6 @@ public class CartController extends HttpServlet {
         Account account = (Account) session.getAttribute("account");
         Cart cart = (Cart) session.getAttribute("cart");
         OrderFacade of = new OrderFacade();
-
         CustomerFacade cf = new CustomerFacade();
         Customer customer = cf.read(account.getAccountId());
         //dang gan mac dinh status don hang la true
