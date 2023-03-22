@@ -53,7 +53,7 @@
                                                                     <td>${product.price}</td>
                                                                     <td>${product.categoryName}</td>
                                                                     <td>${product.brandName}</td>
-                                                                    <td>${product.description}</td>
+                                                                    <td class="category">${product.description}</td>
                                                                     <td>${product.quantity}</td>
                                                                     <td><div class="operations">
                                                                             <a href="<c:url value="/admin/editProduct.do?id=${product.productId}"/>"><i class="fa-sharp fa-solid fa-pen text-warning"></i></a>
