@@ -17,7 +17,7 @@
 </form>--%>
 
 <form action="<c:url value="/filter"/>">
-    <select name="sortDirection" >
+    <select name="sortDirection">
         <option value="asc" ${sortDirection == "asc" ? "selected" : ""}>A - Z</option>
         <option value="desc" ${sortDirection == "desc" ? "selected" : ""}>Z - A</option>
     </select>
