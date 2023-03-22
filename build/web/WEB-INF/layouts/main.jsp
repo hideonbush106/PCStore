@@ -421,7 +421,7 @@
                                                     <li>  <a href="<c:url value="/" />">Home</a></li>
                                                     <li><a href="<c:url value="/home/aboutus.do" />">About Us</a></li>
                                                     <li><a href="<c:url value="/home/product.do" />">Product</a></li>
-                                                    <li><a href="<c:url value="/home/orderHistory.do" />">Product</a></li>
+                                                    <li><a href="<c:url value="/home/orderHistory.do" />">Order History</a></li>
                                                     <li><a href="contact.html">Contact</a></li>
                                                 </ul>
                                             </nav>
