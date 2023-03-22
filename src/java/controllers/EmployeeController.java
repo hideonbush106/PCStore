@@ -5,10 +5,12 @@
  */
 package controllers;
 
+import db.CustomerFacade;
 import db.OrderFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import models.Account;
+import models.Customer;
 import models.Order;
 import models.OrderHeader;
 import utils.Config;
@@ -51,14 +54,10 @@ public class EmployeeController extends HttpServlet {
                 break;
             case "orderList":
                 //Processing code here
-                HttpSession session = request.getSession();
-                Account account = (Account) session.getAttribute("account");
-                OrderFacade of = new OrderFacade();
-                List<Order> orderList = of.readOrder(account.getAccountId());
-                request.setAttribute("list", orderList);
-
-                //Forward request & response to the main layout
-                request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+                orderList(request, response);
+                break;
+            case "invoice":
+                invoice(request, response);
                 break;
         }
     }
@@ -109,5 +108,70 @@ public class EmployeeController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void orderList(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        HttpSession session = request.getSession();
+        Account account = (Account) session.getAttribute("account");
+        OrderFacade of = new OrderFacade();
+        CustomerFacade cf = new CustomerFacade();
+        List<Order> orderList = of.readOrderForEmployee(account.getAccountId());
+        request.setAttribute("orderList", orderList);
+        List<Customer> customerList = cf.select();
+        request.setAttribute("customerList", customerList);
+        //Forward request & response to the main layout
+        request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+    }
+
+    private void invoice(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        String op = request.getParameter("op");
+        switch (op) {
+            case "invoice": {
+                int customerId = Integer.parseInt(request.getParameter("customerId"));
+                OrderFacade of = new OrderFacade();
+                List<Order> orderDate = of.readOrderForCustomer(customerId);
+                CustomerFacade cf = new CustomerFacade();
+                Customer customer = cf.read(customerId);
+                request.setAttribute("customer", customer);
+                request.setAttribute("orderDate", orderDate);
+                request.setAttribute("customerId", customerId);
+                break;
+            }
+            case "export": {
+                int customerId = Integer.parseInt(request.getParameter("customerId"));
+                int orderHeaderId = Integer.parseInt(request.getParameter("orderHeaderId"));
+
+                if (orderHeaderId == -1) {
+                    request.setAttribute("controller", "employees");
+                    request.setAttribute("action", "index");
+                    request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+                }
+
+                OrderFacade of = new OrderFacade();
+                List<Order> orderDate = of.readOrderForCustomer(customerId);
+                List<Order> orderList = of.exportInvoice(orderHeaderId);
+                CustomerFacade cf = new CustomerFacade();
+                Customer customer = cf.read(customerId);
+
+                Date date = of.getDate(orderHeaderId);
+                request.setAttribute("date", date);
+                request.setAttribute("orderDate", orderDate);
+                request.setAttribute("orderList", orderList);
+                request.setAttribute("customer", customer);
+                request.setAttribute("customerId", customerId);
+                request.setAttribute("orderHeaderId", orderHeaderId);
+                break;
+            }
+            case "print": {
+//                int orderHeaderId = Integer.parseInt(request.getParameter("orderHeaderId"));
+                OrderFacade of = new OrderFacade();
+                int orderHeaderId = Integer.parseInt(request.getParameter("orderHeaderId"));
+                of.setStatus(orderHeaderId);
+                request.setAttribute("controller", "employees");
+                request.setAttribute("action", "index");
+                break;
+            }
+        }
+        request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+    }
 
 }

@@ -42,7 +42,7 @@ public class HomeController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+
         String controller = (String) request.getAttribute("controller");
         String action = (String) request.getAttribute("action");
         switch (action) {
@@ -69,12 +69,17 @@ public class HomeController extends HttpServlet {
                 //Forward request & response to the main layout
                 request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
                 break;
-                case "checkout":
-                    //Processing code here
-               // products(request,response);
+            case "checkout":
+                //Processing code here
+                // products(request,response);
                 //Forward request & response to the main layout
                 request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
                 break;
+            case "orderHistory":
+                request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+                break;
+              case "finish":
+                break;      
             default:
             //Show error page
         }
@@ -101,7 +106,6 @@ public class HomeController extends HttpServlet {
     protected void products(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            HttpSession session = request.getSession();
             ProductFacade pf = new ProductFacade();
             BrandFacade bf = new BrandFacade();
             CategoryFacade cf = new CategoryFacade();
@@ -110,9 +114,9 @@ public class HomeController extends HttpServlet {
             if (request.getParameter("currentPage") != null) {
                 currentPage = Integer.parseInt(request.getParameter("currentPage"));
             }
-            if (session.getAttribute("list") == null) {
+            if (request.getAttribute("list") == null) {
                 List<Product> list = pf.selectForEachPage(currentPage, recordsPerPage);
-                session.setAttribute("list", list);
+                request.setAttribute("list", list);
             }
             List<Brand> blist = bf.select();
             List<Category> clist = cf.select();

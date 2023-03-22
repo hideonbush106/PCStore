@@ -5,7 +5,6 @@
  */
 package controllers;
 
-import db.AccountFacade;
 import db.CustomerFacade;
 import db.OrderFacade;
 import java.io.IOException;
@@ -166,7 +165,7 @@ public class CartController extends HttpServlet {
         of.addOrder(customer, cart, orderHeader, employee);
         cart.empty();
         request.setAttribute("controller", "home");
-        request.setAttribute("action", "product");
+        request.setAttribute("action", "finish");
         request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
     }
 
