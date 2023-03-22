@@ -93,6 +93,32 @@ public class OrderFacade {
         return list;
     }
 
+    public List<Order> readOrderHistory(int customerId) throws SQLException {
+        Connection con = DBContext.getConnection();
+        List<Order> list = null;
+        PreparedStatement stm = con.prepareStatement("SELECT OrderHeader.OrderHeaderId AS OrderId, date, status, Customer.fullname AS fullname, Product.productName AS product, OrderDetail.quantity as quantity, OrderDetail.price AS cost "
+                + "FROM OrderDetail "
+                + "INNER JOIN Product ON Product.ProductId = OrderDetail.ProductId "
+                + "INNER JOIN OrderHeader ON OrderHeader.OrderHeaderId = OrderDetail.OrderHeaderId "
+                + "INNER JOIN Customer ON Customer.CustomerId = OrderHeader.CustomerId WHERE OrderHeader.CustomerId = ?");
+        stm.setInt(1, customerId);
+        ResultSet rs = stm.executeQuery();
+        list = new ArrayList<>();
+        while (rs.next()) {
+            Order order = new Order();
+            order.setOrderHeaderId(rs.getInt("OrderId"));
+            order.setDate(rs.getDate("date"));
+            order.setStatus(rs.getBoolean("status"));
+            order.setFullname(rs.getString("fullname"));
+            order.setProductName(rs.getString("product"));
+            order.setQuantity(rs.getInt("quantity"));
+            order.setPrice(rs.getDouble("cost"));
+            list.add(order);
+        }
+        con.close();
+        return list;
+    }
+
     public List<Order> readOrderForCustomer(int customerId) throws SQLException {
         Connection con = DBContext.getConnection();
         List<Order> list = null;
