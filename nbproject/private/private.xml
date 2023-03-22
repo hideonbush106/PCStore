@@ -6,53 +6,43 @@
             <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/views/admin/index.jsp</file>
             <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/views/home/cart.jsp</file>
             <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/views/home/setting.jsp</file>
+            <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/views/account/login.jsp</file>
             <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/views/home/index.jsp</file>
+            <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/views/admin/createEmployee.jsp</file>
             <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/views/admin/deleteEmployee.jsp</file>
             <file>file:/C:/Users/USER/Desktop/PCStore/web/assets/css/responsive.css</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/src/java/models/Revenue.java</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/web/assets/css/spur.css</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/src/java/controllers/servletContext.java</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/views/home/checkout.jsp</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/src/java/models/Product.java</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/layouts/main.jsp</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/views/admin/createProduct.jsp</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/views/product/feature.jsp</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/views/admin/products.jsp</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/src/java/controllers/AdminController.java</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/src/java/db/RevenueFacade.java</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/views/admin/editProduct.jsp</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/src/java/controllers/CartController.java</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/views/admin/customers.jsp</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/views/account/register.jsp</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/src/java/controllers/AccountController.java</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/src/java/controllers/UploadFileController.java</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/web/assets/css/style.css</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/src/java/db/AccountFacade.java</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/src/java/controllers/FilterController.java</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/views/admin/employees.jsp</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/src/java/controllers/EmployeeController.java</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/src/java/db/CustomerFacade.java</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/views/account/login.jsp</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/views/admin/createEmployee.jsp</file>
             <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/views/home/product.jsp</file>
             <file>file:/C:/Users/USER/Desktop/PCStore/src/java/models/Brand.java</file>
             <file>file:/C:/Users/USER/Desktop/PCStore/web/assets/css/scss/style.scss</file>
             <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/views/product/filter.jsp</file>
             <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/views/admin/editEmployee.jsp</file>
+            <file>file:/C:/Users/USER/Desktop/PCStore/src/java/models/Product.java</file>
+            <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/views/admin/createProduct.jsp</file>
+            <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/layouts/main.jsp</file>
+            <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/views/product/feature.jsp</file>
             <file>file:/C:/Users/USER/Desktop/PCStore/src/java/models/Item.java</file>
+            <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/views/admin/products.jsp</file>
+            <file>file:/C:/Users/USER/Desktop/PCStore/src/java/controllers/AdminController.java</file>
+            <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/views/admin/editProduct.jsp</file>
+            <file>file:/C:/Users/USER/Desktop/PCStore/src/java/controllers/CartController.java</file>
             <file>file:/C:/Users/USER/Desktop/PCStore/src/java/models/Cart.java</file>
+            <file>file:/C:/Users/USER/Desktop/PCStore/src/java/models/Customer.java</file>
             <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/views/admin/deleteProduct.jsp</file>
             <file>file:/C:/Users/USER/Desktop/PCStore/web/index.jsp</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/src/java/models/Customer.java</file>
+            <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/views/admin/customers.jsp</file>
             <file>file:/C:/Users/USER/Desktop/PCStore/src/java/controllers/FrontController.java</file>
+            <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/views/account/register.jsp</file>
+            <file>file:/C:/Users/USER/Desktop/PCStore/src/java/controllers/AccountController.java</file>
+            <file>file:/C:/Users/USER/Desktop/PCStore/web/assets/css/style.css</file>
             <file>file:/C:/Users/USER/Desktop/PCStore/src/java/db/BrandFacade.java</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/web/assets/css/rome.css</file>
+            <file>file:/C:/Users/USER/Desktop/PCStore/src/java/db/AccountFacade.java</file>
             <file>file:/C:/Users/USER/Desktop/PCStore/src/java/controllers/HomeController.java</file>
             <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/views/product/index.jsp</file>
+            <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/views/admin/employees.jsp</file>
             <file>file:/C:/Users/USER/Desktop/PCStore/src/java/db/OrderFacade.java</file>
             <file>file:/C:/Users/USER/Desktop/PCStore/src/java/controllers/ProductController.java</file>
-            <file>file:/C:/Users/USER/Desktop/PCStore/web/WEB-INF/views/admin/upload_img.jsp</file>
+            <file>file:/C:/Users/USER/Desktop/PCStore/src/java/db/CustomerFacade.java</file>
+            <file>file:/C:/Users/USER/Desktop/PCStore/src/java/controllers/EmployeeController.java</file>
             <file>file:/C:/Users/USER/Desktop/PCStore/src/java/db/ProductFacade.java</file>
         </group>
     </open-files>
