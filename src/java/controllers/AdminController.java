@@ -64,6 +64,7 @@ public class AdminController extends HttpServlet {
         switch (action) {
             case "index":
                 getChart(request,response);
+
                 request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
                 break;
             case "products": //Processing code here
@@ -486,6 +487,8 @@ public class AdminController extends HttpServlet {
               RevenueFacade rf = new RevenueFacade();
             ArrayList<Revenue> fivelist = rf.read5daysRevenue();
             request.setAttribute("fivelist", fivelist);
+             Revenue alltime = rf.readAllTimeRevenue();
+        request.setAttribute("alltime", alltime);
             //Forward request & response to the main layout
             request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
         } catch (SQLException ex) {
@@ -495,6 +498,14 @@ public class AdminController extends HttpServlet {
             request.setAttribute("action", "error");
             request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
         }
+    }
+     protected void showAllRevenue(HttpServletRequest request, HttpServletResponse response) throws ParseException, SQLException, ServletException, IOException {
+
+        RevenueFacade rf = new RevenueFacade();
+        Revenue alltime = rf.readAllTimeRevenue();
+        request.setAttribute("alltime", alltime);
+        request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

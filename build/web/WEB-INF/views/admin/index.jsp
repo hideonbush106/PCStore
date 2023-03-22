@@ -14,9 +14,27 @@
     <main class="dash-content">
         <div class="container-fluid">
             <div class="row dash-row">
-                <div class="col-xl-6">
-                    <div class="stats stats-success ">
-                        <h3 class="stats-title"> Revenue </h3>
+                <div class="col-xl-4">
+                    <div class="stats stats-primary ">
+                        <h3 class="stats-title"> All Time Revenue </h3>
+                        <div class="stats-content">
+                            <div class="stats-icon">
+                                <i class="fas fa-cart-arrow-down"></i>
+                            </div>
+                            <div class="stats-data">
+
+                 
+                                <div class="stats-number">$${alltime.cost}</div>
+                                <%--<div class="stats-change">
+                                    <span class="stats-percentage">17.5%</span>
+                                    <span class="stats-timeframe">from last month</span> --%>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="stats stats-success">
+                        <h3 class="stats-title"> Revenue from   </h3>
                         <div class="stats-content">
                             <div class="stats-icon">
                                 <i class="fas fa-cart-arrow-down"></i>
@@ -42,7 +60,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-6">
+                <div class="col-xl-4">
                     <div class="stats stats-danger">
                         <h3 class="stats-title"> Products bought </h3>
                         <div class="stats-content">

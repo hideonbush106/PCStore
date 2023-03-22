@@ -83,5 +83,17 @@ public class RevenueFacade {
     con.close();
     return list;
 }
+     public Revenue readAllTimeRevenue() throws SQLException {
+         Revenue rev=null;
+    Connection con = DBContext.getConnection();
+    PreparedStatement stm = con.prepareStatement("SELECT SUM(OrderDetail.price * OrderDetail.quantity) AS total_revenue FROM OrderHeader INNER JOIN OrderDetail ON OrderHeader.orderHeaderId = OrderDetail.orderHeaderId;");
+    ResultSet rs = stm.executeQuery();
+    while (rs.next()) {
+        rev = new Revenue();
+        rev.setCost(rs.getDouble("total_revenue"));
+    }
+    con.close();
+    return rev;
+}
 
 }
