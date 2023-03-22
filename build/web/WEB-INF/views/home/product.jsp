@@ -50,7 +50,7 @@
 </form>
 <div style="display: flex; flex-wrap: wrap; align-content: center; justify-content: space-around"><i style="color: red; font-weight: bold; font-size: larger ">${message}</i></div>
 <div style="display: flex; flex-wrap: wrap; align-content: center; justify-content: space-around">
-    <c:forEach items="${sessionScope.list}" var="product" varStatus="loop" >
+    <c:forEach items="${list}" var="product" varStatus="loop" >
         <!-- Single -->
         <div class="product-single product-page">
             <div class="sale-badge">

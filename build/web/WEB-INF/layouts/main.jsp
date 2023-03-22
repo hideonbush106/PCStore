@@ -370,7 +370,7 @@
                                                             </li>
                                                               </c:forEach>
                                                         </ul>
-                                                        <h2 class="subtotal">Subtota1 : <span>$${sessionScope.cart.total}</span></h2>
+                                                        <h2 class="subtotal">Subtotal : <span>$${sessionScope.cart.total}</span></h2>
                                                         <div class="minicart-btn">
                                                             <a class="button-1" href="<c:url value="/home/cart.do"/>">View Cart</a>
                                                             <a class="button-2" href="<c:url value="/home/checkout.do"/>">Checkout</a>
@@ -421,7 +421,7 @@
                                                     <li>  <a href="<c:url value="/" />">Home</a></li>
                                                     <li><a href="<c:url value="/home/aboutus.do" />">About Us</a></li>
                                                     <li><a href="<c:url value="/home/product.do" />">Product</a></li>
-
+                                                    <li><a href="<c:url value="/home/orderHistory.do" />">Product</a></li>
                                                     <li><a href="contact.html">Contact</a></li>
                                                 </ul>
                                             </nav>

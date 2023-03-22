@@ -11,7 +11,6 @@
         <tr>
             <th>ID</th>
             <th>Date</th>
-            <th>Status</th>
             <th>Customer's name</th>
             <th>Product's name</th>
             <th>Quantity</th>
@@ -19,11 +18,10 @@
         </tr>
     </thead>
     <tbody>
-        <c:forEach var="order" items="${list}">
+        <c:forEach var="order" items="${orderList}">
             <tr>
                 <td>${order.orderHeaderId}</td>
                 <td>${order.date}</td>
-                <td>${order.status}</td>
                 <td>${order.fullname}</td>
                 <td>${order.productName}</td>
                 <td>${order.quantity}</td>
@@ -32,3 +30,12 @@
         </c:forEach>
     </tbody>
 </table>
+Release Invoice
+<form action="<c:url value="/employees/invoice.do"/>">
+    <select name="customerId">
+        <c:forEach items="${customerList}" var="customer">
+        <option value="${customer.customerId}">${customer.customerId} - ${customer.fullName}</option>
+        </c:forEach>
+    </select>
+    <button type="submit" value="invoice" name="op">Continue</button>
+</form>
