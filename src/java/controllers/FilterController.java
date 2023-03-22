@@ -44,12 +44,11 @@ public class FilterController extends HttpServlet {
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         String op = (String) request.getParameter("op");
-        HttpSession session = request.getSession();
         switch (op) {
             case "search": {
                 String searchName = (String) request.getParameter("searchName");
                 //TODO: write search (contains name and brand)
-                session.setAttribute("searchName", searchName);
+                request.setAttribute("searchName", searchName);
                 ProductFacade pf = new ProductFacade();
                 List<Product> list = pf.search(searchName); //change to sort, search, filter...
                 BrandFacade bf = new BrandFacade();
@@ -58,7 +57,7 @@ public class FilterController extends HttpServlet {
                 List<Category> clist = cf.select();
                 request.setAttribute("blist", blist);
                 request.setAttribute("clist", clist);
-                session.setAttribute("list", list);
+                request.setAttribute("list", list);
                 request.setAttribute("action", "product");
                 request.setAttribute("controller", "home");
                 request.setAttribute("searchName", searchName);
@@ -77,7 +76,7 @@ public class FilterController extends HttpServlet {
                 List<Category> clist = cf.select();
                 request.setAttribute("blist", blist);
                 request.setAttribute("clist", clist);
-                session.setAttribute("list", list);
+                request.setAttribute("list", list);
                 request.setAttribute("action", "product");
                 request.setAttribute("controller", "home");
                 request.setAttribute("sortDirection", sortDirection);
@@ -96,7 +95,7 @@ public class FilterController extends HttpServlet {
                 List<Category> clist = cf.select();
                 request.setAttribute("blist", blist);
                 request.setAttribute("clist", clist);
-                session.setAttribute("list", list);
+                request.setAttribute("list", list);
                 request.setAttribute("action", "product");
                 request.setAttribute("controller", "home");
                 request.setAttribute("brandName", brandName);
