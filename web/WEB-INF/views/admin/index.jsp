@@ -109,7 +109,7 @@
                             var myChart = new Chart(ctx, {
                                 type: 'bar',
                                 data: {
-                                    labels: ["Thursday", "Friday", "Saturday", "Sunday", "Monday"],
+                                    labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
                                     datasets: [{
                                             label: 'Blue',
                                             data: [fivelist[4], fivelist[3], fivelist[2], fivelist[1], fivelist[0]],

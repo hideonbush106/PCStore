@@ -124,30 +124,7 @@
                                             >Popular</span
                                         >
                                     </li>
-                                    <li class="nav-item" role="presentation">
-                                        <span
-                                            class="nav-link"
-                                            id="bastsaller1-tab"
-                                            data-bs-toggle="tab"
-                                            data-bs-target="#bastsaller1"
-                                            role="tab"
-                                            aria-controls="bastsaller1"
-                                            aria-selected="false"
-                                            >Best Saller</span
-                                        >
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <span
-                                            class="nav-link"
-                                            id="featured1-tab"
-                                            data-bs-toggle="tab"
-                                            data-bs-target="#featured1"
-                                            role="tab"
-                                            aria-controls="featured1"
-                                            aria-selected="false"
-                                            >Featured</span
-                                        >
-                                    </li>
+                                    
                                 </ul>
                             </div>
                         </div>
@@ -359,7 +336,7 @@
                                         </h5>
                                         <div class="pricing">
                                           <span
-                                                        >$ ${product.price} <del>$<%= Utils.getRandomNumber() %></del></span
+                                                        >$ ${product.price} </span
                                                     >
                                         </div>
                                     </div>

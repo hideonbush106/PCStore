@@ -32,7 +32,8 @@
     </form>
 
                 <!-- Main content -->
-                <div class="row">
+                <div class="row" id="invoice">
+        
                     <!-- Left side -->
                     <div class="col-lg-5">
                         <!-- Basic information -->
@@ -71,7 +72,7 @@
                         </div>
                     </div>
                     <!-- Right side -->
-                    <div class="col-lg-7" id="invoice">
+                    <div class="col-lg-7" >
                         <label class="form-label">Order date: ${date}</label>
                         <table class="table table-striped table-hover">
                             <thead>
@@ -96,7 +97,7 @@
                         <form action="<c:url value="/employees/invoice.do"/>" class="form-control d-flex justify-content-center" style="height: 50px ">
                             <input type="hidden" value="${orderHeaderId}" name="orderHeaderId"/>
                             <button type="submit" name="op" value="print" onclick="printInvoice()" class="btn btn-primary mx-auto">Print</button>
-                        </form>s
+                        </form>
                 </div>
                
             </div>

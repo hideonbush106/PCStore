@@ -88,18 +88,11 @@
                                 <!-- Logo -->
                                 <div class="col-lg-2">
                                     <div class="logo">
-                                        <h2><a href="<c:url value="index.jsp"/>"><img src="<c:url value="/assets/img/logo.png"/>"></a></h2>
+                                        <h2><a href="<c:url value="index.jsp"/>">PcStore</a></h2>
                                     </div>
                                 </div>
                                 <!-- Search Bar -->
-                                <div class="col-lg-8">
-                                    <div class="header-search-form">
-                                        <form action="<c:url value="/filter"/>">
-                                            <input type="search" name="search" placeholder="Search keyword here...">
-                                            <button type="submit"><i class="fas fa-search"></i></button>
-                                        </form>
-                                    </div>	
-                                </div>
+
                                 <!-- MiniCart -->
                             </div>
                         </div>
@@ -204,7 +197,7 @@
                                     <!-- Logo -->
                                     <div class="col-lg-2">
                                         <div class="logo">
-                                            <h2><a href="<c:url value="index.jsp"/>"><img src="<c:url value="/assets/img/logo.png"/>"></a></h2>
+                                            <h2><a href="<c:url value="index.jsp"/>">PcStore</a></h2>
                                         </div>
                                     </div>
                                   
@@ -329,7 +322,7 @@
                                     <!-- Logo -->
                                     <div class="col-lg-8">
                                         <div class="logo">
-                                            <h2><a href="<c:url value="index.jsp"/>"><img src="<c:url value="/assets/img/logo.png"/>"></a></h2>
+                                            <h2><a href="<c:url value="index.jsp"/>">PcStore</a></h2>
                                         </div>
                                     </div>
                                     

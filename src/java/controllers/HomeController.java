@@ -161,7 +161,7 @@ public class HomeController extends HttpServlet {
     }
      private void viewDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            HttpSession session = request.getSession();
+
             int orderid=Integer.parseInt(request.getParameter("id"));  
             OrderFacade of = new OrderFacade();
             List<Order> list = of.readOrderDetail(orderid);

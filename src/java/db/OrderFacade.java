@@ -210,10 +210,12 @@ public class OrderFacade {
      public List<Order> readOrderDetail(int orderId) throws SQLException {
         Connection con = DBContext.getConnection();
         List<Order> list = null;
-        PreparedStatement stm = con.prepareStatement("SELECT od.*, p.productname FROM OrderDetail od JOIN Product p ON od.productid = p.productid WHERE od.orderheaderid = ?");
+
+        PreparedStatement stm = con.prepareStatement("SELECT od.*, p.productname FROM OrderDetail od JOIN Product p ON od.productid = p.productid WHERE od.orderheaderid = ? ;");
         stm.setInt(1, orderId);
         ResultSet rs = stm.executeQuery();
         list = new ArrayList<>();
+          
         while (rs.next()) {
             Order order = new Order();
             order.setOrderHeaderId(rs.getInt("orderdetailid"));
@@ -223,6 +225,7 @@ public class OrderFacade {
             list.add(order);
         }
        con.close();
+     
         return list;
     }
      public static void main(String[] args) throws SQLException {
