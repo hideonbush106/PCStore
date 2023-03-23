@@ -94,7 +94,7 @@
                                 <!-- Search Bar -->
                                 <div class="col-lg-8">
                                     <div class="header-search-form">
-                                        <form action="#">
+                                        <form action="<c:url value="/filter"/>">
                                             <input type="search" name="search" placeholder="Search keyword here...">
                                             <button type="submit"><i class="fas fa-search"></i></button>
                                         </form>
@@ -207,15 +207,7 @@
                                             <h2><a href="<c:url value="index.jsp"/>"><img src="<c:url value="/assets/img/logo.png"/>"></a></h2>
                                         </div>
                                     </div>
-                                    <!-- Search Bar -->
-                                    <div class="col-lg-8">
-                                        <div class="header-search-form">
-                                            <form action="">
-                                                <input type="search" name="search" placeholder="Search keyword here...">
-                                                <button type="submit"><i class="fas fa-search"></i></button>
-                                            </form>
-                                        </div>	
-                                    </div>
+                                  
                
                                     
                                 </div>
@@ -335,20 +327,12 @@
                             <div class="container">
                                 <div class="row">
                                     <!-- Logo -->
-                                    <div class="col-lg-2">
+                                    <div class="col-lg-8">
                                         <div class="logo">
                                             <h2><a href="<c:url value="index.jsp"/>"><img src="<c:url value="/assets/img/logo.png"/>"></a></h2>
                                         </div>
                                     </div>
-                                    <!-- Search Bar -->
-                                    <div class="col-lg-8">
-                                        <div class="header-search-form">
-                                            <form action="#">
-                                                <input type="search" name="search" placeholder="Search keyword here...">
-                                                <button type="submit"><i class="fas fa-search"></i></button>
-                                            </form>
-                                        </div>	
-                                    </div>
+                                    
                                     <!-- MiniCart -->
                                     <div class="col-lg-2">
                                         <div class="desktop-mini-cart">
