@@ -69,18 +69,11 @@
 					<!-- Logo -->
 					<div class="col-lg-2">
 						<div class="logo">
-                                                    <h2><a href="<c:url value="/home/index.do"/>"><img src="<c:url value="/assets/img/logo.png"/>"></a></h2>
+                                                    <h2><a href="<c:url value="/home/index.do"/>">PcStore</a></h2>
 						</div>
 					</div>
 					<!-- Search Bar -->
-					<div class="col-lg-8">
-						<div class="header-search-form">
-							<form action="#">
-								<input type="search" name="search" placeholder="Search keyword here...">
-								<button type="submit"><i class="fas fa-search"></i></button>
-							</form>
-						</div>	
-					</div>
+					
 					<!-- MiniCart -->
 					
 				</div>
@@ -99,7 +92,7 @@
                                     <div class="breadcrumb-content">
                                         <h2>Register</h2>
                                         <ul>
-                                            <li><a href="<c:url value="index.jsp"/>">Home</a></li>
+                                            <li><a href="<c:url value="/home/index.do"/> ">Home</a></li>
                                             <li >Register</li>
                                         </ul>
                                     </div>

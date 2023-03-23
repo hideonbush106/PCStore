@@ -6,7 +6,22 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<table border="1" cellpadding="3" cellspacing="3">
+<div>
+    <div class="mx-auto col-xl-6" >
+        <h3 class="text-center" >Release Invoice</h3>
+    <form action="<c:url value="/employees/invoice.do"/>">
+        <div class=" d-flex justify-content-center align-items-center">
+        <select name="customerId" class="form-control">
+            <c:forEach items="${customerList}" var="customer">
+            <option value="${customer.customerId}" class="form-control">${customer.customerId} - ${customer.fullName}</option>
+            </c:forEach>
+        </select>
+            <button type="submit" value="invoice" name="op" class="btn btn-primary">Continue</button>
+        </div>
+        
+    </form>
+    </div>
+<table class="table table-striped table-hover">
     <thead>
         <tr>
             <th>ID</th>
@@ -30,12 +45,4 @@
         </c:forEach>
     </tbody>
 </table>
-Release Invoice
-<form action="<c:url value="/employees/invoice.do"/>">
-    <select name="customerId">
-        <c:forEach items="${customerList}" var="customer">
-        <option value="${customer.customerId}">${customer.customerId} - ${customer.fullName}</option>
-        </c:forEach>
-    </select>
-    <button type="submit" value="invoice" name="op">Continue</button>
-</form>
+</div>

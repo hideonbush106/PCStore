@@ -26,6 +26,7 @@ import models.Account;
 import models.Brand;
 import models.Category;
 import models.Order;
+import models.OrderHeader;
 import models.Product;
 import utils.Config;
 
@@ -54,8 +55,7 @@ public class HomeController extends HttpServlet {
             case "index":
                 //Processing code here
                 getList(request, response);
-                //Forward request & response to the main layout
-                request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+                //Forward request & response to the main layout      request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
                 break;
             case "aboutus":
                 //Processing code here
@@ -82,8 +82,14 @@ public class HomeController extends HttpServlet {
                 break;
             case "orderHistory":
                 orderHistory(request, response);
-                request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+
                 break;
+             case "orderDetail":
+                viewDetail(request, response);
+              
+                break;
+              case "finish":
+                break;      
             default:
             //Show error page
         }
@@ -132,13 +138,12 @@ public class HomeController extends HttpServlet {
             request.setAttribute("numOfPages", numOfPages);
             request.setAttribute("currentPage", currentPage);
             //Forward request & response to the main layout
-            request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+        
         } catch (SQLException ex) {
             //Show the error page
             request.setAttribute("message", ex.getMessage());
             request.setAttribute("controller", "error");
             request.setAttribute("action", "error");
-            request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
         }
     }
 
@@ -147,7 +152,19 @@ public class HomeController extends HttpServlet {
             HttpSession session = request.getSession();
             Account account = (Account) session.getAttribute("account");
             OrderFacade of = new OrderFacade();
-            List<Order> list = of.readOrderHistory(account.getAccountId());
+            List<OrderHeader> list = of.readOrderHeaderHistory(account.getAccountId());
+            request.setAttribute("list", list);
+            request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+     private void viewDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+
+            int orderid=Integer.parseInt(request.getParameter("id"));  
+            OrderFacade of = new OrderFacade();
+            List<Order> list = of.readOrderDetail(orderid);
             request.setAttribute("list", list);
             request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
         } catch (SQLException ex) {

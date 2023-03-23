@@ -103,6 +103,9 @@ public class AdminController extends HttpServlet {
             case "createEmployee": //Show the create form
                 createEmployee(request, response);
                 break;
+                case "deleteEmployee": //Show the create form
+                     request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+                break;
             case "create_handlerEmployee":
                 create_handlerEmployee(request, response);
                 break;
@@ -112,6 +115,7 @@ public class AdminController extends HttpServlet {
               case "upload_img":
                 uploadImg(request,response);
                 break;    
+                
             default:
                 default_handler(request, response);
         }
@@ -477,6 +481,8 @@ public class AdminController extends HttpServlet {
         request.setAttribute("dateTo", request.getParameter("dateTo"));
         request.setAttribute("controller", "admin");
         request.setAttribute("action", "index");
+         Revenue alltime = rf.readAllTimeRevenue();
+        request.setAttribute("alltime", alltime);
          ArrayList<Revenue> fivelist = rf.read5daysRevenue();
             request.setAttribute("fivelist", fivelist);
         request.getRequestDispatcher(Config.LAYOUT).forward(request, response);

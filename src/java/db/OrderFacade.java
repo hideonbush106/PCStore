@@ -190,4 +190,50 @@ public class OrderFacade {
         int count = stm.executeUpdate();
         con.close();
     }
+     public List<OrderHeader> readOrderHeaderHistory(int customerId) throws SQLException {
+        Connection con = DBContext.getConnection();
+        List<OrderHeader> list = null;
+        PreparedStatement stm = con.prepareStatement("SELECT * FROM OrderHeader WHERE customerId= ?");
+        stm.setInt(1, customerId);
+        ResultSet rs = stm.executeQuery();
+        list = new ArrayList<>();
+        while (rs.next()) {
+            OrderHeader orderHeader = new OrderHeader();
+            orderHeader.setOrderHeaderId(rs.getInt("OrderHeaderId"));
+            orderHeader.setDate(rs.getDate("date"));
+            orderHeader.setStatus(rs.getBoolean("status"));
+            list.add(orderHeader);
+        }
+        con.close();
+        return list;
+    }
+     public List<Order> readOrderDetail(int orderId) throws SQLException {
+        Connection con = DBContext.getConnection();
+        List<Order> list = null;
+
+        PreparedStatement stm = con.prepareStatement("SELECT od.*, p.productname FROM OrderDetail od JOIN Product p ON od.productid = p.productid WHERE od.orderheaderid = ? ;");
+        stm.setInt(1, orderId);
+        ResultSet rs = stm.executeQuery();
+        list = new ArrayList<>();
+          
+        while (rs.next()) {
+            Order order = new Order();
+            order.setOrderHeaderId(rs.getInt("orderdetailid"));
+            order.setProductName(rs.getString("productname"));
+            order.setQuantity(rs.getInt("quantity"));
+            order.setPrice(rs.getDouble("price"));
+            list.add(order);
+        }
+       con.close();
+     
+        return list;
+    }
+     public static void main(String[] args) throws SQLException {
+         OrderFacade of= new OrderFacade();
+         int id=20;
+         List<Order> list = of.readOrderDetail(id);
+         System.out.print(list);
+    }
+
 }
+

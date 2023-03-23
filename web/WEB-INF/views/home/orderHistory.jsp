@@ -6,14 +6,14 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<table border="1" cellpadding="3" cellspacing="3">
+<table class="table table-striped table-hover">
     <thead>
         <tr>
             <th>ID</th>
             <th>Date</th>
-            <th>Product's name</th>
-            <th>Quantity</th>
-            <th>Cost</th>
+            <th>Order Status</th>
+            <th>Detail</th>
+            
         </tr>
     </thead>
     <tbody>
@@ -21,9 +21,8 @@
             <tr>
                 <td>${order.orderHeaderId}</td>
                 <td>${order.date}</td>
-                <td>${order.productName}</td>
-                <td>${order.quantity}</td>
-                <td>${order.price}</td>
+                <td>${order.status == true ? "On Deliveried" :"Processing"}</td>
+                <td><a href="<c:url value="/home/orderDetail.do?id=${order.orderHeaderId}"/>">View Detail</a></td>
             </tr>
         </c:forEach>
     </tbody>

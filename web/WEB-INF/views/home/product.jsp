@@ -7,7 +7,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="utils.Utils" %>
-<h1>Product goes here</h1>
 <%--    <form action="<c:url value=""/>">
     <label for="sortChoice"></label>
     <select name="sortChoice" id="sortChoice">
@@ -16,7 +15,7 @@
     </select>
 </form>--%>
 
-<form action="<c:url value="/filter"/>">
+<form action="<c:url value="/filter"/>" style="margin-bottom: 50px">
     <select name="sortDirection">
         <option value="asc" ${sortDirection == "asc" ? "selected" : ""}>A - Z</option>
         <option value="desc" ${sortDirection == "desc" ? "selected" : ""}>Z - A</option>
@@ -26,7 +25,7 @@
         <option value="brandName" ${sortBy == "brandName" ? "selected" : ""}>Brand</option>
         <option value="price" ${sortBy == "price" ? "selected" : ""}>Price</option>
     </select>
-    <button type="submit" name="op" value="sort">Apply</button>
+    <button type="submit" name="op" value="sort" class="btn btn-primary">Apply</button>
 
     Brand:
     <select name="brandName">
@@ -42,11 +41,11 @@
             <option value="${category.name}" ${category.name == categoryName ? "selected" : ""}>${category.name}</option>
         </c:forEach>
     </select>
-    <button type="submit" name="op" value="filter">Filter</button>
+    <button type="submit" name="op" value="filter"  class="btn btn-primary">Filter</button>
 
     Search:
     <input type="text" name="searchName" value="${sessionScope.searchName}"/>
-    <button type="submit" name="op" value="search">Search</button>
+    <button type="submit" name="op" value="search"  class="btn btn-primary">Search</button>
 </form>
 <div style="display: flex; flex-wrap: wrap; align-content: center; justify-content: space-around"><i style="color: red; font-weight: bold; font-size: larger ">${message}</i></div>
 <div style="display: flex; flex-wrap: wrap; align-content: center; justify-content: space-around">

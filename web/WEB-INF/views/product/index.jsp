@@ -42,17 +42,13 @@
                                                  <p>Brand:${product.brandId}</p>
 					
 						<div class="modal_add_to_cart">
-                            <form action="#">
-                                <span class="quantity">
-				  					<input type="number" min="1" max="1000" step="1" value="1">
-								</span>
+
+      
                                 <c:if test="${sessionScope.account.role == 'ROLE_CUSTOMER'}">
                                <button class="btn-primary btn"><a href="<c:url value="/cart?op=add&productId=${product.productId}"/>" style="color:white">Add To cart</a></button>
                                 </c:if>
-                               <c:if test="${sessionScope.account.role != 'ROLE_CUSTOMER'}">
-                               <button class="btn-primary btn"> <a href="<c:url value="/account/login.do" />" style="color:white">Login To Buy</a></button>
-                                </c:if>
-                                </form>
+                           
+                              
                         </div>
                         <h3>Share This Product</h3>
                         <ul class="share-product">
@@ -148,40 +144,7 @@
                     </div>    
                 </div>
   
-            <div class="col-md-7 col-lg-6">
-                <div class="product-details-img-full">
-                    <h2>${product.productName} </h2>
-                    <div class="pricing">
-                        <span>$200 <del>$210</del></span>
-                    </div>
-                    <div class="ratting">
-                        <span><i class="fas fa-star"></i></span>
-                        <span><i class="fas fa-star"></i></span>
-                        <span><i class="fas fa-star"></i></span>
-                        <span><i class="fas fa-star"></i></span>
-                        <span><i class="fas fa-star"></i></span>
-                    </div>
-                    <p>Category:${product.categoryId}</p>
-                    <p>Brand:${product.brandId}</p>
-
-                    <div class="modal_add_to_cart">
-                        <form action="#">
-                            <span class="quantity">
-                                <input type="number" min="1" max="1000" step="1" value="1">
-                            </span>
-                            <button class="button-1" type="submit">add to cart</button>
-                        </form>
-                    </div>
-                    <h3>Share This Product</h3>
-                    <ul class="share-product">
-                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-                        <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
-                    </ul>
-                </div>
-            </div>
+          
         </div>
         <div class="row mt-50 section-bg">
             <div class="shop-details-full-content">

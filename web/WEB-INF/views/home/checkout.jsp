@@ -92,12 +92,10 @@
 
                                 <h4 class="deal-title">Payment Method</h4>
                                 <ul>
-                                    <li><label class="inline"><input class="form-check-input" type="checkbox"><span class="input"></span>Direct Bank
-                                            Transfer</label></li>
+                                   
                                     <li><label class="inline"><input class="form-check-input" type="checkbox"><span class="input"></span>Cash on Delivery</label>
                                     </li>
-                                    <li><label class="inline"><input class="form-check-input" type="checkbox"><span class="input"></span>Paypal</label>
-                                    </li>
+                                    
                                 </ul>
                                 <p class="credit">You can pay with your credit<br> card if you don't have a paypal account</p>
                                 <span class="grand-total">Grand Total :  <span>${sessionScope.cart.total}</span></span>

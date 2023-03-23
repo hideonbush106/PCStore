@@ -69,18 +69,11 @@
 					<!-- Logo -->
 					<div class="col-lg-2">
 						<div class="logo">
-                                                    <h2><a href="<c:url value="/home/index.do" /> "><img src="<c:url value="/assets/img/logo.png"/>"></a></h2>
+                                                    <h2><a href="<c:url value="/home/index.do" /> ">PcStore</a></h2>
 						</div>
 					</div>
 					<!-- Search Bar -->
-					<div class="col-lg-8">
-						<div class="header-search-form">
-							<form action="#">
-								<input type="search" name="search" placeholder="Search keyword here...">
-								<button type="submit"><i class="fas fa-search"></i></button>
-							</form>
-						</div>	
-					</div>
+				
 					
 					
 				</div>
@@ -126,12 +119,10 @@
 								<div class="col-6">
 									<div class="form-check">
   										<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  										<label class="form-check-label" for="flexCheckDefault">Remember me</label>
+  										
   									</div>
 								</div>
-								<div class="col-6 text-right">
-									<a href="reset-password.html">Forgot password?</a>
-								</div>
+								
 							</div>
                                                         <div class="d-flex align-items-center justify-content-between">
 							<button class="button-1"  class="form-control" type="submit" value="login" name="op">Log In</button>
